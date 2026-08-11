@@ -1,15 +1,16 @@
 import express from "express";
 import cors from "cors";
+import authRoutes from "./routes/auth.route";
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Home Route
 app.get("/", (req, res) => {
-    res.send("LeetCode Tracker Backend Running 🚀");
+  res.send("LeetCode Tracker Backend Running 🚀");
 });
+
+app.use("/api/auth", authRoutes);
 
 export default app;
