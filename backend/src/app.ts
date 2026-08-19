@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Leetcode Tracker Backend Running 🚀");
+  res.send("Backend Running 🚀");
 });
 
 app.use("/api/users", userRoutes);
