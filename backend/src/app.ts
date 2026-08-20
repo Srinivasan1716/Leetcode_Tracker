@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/user-problems", userProblemRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/problems", problemRoutes);
 
