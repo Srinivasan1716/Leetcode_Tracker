@@ -3,7 +3,7 @@ import {
   updateProblemStatus,
   getUserProblems,
   getUserProblem,
-} from "../services/userProblem.service";
+} from "../services/userproblem.service";
 
 export const updateStatusController = async (
   req: Request,
