@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.route";
 import authRoutes from "./routes/auth.route";
 import problemRoutes from "./routes/problem.route";
 import userProblemRoutes from "./routes/userProblem.route";
+import dashboardRoutes from "./routes/dashboard.route";
 
 const app = express();
 
