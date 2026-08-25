@@ -47,7 +47,7 @@ export default function Home() {
         {/* Header */}
         <div className="mb-10">
           <h1 className="text-4xl font-bold">
-            LeetCode Tracker Web
+            LeetCode Tracker
           </h1>
 
           <p className="text-zinc-400 mt-2">
