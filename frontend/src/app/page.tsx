@@ -66,7 +66,7 @@ export default function Home() {
 
               <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
                 <p className="text-zinc-400">
-                  Total Problemssss
+                  Total Problems
                 </p>
 
                 <h2 className="text-3xl font-bold mt-2">
