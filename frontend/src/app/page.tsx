@@ -57,7 +57,7 @@ export default function Home() {
 
         {loading ? (
           <p className="text-zinc-400">
-            Loading dashboard ........
+            Loading dashboard
           </p>
         ) : dashboard ? (
           <>
