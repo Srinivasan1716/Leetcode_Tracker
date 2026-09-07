@@ -51,7 +51,7 @@ export default function Home() {
           </h1>
 
           <p className="text-zinc-400 mt-2">
-            Track your coding ..... 
+            Track your code and improve daily......
           </p>
         </div>
 
