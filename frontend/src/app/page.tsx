@@ -74,7 +74,7 @@ const calculatePercentage = (count: number, total: number) => {
   return Math.round((count / total) * 100);
 };
 
-// Default sample problem dataset for fallback display
+// Default sample dataset
 const sampleProblems: Problem[] = [
   { id: 1, title: "Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", solvedAt: "2026-03-10" },
   { id: 2, title: "Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/" },
@@ -93,6 +93,13 @@ const defaultTopics: TopicStat[] = [
   { name: "Trees & Graphs", total: 14, solved: 7 },
   { name: "Dynamic Programming", total: 12, solved: 5 },
 ];
+
+const defaultStreak: UserStreak = {
+  currentStreak: 7,
+  longestStreak: 14,
+  dailyTarget: 3,
+  completedToday: 2,
+};
 
 export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
@@ -178,6 +185,8 @@ export default function Home() {
     ? dashboard.topicStats 
     : defaultTopics;
 
+  const streakInfo = dashboard?.streak || defaultStreak;
+
   const filteredProblems = problems.filter((problem) => {
     const matchesSearch =
       problem.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -241,6 +250,36 @@ export default function Home() {
           <p className="text-zinc-400">Loading dashboard...</p>
         ) : dashboard ? (
           <div className="space-y-8">
+            
+            {/* Daily Streak Banner Card */}
+            <div className="bg-gradient-to-r from-amber-500/10 via-zinc-900 to-indigo-500/10 border border-amber-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3.5 bg-amber-500/20 border border-amber-500/30 text-amber-400 rounded-2xl text-2xl animate-bounce">
+                  🔥
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">
+                    {streakInfo.currentStreak} Day Streak Active!
+                  </h3>
+                  <p className="text-xs text-zinc-400 mt-1">
+                    Personal best: {streakInfo.longestStreak} days. Keep solving daily to maintain your momentum!
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl">
+                <div>
+                  <p className="text-xs text-zinc-500 uppercase font-semibold">Today Target</p>
+                  <p className="text-lg font-bold text-amber-400">
+                    {streakInfo.completedToday} / {streakInfo.dailyTarget} Solved
+                  </p>
+                </div>
+                <div className="w-12 h-12 rounded-full border-4 border-amber-500/30 flex items-center justify-center font-bold text-xs text-amber-400">
+                  {calculatePercentage(streakInfo.completedToday, streakInfo.dailyTarget)}%
+                </div>
+              </div>
+            </div>
+
             {/* Enhanced Statistics Summary Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               
