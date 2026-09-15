@@ -74,7 +74,15 @@ const calculatePercentage = (count: number, total: number) => {
   return Math.round((count / total) * 100);
 };
 
-// Fallback sample topic distribution when backend topic array is empty
+// Default sample problem dataset for fallback display
+const sampleProblems: Problem[] = [
+  { id: 1, title: "Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", solvedAt: "2026-03-10" },
+  { id: 2, title: "Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/" },
+  { id: 3, title: "Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+  { id: 4, title: "Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
+  { id: 5, title: "Longest Palindromic Substring", difficulty: "MEDIUM", topic: "Dynamic Programming", status: "SOLVED", link: "https://leetcode.com/problems/longest-palindromic-substring/" },
+];
+
 const defaultTopics: TopicStat[] = [
   { name: "Arrays & Hashing", total: 15, solved: 10 },
   { name: "Two Pointers", total: 8, solved: 5 },
@@ -119,6 +127,24 @@ export default function Home() {
   const topicList = dashboard?.topicStats && dashboard.topicStats.length > 0 
     ? dashboard.topicStats 
     : defaultTopics;
+
+  const rawProblems = dashboard?.recentProblems && dashboard.recentProblems.length > 0
+    ? dashboard.recentProblems
+    : sampleProblems;
+
+  const filteredProblems = rawProblems.filter((problem) => {
+    const matchesSearch =
+      problem.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (problem.topic && problem.topic.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesDifficulty =
+      difficultyFilter === "ALL" || problem.difficulty === difficultyFilter;
+
+    const matchesStatus =
+      statusFilter === "ALL" || problem.status === statusFilter;
+
+    return matchesSearch && matchesDifficulty && matchesStatus;
+  });
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
@@ -382,6 +408,77 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Problem Table List */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl overflow-hidden">
+              <div className="p-6 border-b border-zinc-800/80 flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-white">Problem Collection</h2>
+                  <p className="text-xs text-zinc-400">Showing {filteredProblems.length} matching problem entries</p>
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-zinc-950/60 border-b border-zinc-800/80 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+                      <th className="py-3.5 px-6">Title</th>
+                      <th className="py-3.5 px-6">Topic</th>
+                      <th className="py-3.5 px-6">Difficulty</th>
+                      <th className="py-3.5 px-6">Status</th>
+                      <th className="py-3.5 px-6 text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-800/60 text-sm">
+                    {filteredProblems.length > 0 ? (
+                      filteredProblems.map((prob) => (
+                        <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
+                          <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
+                            <span>{prob.title}</span>
+                            {prob.link && (
+                              <a
+                                href={prob.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-zinc-500 hover:text-amber-400 transition-colors"
+                              >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            )}
+                          </td>
+                          <td className="py-4 px-6 text-zinc-400 text-xs font-mono">
+                            {prob.topic || "General"}
+                          </td>
+                          <td className="py-4 px-6">
+                            <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(prob.difficulty)}`}>
+                              {prob.difficulty}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6">
+                            <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getStatusBadge(prob.status)}`}>
+                              {prob.status.replace("_", " ")}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 text-right">
+                            <button className="text-xs text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg border border-zinc-700 transition-all">
+                              Update
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-zinc-500 text-sm">
+                          No problems match your current search and filter criteria.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
               </div>
             </div>
 
