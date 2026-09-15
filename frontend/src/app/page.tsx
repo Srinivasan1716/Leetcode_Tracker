@@ -107,6 +107,12 @@ export default function Home() {
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  // Add problem modal form fields
+  const [newTitle, setNewTitle] = useState("");
+  const [newTopic, setNewTopic] = useState("");
+  const [newDifficulty, setNewDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">("EASY");
+  const [newLink, setNewLink] = useState("");
+
   const fetchDashboard = async () => {
     setLoading(true);
     try {
@@ -164,7 +170,7 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
+    <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans relative">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Navigation & Top Header */}
@@ -186,10 +192,15 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-lg text-xs text-zinc-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Backend Connected (Port 5000)</span>
-            </div>
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg text-sm transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Add Problem
+            </button>
 
             <button
               onClick={() => fetchDashboard()}
@@ -546,6 +557,26 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {/* Add Problem Modal Interface */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-md p-6 space-y-5 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+              <h3 className="text-lg font-bold text-white">Add New Problem</h3>
+              <button
+                onClick={() => setIsAddModalOpen(false)}
+                className="text-zinc-500 hover:text-zinc-300"
+              >
+                ✕
+              </button>
+            </div>
+            <p className="text-xs text-zinc-400">
+              Submit a new problem into your tracking dashboard.
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
