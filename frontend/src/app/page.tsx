@@ -247,7 +247,16 @@ export default function Home() {
         </header>
 
         {loading ? (
-          <p className="text-zinc-400">Loading dashboard...</p>
+          /* Animated Skeleton Loading State UI */
+          <div className="space-y-8 animate-pulse">
+            <div className="h-24 bg-zinc-900 border border-zinc-800 rounded-2xl w-full"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-32 bg-zinc-900 border border-zinc-800 rounded-2xl"></div>
+              ))}
+            </div>
+            <div className="h-44 bg-zinc-900 border border-zinc-800 rounded-2xl"></div>
+          </div>
         ) : dashboard ? (
           <div className="space-y-8">
             
