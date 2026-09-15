@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-// Types & Interfaces for LeetCode Tracker
+/**
+ * Interface definitions for LeetCode Tracker Dashboard
+ */
 export interface Problem {
   id: number;
   title: string;
@@ -44,7 +46,9 @@ export interface Dashboard {
   streak?: UserStreak;
 }
 
-// Utility formatting functions
+/**
+ * Utility helper functions for badge styling and progress percentage calculations
+ */
 const getDifficultyColor = (difficulty: string) => {
   switch (difficulty?.toUpperCase()) {
     case "EASY":
@@ -75,7 +79,7 @@ const calculatePercentage = (count: number, total: number) => {
   return Math.round((count / total) * 100);
 };
 
-// Default sample dataset
+// Fallback sample data when backend returns initial empty lists
 const sampleProblems: Problem[] = [
   { id: 1, title: "Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", solvedAt: "2026-03-10", tags: ["Blind 75", "NeetCode 150"] },
   { id: 2, title: "Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/", tags: ["NeetCode 150"] },
@@ -107,17 +111,17 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Local list state for instant interactive updates
+  // Local state for interactive problem manipulation
   const [problems, setProblems] = useState<Problem[]>(sampleProblems);
 
-  // UI Interactive State Management
+  // Search & filtering state management
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [activeTagFilter, setActiveTagFilter] = useState<string>("ALL");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // Add problem modal form fields
+  // Add problem form fields
   const [newTitle, setNewTitle] = useState("");
   const [newTopic, setNewTopic] = useState("");
   const [newDifficulty, setNewDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">("EASY");
@@ -179,7 +183,7 @@ export default function Home() {
 
     setProblems((prev) => [newEntry, ...prev]);
 
-    // Reset form & close modal
+    // Form cleanup
     setNewTitle("");
     setNewTopic("");
     setNewDifficulty("EASY");
@@ -211,8 +215,8 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative">
-      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 w-full">
         
         {/* Navigation & Top Header */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
@@ -590,6 +594,7 @@ export default function Home() {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="text-zinc-500 hover:text-amber-400 transition-colors"
+                                title="Open on LeetCode"
                               >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -672,6 +677,11 @@ export default function Home() {
           </div>
         ) : null}
       </div>
+
+      {/* Footer Branding */}
+      <footer className="mt-12 pt-6 border-t border-zinc-800/60 text-center text-xs text-zinc-500 max-w-7xl mx-auto w-full">
+        <p>LeetCode Tracker &copy; {new Date().getFullYear()} • Built with Next.js & TypeScript</p>
+      </footer>
 
       {/* Add Problem Modal Interface */}
       {isAddModalOpen && (
