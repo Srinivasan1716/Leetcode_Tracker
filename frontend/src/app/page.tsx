@@ -74,6 +74,18 @@ const calculatePercentage = (count: number, total: number) => {
   return Math.round((count / total) * 100);
 };
 
+// Fallback sample topic distribution when backend topic array is empty
+const defaultTopics: TopicStat[] = [
+  { name: "Arrays & Hashing", total: 15, solved: 10 },
+  { name: "Two Pointers", total: 8, solved: 5 },
+  { name: "Sliding Window", total: 6, solved: 4 },
+  { name: "Stack & Queue", total: 7, solved: 3 },
+  { name: "Binary Search", total: 9, solved: 6 },
+  { name: "Linked List", total: 6, solved: 4 },
+  { name: "Trees & Graphs", total: 14, solved: 7 },
+  { name: "Dynamic Programming", total: 12, solved: 5 },
+];
+
 export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [loading, setLoading] = useState(true);
@@ -104,6 +116,10 @@ export default function Home() {
   useEffect(() => {
     fetchDashboard();
   }, []);
+
+  const topicList = dashboard?.topicStats && dashboard.topicStats.length > 0 
+    ? dashboard.topicStats 
+    : defaultTopics;
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
@@ -316,6 +332,43 @@ export default function Home() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+
+            {/* Topic Mastery Categories */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 md:p-8 space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-white">Topic Mastery</h2>
+                  <p className="text-xs text-zinc-400">Progress across Data Structure & Algorithm categories</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {topicList.map((topic, index) => {
+                  const pct = calculatePercentage(topic.solved, topic.total);
+                  return (
+                    <div
+                      key={index}
+                      className="p-4 bg-zinc-950/50 rounded-xl border border-zinc-800/60 hover:border-zinc-700 transition-all space-y-2.5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-sm font-semibold text-zinc-200 truncate">
+                          {topic.name}
+                        </h3>
+                        <span className="text-xs font-mono text-zinc-400">
+                          {topic.solved}/{topic.total}
+                        </span>
+                      </div>
+                      <div className="w-full bg-zinc-900 rounded-full h-2 overflow-hidden border border-zinc-800">
+                        <div
+                          className="bg-gradient-to-r from-amber-500 to-indigo-500 h-full rounded-full transition-all"
+                          style={{ width: `${pct}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
