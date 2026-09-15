@@ -47,6 +47,13 @@ export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // UI Interactive State Management
+  const [searchQuery, setSearchQuery] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
+  const [statusFilter, setStatusFilter] = useState<string>("ALL");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
