@@ -211,8 +211,8 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans relative">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
         
         {/* Navigation & Top Header */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
@@ -222,20 +222,20 @@ export default function Home() {
                 LT
               </span>
               <div>
-                <h1 className="text-3xl font-extrabold tracking-tight text-white">
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
                   LeetCode Tracker
                 </h1>
-                <p className="text-sm text-zinc-400">
+                <p className="text-xs sm:text-sm text-zinc-400">
                   Monitor solving progress, algorithms & data structures metrics
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg text-sm transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
+              className="flex-1 sm:flex-initial px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -245,12 +245,12 @@ export default function Home() {
 
             <button
               onClick={() => fetchDashboard()}
-              className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 rounded-lg text-sm font-medium text-zinc-200 transition-all flex items-center gap-2 active:scale-95"
+              className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 rounded-lg text-xs sm:text-sm font-medium text-zinc-200 transition-all flex items-center justify-center gap-2 active:scale-95"
             >
               <svg className="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              Refresh
+              <span className="hidden sm:inline">Refresh</span>
             </button>
           </div>
         </header>
@@ -288,16 +288,16 @@ export default function Home() {
             </button>
           </div>
         ) : dashboard ? (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             
             {/* Daily Streak Banner Card */}
-            <div className="bg-gradient-to-r from-amber-500/10 via-zinc-900 to-indigo-500/10 border border-amber-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="bg-gradient-to-r from-amber-500/10 via-zinc-900 to-indigo-500/10 border border-amber-500/20 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="p-3.5 bg-amber-500/20 border border-amber-500/30 text-amber-400 rounded-2xl text-2xl animate-bounce">
                   🔥
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
                     {streakInfo.currentStreak} Day Streak Active!
                   </h3>
                   <p className="text-xs text-zinc-400 mt-1">
@@ -306,10 +306,10 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl">
+              <div className="flex items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl w-full md:w-auto justify-between md:justify-start">
                 <div>
                   <p className="text-xs text-zinc-500 uppercase font-semibold">Today Target</p>
-                  <p className="text-lg font-bold text-amber-400">
+                  <p className="text-base sm:text-lg font-bold text-amber-400">
                     {streakInfo.completedToday} / {streakInfo.dailyTarget} Solved
                   </p>
                 </div>
@@ -320,10 +320,10 @@ export default function Home() {
             </div>
 
             {/* Enhanced Statistics Summary Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               
               {/* Total Problems Card */}
-              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Total Tracked
@@ -334,7 +334,7 @@ export default function Home() {
                     </svg>
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold text-white mt-3">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
                   {dashboard.totalProblems}
                 </h2>
                 <p className="text-xs text-zinc-500 mt-2">
@@ -343,7 +343,7 @@ export default function Home() {
               </div>
 
               {/* Solved Card */}
-              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-emerald-500/30 hover:shadow-lg hover:shadow-black/40">
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 transition-all hover:border-emerald-500/30 hover:shadow-lg hover:shadow-black/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                     Solved
@@ -355,7 +355,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex items-baseline gap-2 mt-3">
-                  <h2 className="text-3xl font-extrabold text-white">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                     {dashboard.solved}
                   </h2>
                   <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
@@ -368,7 +368,7 @@ export default function Home() {
               </div>
 
               {/* In Progress Card */}
-              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-sky-500/30 hover:shadow-lg hover:shadow-black/40">
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 transition-all hover:border-sky-500/30 hover:shadow-lg hover:shadow-black/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                     In Progress
@@ -379,7 +379,7 @@ export default function Home() {
                     </svg>
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold text-white mt-3">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
                   {dashboard.inProgress}
                 </h2>
                 <p className="text-xs text-zinc-500 mt-2">
@@ -388,7 +388,7 @@ export default function Home() {
               </div>
 
               {/* Not Started Card */}
-              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Not Started
@@ -399,7 +399,7 @@ export default function Home() {
                     </svg>
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold text-white mt-3">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
                   {dashboard.notStarted}
                 </h2>
                 <p className="text-xs text-zinc-500 mt-2">
@@ -410,21 +410,21 @@ export default function Home() {
             </div>
 
             {/* Difficulty Breakdown & Progress Fill Section */}
-            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 md:p-8 space-y-6">
-              <div className="flex items-center justify-between">
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-8 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <h2 className="text-xl font-bold text-white">Difficulty Breakdown</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Difficulty Breakdown</h2>
                   <p className="text-xs text-zinc-400">Problem completion distribution across difficulty tiers</p>
                 </div>
-                <span className="text-xs font-medium text-zinc-400 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full">
+                <span className="text-xs font-medium text-zinc-400 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full w-fit">
                   Overall: {calculatePercentage(dashboard.solved, dashboard.totalProblems)}% Complete
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                 
                 {/* Easy Tier */}
-                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                <div className="p-4 sm:p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-semibold text-emerald-400 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
@@ -445,7 +445,7 @@ export default function Home() {
                 </div>
 
                 {/* Medium Tier */}
-                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                <div className="p-4 sm:p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-semibold text-amber-400 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
@@ -466,7 +466,7 @@ export default function Home() {
                 </div>
 
                 {/* Hard Tier */}
-                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                <div className="p-4 sm:p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="font-semibold text-rose-400 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
@@ -490,7 +490,7 @@ export default function Home() {
             </div>
 
             {/* Interactive Search & Filter Controls Toolbar */}
-            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 space-y-4">
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-4 sm:p-6 space-y-4">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 {/* Search Bar */}
                 <div className="relative flex-1">
@@ -521,12 +521,12 @@ export default function Home() {
                   </select>
 
                   {/* Status Buttons */}
-                  <div className="flex bg-zinc-950/80 border border-zinc-800 rounded-xl p-1 text-xs font-medium">
+                  <div className="flex bg-zinc-950/80 border border-zinc-800 rounded-xl p-1 text-xs font-medium overflow-x-auto max-w-full">
                     {["ALL", "SOLVED", "IN_PROGRESS", "NOT_STARTED"].map((st) => (
                       <button
                         key={st}
                         onClick={() => setStatusFilter(st)}
-                        className={`px-3 py-1.5 rounded-lg transition-all ${
+                        className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-all ${
                           statusFilter === st
                             ? "bg-zinc-800 text-white font-semibold"
                             : "text-zinc-400 hover:text-zinc-200"
@@ -540,7 +540,7 @@ export default function Home() {
               </div>
 
               {/* Study List Preset Tags */}
-              <div className="flex items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
                 <span className="text-zinc-500 font-medium">Curated Lists:</span>
                 {["ALL", "Blind 75", "NeetCode 150", "Must Review", "Company Top"].map((tag) => (
                   <button
@@ -560,15 +560,15 @@ export default function Home() {
 
             {/* Problem Table List */}
             <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl overflow-hidden">
-              <div className="p-6 border-b border-zinc-800/80 flex items-center justify-between">
+              <div className="p-4 sm:p-6 border-b border-zinc-800/80 flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-white">Problem Collection</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Problem Collection</h2>
                   <p className="text-xs text-zinc-400">Showing {filteredProblems.length} matching problem entries</p>
                 </div>
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-left border-collapse min-w-[600px]">
                   <thead>
                     <tr className="bg-zinc-950/60 border-b border-zinc-800/80 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                       <th className="py-3.5 px-6">Title</th>
@@ -633,10 +633,10 @@ export default function Home() {
             </div>
 
             {/* Topic Mastery Categories */}
-            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 md:p-8 space-y-6">
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-8 space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-white">Topic Mastery</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Topic Mastery</h2>
                   <p className="text-xs text-zinc-400">Progress across Data Structure & Algorithm categories</p>
                 </div>
               </div>
