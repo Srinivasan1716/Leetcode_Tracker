@@ -12,6 +12,7 @@ export interface Problem {
   link?: string;
   status: "NOT_STARTED" | "IN_PROGRESS" | "SOLVED";
   solvedAt?: string;
+  tags?: string[];
 }
 
 export interface TopicStat {
@@ -76,11 +77,11 @@ const calculatePercentage = (count: number, total: number) => {
 
 // Default sample dataset
 const sampleProblems: Problem[] = [
-  { id: 1, title: "Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", solvedAt: "2026-03-10" },
-  { id: 2, title: "Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/" },
-  { id: 3, title: "Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
-  { id: 4, title: "Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
-  { id: 5, title: "Longest Palindromic Substring", difficulty: "MEDIUM", topic: "Dynamic Programming", status: "SOLVED", link: "https://leetcode.com/problems/longest-palindromic-substring/" },
+  { id: 1, title: "Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", solvedAt: "2026-03-10", tags: ["Blind 75", "NeetCode 150"] },
+  { id: 2, title: "Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/", tags: ["NeetCode 150"] },
+  { id: 3, title: "Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", tags: ["Blind 75", "Must Review"] },
+  { id: 4, title: "Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/", tags: ["Company Top"] },
+  { id: 5, title: "Longest Palindromic Substring", difficulty: "MEDIUM", topic: "Dynamic Programming", status: "SOLVED", link: "https://leetcode.com/problems/longest-palindromic-substring/", tags: ["Blind 75"] },
 ];
 
 const defaultTopics: TopicStat[] = [
@@ -113,6 +114,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
+  const [activeTagFilter, setActiveTagFilter] = useState<string>("ALL");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // Add problem modal form fields
@@ -172,6 +174,7 @@ export default function Home() {
       difficulty: newDifficulty,
       link: newLink.trim() || undefined,
       status: "NOT_STARTED",
+      tags: ["User Added"],
     };
 
     setProblems((prev) => [newEntry, ...prev]);
@@ -201,7 +204,10 @@ export default function Home() {
     const matchesStatus =
       statusFilter === "ALL" || problem.status === statusFilter;
 
-    return matchesSearch && matchesDifficulty && matchesStatus;
+    const matchesTag =
+      activeTagFilter === "ALL" || (problem.tags && problem.tags.includes(activeTagFilter));
+
+    return matchesSearch && matchesDifficulty && matchesStatus && matchesTag;
   });
 
   return (
@@ -531,6 +537,24 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Study List Preset Tags */}
+              <div className="flex items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
+                <span className="text-zinc-500 font-medium">Curated Lists:</span>
+                {["ALL", "Blind 75", "NeetCode 150", "Must Review", "Company Top"].map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => setActiveTagFilter(tag)}
+                    className={`px-2.5 py-1 rounded-md transition-all ${
+                      activeTagFilter === tag
+                        ? "bg-amber-500/20 text-amber-400 border border-amber-500/30 font-semibold"
+                        : "bg-zinc-950/60 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
               </div>
             </div>
 
