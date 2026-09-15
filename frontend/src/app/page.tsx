@@ -95,7 +95,6 @@ export default function Home() {
   const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [autoRefresh, setAutoRefresh] = useState(false);
 
   const fetchDashboard = async () => {
     setLoading(true);
@@ -332,6 +331,57 @@ export default function Home() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+
+            {/* Interactive Search & Filter Controls Toolbar */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 space-y-4">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                {/* Search Bar */}
+                <div className="relative flex-1">
+                  <svg className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search problem title or topic tag..."
+                    className="w-full pl-11 pr-4 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition-all"
+                  />
+                </div>
+
+                {/* Filters Group */}
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Difficulty Selector */}
+                  <select
+                    value={difficultyFilter}
+                    onChange={(e) => setDifficultyFilter(e.target.value)}
+                    className="px-3.5 py-2.5 bg-zinc-950/80 border border-zinc-800 rounded-xl text-sm text-zinc-300 focus:outline-none focus:border-amber-500/60"
+                  >
+                    <option value="ALL">All Difficulties</option>
+                    <option value="EASY">Easy</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HARD">Hard</option>
+                  </select>
+
+                  {/* Status Buttons */}
+                  <div className="flex bg-zinc-950/80 border border-zinc-800 rounded-xl p-1 text-xs font-medium">
+                    {["ALL", "SOLVED", "IN_PROGRESS", "NOT_STARTED"].map((st) => (
+                      <button
+                        key={st}
+                        onClick={() => setStatusFilter(st)}
+                        className={`px-3 py-1.5 rounded-lg transition-all ${
+                          statusFilter === st
+                            ? "bg-zinc-800 text-white font-semibold"
+                            : "text-zinc-400 hover:text-zinc-200"
+                        }`}
+                      >
+                        {st === "ALL" ? "All" : st.replace("_", " ")}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
