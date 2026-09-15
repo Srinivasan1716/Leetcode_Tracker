@@ -238,6 +238,87 @@ export default function Home() {
               </div>
 
             </div>
+
+            {/* Difficulty Breakdown & Progress Fill Section */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 md:p-8 space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-white">Difficulty Breakdown</h2>
+                  <p className="text-xs text-zinc-400">Problem completion distribution across difficulty tiers</p>
+                </div>
+                <span className="text-xs font-medium text-zinc-400 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full">
+                  Overall: {calculatePercentage(dashboard.solved, dashboard.totalProblems)}% Complete
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* Easy Tier */}
+                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-semibold text-emerald-400 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                      Easy
+                    </span>
+                    <span className="text-zinc-300 font-mono">
+                      {dashboard.easySolved} <span className="text-zinc-500">/ {dashboard.easyTotal || dashboard.easySolved || 0}</span>
+                    </span>
+                  </div>
+                  <div className="w-full bg-zinc-900 rounded-full h-2.5 overflow-hidden border border-zinc-800">
+                    <div
+                      className="bg-emerald-500 h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${calculatePercentage(dashboard.easySolved, dashboard.easyTotal || dashboard.easySolved || 1)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Medium Tier */}
+                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-semibold text-amber-400 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                      Medium
+                    </span>
+                    <span className="text-zinc-300 font-mono">
+                      {dashboard.mediumSolved} <span className="text-zinc-500">/ {dashboard.mediumTotal || dashboard.mediumSolved || 0}</span>
+                    </span>
+                  </div>
+                  <div className="w-full bg-zinc-900 rounded-full h-2.5 overflow-hidden border border-zinc-800">
+                    <div
+                      className="bg-amber-500 h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${calculatePercentage(dashboard.mediumSolved, dashboard.mediumTotal || dashboard.mediumSolved || 1)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Hard Tier */}
+                <div className="p-5 bg-zinc-950/60 rounded-xl border border-zinc-800/80 space-y-3">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-semibold text-rose-400 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                      Hard
+                    </span>
+                    <span className="text-zinc-300 font-mono">
+                      {dashboard.hardSolved} <span className="text-zinc-500">/ {dashboard.hardTotal || dashboard.hardSolved || 0}</span>
+                    </span>
+                  </div>
+                  <div className="w-full bg-zinc-900 rounded-full h-2.5 overflow-hidden border border-zinc-800">
+                    <div
+                      className="bg-rose-500 h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${calculatePercentage(dashboard.hardSolved, dashboard.hardTotal || dashboard.hardSolved || 1)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         ) : (
           <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
