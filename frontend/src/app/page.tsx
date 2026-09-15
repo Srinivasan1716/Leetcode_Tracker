@@ -98,6 +98,9 @@ export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Local list state for instant interactive updates
+  const [problems, setProblems] = useState<Problem[]>(sampleProblems);
+
   // UI Interactive State Management
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState<string>("ALL");
@@ -113,6 +116,9 @@ export default function Home() {
       }
       const data = await response.json();
       setDashboard(data.dashboard);
+      if (data.dashboard?.recentProblems?.length) {
+        setProblems(data.dashboard.recentProblems);
+      }
     } catch (error) {
       console.error("Dashboard error:", error);
     } finally {
@@ -124,15 +130,26 @@ export default function Home() {
     fetchDashboard();
   }, []);
 
+  const handleToggleStatus = (id: number) => {
+    setProblems((prev) =>
+      prev.map((prob) => {
+        if (prob.id !== id) return prob;
+        const nextStatus: Problem["status"] =
+          prob.status === "NOT_STARTED"
+            ? "IN_PROGRESS"
+            : prob.status === "IN_PROGRESS"
+            ? "SOLVED"
+            : "NOT_STARTED";
+        return { ...prob, status: nextStatus };
+      })
+    );
+  };
+
   const topicList = dashboard?.topicStats && dashboard.topicStats.length > 0 
     ? dashboard.topicStats 
     : defaultTopics;
 
-  const rawProblems = dashboard?.recentProblems && dashboard.recentProblems.length > 0
-    ? dashboard.recentProblems
-    : sampleProblems;
-
-  const filteredProblems = rawProblems.filter((problem) => {
+  const filteredProblems = problems.filter((problem) => {
     const matchesSearch =
       problem.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (problem.topic && problem.topic.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -464,8 +481,11 @@ export default function Home() {
                             </span>
                           </td>
                           <td className="py-4 px-6 text-right">
-                            <button className="text-xs text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg border border-zinc-700 transition-all">
-                              Update
+                            <button
+                              onClick={() => handleToggleStatus(prob.id)}
+                              className="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-3 py-1.5 rounded-lg transition-all active:scale-95"
+                            >
+                              Cycle Status
                             </button>
                           </td>
                         </tr>
