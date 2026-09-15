@@ -148,22 +148,95 @@ export default function Home() {
         {loading ? (
           <p className="text-zinc-400">Loading dashboard...</p>
         ) : dashboard ? (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-            <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-              <p className="text-zinc-400">Total Problems</p>
-              <h2 className="text-3xl font-bold mt-2">{dashboard.totalProblems}</h2>
-            </div>
-            <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-              <p className="text-zinc-400">Solved</p>
-              <h2 className="text-3xl font-bold mt-2">{dashboard.solved}</h2>
-            </div>
-            <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-              <p className="text-zinc-400">In Progress</p>
-              <h2 className="text-3xl font-bold mt-2">{dashboard.inProgress}</h2>
-            </div>
-            <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-              <p className="text-zinc-400">Not Started</p>
-              <h2 className="text-3xl font-bold mt-2">{dashboard.notStarted}</h2>
+          <div className="space-y-8">
+            {/* Enhanced Statistics Summary Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              
+              {/* Total Problems Card */}
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                    Total Tracked
+                  </p>
+                  <div className="p-2.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-xl">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                </div>
+                <h2 className="text-3xl font-extrabold text-white mt-3">
+                  {dashboard.totalProblems}
+                </h2>
+                <p className="text-xs text-zinc-500 mt-2">
+                  All active problems in collection
+                </p>
+              </div>
+
+              {/* Solved Card */}
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-emerald-500/30 hover:shadow-lg hover:shadow-black/40">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+                    Solved
+                  </p>
+                  <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex items-baseline gap-2 mt-3">
+                  <h2 className="text-3xl font-extrabold text-white">
+                    {dashboard.solved}
+                  </h2>
+                  <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    {calculatePercentage(dashboard.solved, dashboard.totalProblems)}%
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-500 mt-2">
+                  Successfully accepted solutions
+                </p>
+              </div>
+
+              {/* In Progress Card */}
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-sky-500/30 hover:shadow-lg hover:shadow-black/40">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                    In Progress
+                  </p>
+                  <div className="p-2.5 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-xl">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <h2 className="text-3xl font-extrabold text-white mt-3">
+                  {dashboard.inProgress}
+                </h2>
+                <p className="text-xs text-zinc-500 mt-2">
+                  Currently revising or attempt pending
+                </p>
+              </div>
+
+              {/* Not Started Card */}
+              <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-6 transition-all hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                    Not Started
+                  </p>
+                  <div className="p-2.5 bg-zinc-800 border border-zinc-700 text-zinc-400 rounded-xl">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </div>
+                </div>
+                <h2 className="text-3xl font-extrabold text-white mt-3">
+                  {dashboard.notStarted}
+                </h2>
+                <p className="text-xs text-zinc-500 mt-2">
+                  Queued in study roadmap
+                </p>
+              </div>
+
             </div>
           </div>
         ) : (
