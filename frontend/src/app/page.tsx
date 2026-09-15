@@ -104,6 +104,7 @@ const defaultStreak: UserStreak = {
 export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Local list state for instant interactive updates
   const [problems, setProblems] = useState<Problem[]>(sampleProblems);
@@ -122,18 +123,20 @@ export default function Home() {
 
   const fetchDashboard = async () => {
     setLoading(true);
+    setErrorMessage(null);
     try {
       const response = await fetch("http://localhost:5000/api/dashboard/1");
       if (!response.ok) {
-        throw new Error("Failed to fetch dashboard");
+        throw new Error(`Server responded with status ${response.status}`);
       }
       const data = await response.json();
       setDashboard(data.dashboard);
       if (data.dashboard?.recentProblems?.length) {
         setProblems(data.dashboard.recentProblems);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Dashboard error:", error);
+      setErrorMessage(error?.message || "Failed to establish connection to backend.");
     } finally {
       setLoading(false);
     }
@@ -256,6 +259,27 @@ export default function Home() {
               ))}
             </div>
             <div className="h-44 bg-zinc-900 border border-zinc-800 rounded-2xl"></div>
+          </div>
+        ) : errorMessage ? (
+          /* Graceful Error UI Banner */
+          <div className="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-6 md:p-8 space-y-4 text-left">
+            <div className="flex items-center gap-3">
+              <span className="p-2 bg-rose-500/20 text-rose-400 rounded-xl">⚠️</span>
+              <h3 className="text-lg font-bold text-rose-300">Backend Connection Error</h3>
+            </div>
+            <p className="text-sm text-zinc-300">
+              {errorMessage}
+            </p>
+            <div className="text-xs text-zinc-400 space-y-1">
+              <p>• Ensure your Node backend server is running locally on <code className="text-amber-400">http://localhost:5000</code>.</p>
+              <p>• Check if database migrations are up to date using <code className="text-amber-400">npx prisma migrate dev</code>.</p>
+            </div>
+            <button
+              onClick={() => fetchDashboard()}
+              className="mt-2 px-4 py-2 bg-rose-500 hover:bg-rose-400 text-white font-semibold rounded-lg text-xs transition-all"
+            >
+              Retry Connection
+            </button>
           </div>
         ) : dashboard ? (
           <div className="space-y-8">
@@ -622,11 +646,7 @@ export default function Home() {
             </div>
 
           </div>
-        ) : (
-          <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-            <p className="text-red-400">Unable to load dashboard.</p>
-          </div>
-        )}
+        ) : null}
       </div>
 
       {/* Add Problem Modal Interface */}
