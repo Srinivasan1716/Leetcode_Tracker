@@ -151,6 +151,29 @@ export default function Home() {
     );
   };
 
+  const handleAddProblemSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+
+    const newEntry: Problem = {
+      id: Date.now(),
+      title: newTitle.trim(),
+      topic: newTopic.trim() || "General",
+      difficulty: newDifficulty,
+      link: newLink.trim() || undefined,
+      status: "NOT_STARTED",
+    };
+
+    setProblems((prev) => [newEntry, ...prev]);
+
+    // Reset form & close modal
+    setNewTitle("");
+    setNewTopic("");
+    setNewDifficulty("EASY");
+    setNewLink("");
+    setIsAddModalOpen(false);
+  };
+
   const topicList = dashboard?.topicStats && dashboard.topicStats.length > 0 
     ? dashboard.topicStats 
     : defaultTopics;
@@ -571,9 +594,79 @@ export default function Home() {
                 ✕
               </button>
             </div>
-            <p className="text-xs text-zinc-400">
-              Submit a new problem into your tracking dashboard.
-            </p>
+            
+            <form onSubmit={handleAddProblemSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  Problem Title *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  placeholder="e.g. 3Sum"
+                  className="w-full px-3.5 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-white focus:outline-none focus:border-amber-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  Topic Category
+                </label>
+                <input
+                  type="text"
+                  value={newTopic}
+                  onChange={(e) => setNewTopic(e.target.value)}
+                  placeholder="e.g. Two Pointers"
+                  className="w-full px-3.5 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-white focus:outline-none focus:border-amber-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  Difficulty Tier
+                </label>
+                <select
+                  value={newDifficulty}
+                  onChange={(e) => setNewDifficulty(e.target.value as "EASY" | "MEDIUM" | "HARD")}
+                  className="w-full px-3.5 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-white focus:outline-none focus:border-amber-500"
+                >
+                  <option value="EASY">Easy</option>
+                  <option value="MEDIUM">Medium</option>
+                  <option value="HARD">Hard</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-zinc-400 mb-1">
+                  LeetCode URL Link
+                </label>
+                <input
+                  type="url"
+                  value={newLink}
+                  onChange={(e) => setNewLink(e.target.value)}
+                  placeholder="https://leetcode.com/problems/..."
+                  className="w-full px-3.5 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-white focus:outline-none focus:border-amber-500"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-zinc-800">
+                <button
+                  type="button"
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg text-xs font-medium text-zinc-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-lg text-xs"
+                >
+                  Save Entry
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
