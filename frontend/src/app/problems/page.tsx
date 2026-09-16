@@ -301,7 +301,7 @@ export default function ProblemsPage() {
                       <td className="py-4 px-6 text-right"><div className="h-4 bg-zinc-800 rounded w-12 ml-auto"></div></td>
                     </tr>
                   ))
-                ) : (
+                ) : paginatedProblems.length > 0 ? (
                   paginatedProblems.map((prob) => (
                     <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
                       <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
@@ -352,6 +352,12 @@ export default function ProblemsPage() {
                       </td>
                     </tr>
                   ))
+                ) : (
+                  <tr>
+                    <td colSpan={5} className="py-12 text-center text-zinc-500 text-sm">
+                      No matching problems found. Try adjusting your search query or filters.
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
