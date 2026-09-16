@@ -109,6 +109,26 @@ export default function ProblemsPage() {
           </div>
         </header>
 
+        {/* Quick Stats Grid Header */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-xs font-semibold text-zinc-400 uppercase">Total Listed</p>
+            <h3 className="text-2xl font-bold text-white mt-1">75</h3>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-xs font-semibold text-emerald-400 uppercase">Solved</p>
+            <h3 className="text-2xl font-bold text-white mt-1">42</h3>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-xs font-semibold text-sky-400 uppercase">In Progress</p>
+            <h3 className="text-2xl font-bold text-white mt-1">18</h3>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-xs font-semibold text-rose-400 uppercase">Hard Mastered</p>
+            <h3 className="text-2xl font-bold text-white mt-1">12</h3>
+          </div>
+        </div>
+
         {/* Search & Topic Filter Controls */}
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 space-y-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
