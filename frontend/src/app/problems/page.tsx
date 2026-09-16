@@ -100,6 +100,14 @@ export default function ProblemsPage() {
     );
   };
 
+  const handleToggleBookmark = (id: number) => {
+    setProblemsList((prev) =>
+      prev.map((prob) =>
+        prob.id === id ? { ...prob, isBookmarked: !prob.isBookmarked } : prob
+      )
+    );
+  };
+
   const filteredProblems = problemsList.filter((item) => {
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.topic.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesDifficulty = difficultyFilter === "ALL" || item.difficulty === difficultyFilter;
@@ -234,6 +242,15 @@ export default function ProblemsPage() {
                 {filteredProblems.map((prob) => (
                   <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
                     <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
+                      <button
+                        onClick={() => handleToggleBookmark(prob.id)}
+                        className={`text-lg transition-transform active:scale-125 ${
+                          prob.isBookmarked ? "text-amber-400" : "text-zinc-600 hover:text-zinc-400"
+                        }`}
+                        title="Toggle Favorite Bookmark"
+                      >
+                        ★
+                      </button>
                       <span>{prob.title}</span>
                       {prob.link && (
                         <a
