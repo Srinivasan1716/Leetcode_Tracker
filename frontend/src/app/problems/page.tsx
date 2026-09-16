@@ -212,6 +212,23 @@ export default function ProblemsPage() {
           </div>
         </div>
 
+        {/* Topic Quick Tag Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {topicCategories.map((topic) => (
+            <button
+              key={topic}
+              onClick={() => setSelectedTopic(topic)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                selectedTopic === topic
+                  ? "bg-amber-500 text-zinc-950 font-bold"
+                  : "bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-zinc-200"
+              }`}
+            >
+              {topic === "ALL" ? "All Topics" : topic}
+            </button>
+          ))}
+        </div>
+
         {/* Search & Topic Filter Controls */}
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 space-y-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
