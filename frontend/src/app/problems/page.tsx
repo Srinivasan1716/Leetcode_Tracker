@@ -2,6 +2,27 @@
 
 import React from "react";
 
+export interface ProblemItem {
+  id: number;
+  title: string;
+  difficulty: "EASY" | "MEDIUM" | "HARD";
+  topic: string;
+  status: "NOT_STARTED" | "IN_PROGRESS" | "SOLVED";
+  link?: string;
+  isBookmarked?: boolean;
+  notes?: string;
+  timeComplexity?: string;
+  spaceComplexity?: string;
+  lastRevised?: string;
+}
+
+export interface FilterOptions {
+  searchQuery: string;
+  difficulty: string;
+  status: string;
+  topic: string;
+}
+
 export default function ProblemsPage() {
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
