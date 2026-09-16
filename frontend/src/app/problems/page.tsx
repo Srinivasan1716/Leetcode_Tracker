@@ -85,6 +85,12 @@ export default function ProblemsPage() {
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  // New problem form fields
+  const [newTitle, setNewTitle] = useState("");
+  const [newTopic, setNewTopic] = useState("Arrays & Hashing");
+  const [newDifficulty, setNewDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">("EASY");
+  const [newLink, setNewLink] = useState("");
+
   const handleToggleStatus = (id: number) => {
     setProblemsList((prev) =>
       prev.map((prob) => {
@@ -123,7 +129,7 @@ export default function ProblemsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8">
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8 relative">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Navigation & Header */}
@@ -326,6 +332,27 @@ export default function ProblemsPage() {
         </div>
 
       </div>
+
+      {/* Add Problem Modal Window */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-md p-6 space-y-5 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+              <h3 className="text-lg font-bold text-white">Add Problem to Catalogue</h3>
+              <button
+                onClick={() => setIsAddModalOpen(false)}
+                className="text-zinc-500 hover:text-zinc-300 font-mono text-lg"
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="text-xs text-zinc-400">
+              Enter the title, category and link to track a new LeetCode problem.
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
