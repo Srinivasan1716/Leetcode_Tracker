@@ -50,6 +50,19 @@ export const getStatusBadgeStyle = (status: string) => {
   }
 };
 
+const topicCategories = [
+  "ALL",
+  "Arrays & Hashing",
+  "Two Pointers",
+  "Sliding Window",
+  "Stack & Queue",
+  "Binary Search",
+  "Linked List",
+  "Trees & Graphs",
+  "Dynamic Programming",
+  "Heap / Priority Queue",
+];
+
 export default function ProblemsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("ALL");
@@ -95,6 +108,35 @@ export default function ProblemsPage() {
             </button>
           </div>
         </header>
+
+        {/* Search & Topic Filter Controls */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 space-y-4">
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            {/* Search Input */}
+            <div className="relative flex-1 w-full">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search problem name or topic..."
+                className="w-full pl-4 pr-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60"
+              />
+            </div>
+
+            {/* Topic Category Select */}
+            <select
+              value={selectedTopic}
+              onChange={(e) => setSelectedTopic(e.target.value)}
+              className="w-full md:w-56 px-3.5 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-zinc-300 focus:outline-none focus:border-amber-500/60"
+            >
+              {topicCategories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat === "ALL" ? "All Topics" : cat}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
       </div>
     </main>
