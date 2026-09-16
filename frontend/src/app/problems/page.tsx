@@ -255,14 +255,17 @@ export default function ProblemsPage() {
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 sm:p-5 space-y-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
             {/* Search Input */}
-            <div className="relative flex-1 w-full">
+            <div className="relative flex-1 w-full flex items-center">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search problem name or topic..."
-                className="w-full pl-4 pr-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60"
+                className="w-full pl-4 pr-12 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60"
               />
+              <kbd className="absolute right-3 hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono text-zinc-500 bg-zinc-900 border border-zinc-800 rounded pointer-events-none">
+                /
+              </kbd>
             </div>
 
             {/* Topic Category Select */}
