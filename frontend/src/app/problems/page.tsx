@@ -12,6 +12,7 @@ export interface ProblemItem {
   link?: string;
   isBookmarked?: boolean;
   notes?: string;
+  codeSnippet?: string;
   timeComplexity?: string;
   spaceComplexity?: string;
   lastRevised?: string;
@@ -51,7 +52,19 @@ export const getStatusBadgeStyle = (status: string) => {
 };
 
 const initialProblemsList: ProblemItem[] = [
-  { id: 1, title: "1. Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", isBookmarked: true, notes: "Use Hash Map to store complement (target - num). O(n) time, O(n) space.", timeComplexity: "O(N)", spaceComplexity: "O(N)" },
+  { 
+    id: 1, 
+    title: "1. Two Sum", 
+    difficulty: "EASY", 
+    topic: "Arrays & Hashing", 
+    status: "SOLVED", 
+    link: "https://leetcode.com/problems/two-sum/", 
+    isBookmarked: true, 
+    notes: "Use Hash Map to store complement (target - num). O(n) time, O(n) space.", 
+    codeSnippet: "function twoSum(nums: number[], target: number): number[] {\n  const map = new Map<number, number>();\n  for (let i = 0; i < nums.length; i++) {\n    const comp = target - nums[i];\n    if (map.has(comp)) return [map.get(comp)!, i];\n    map.set(nums[i], i);\n  }\n  return [];\n}",
+    timeComplexity: "O(N)", 
+    spaceComplexity: "O(N)" 
+  },
   { id: 2, title: "2. Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/", notes: "Traverse both lists with carry variable.", timeComplexity: "O(Max(N,M))", spaceComplexity: "O(1)" },
   { id: 3, title: "3. Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", isBookmarked: true, notes: "Maintain sliding window set of character frequencies.", timeComplexity: "O(N)", spaceComplexity: "O(K)" },
   { id: 4, title: "4. Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
@@ -476,10 +489,19 @@ export default function ProblemsPage() {
 
               <div>
                 <p className="text-xs font-semibold text-zinc-500 uppercase">Key Notes & Intuition</p>
-                <p className="text-sm text-zinc-300 mt-1 bg-zinc-950 p-4 rounded-xl border border-zinc-800 font-mono">
+                <p className="text-sm text-zinc-300 mt-1 bg-zinc-950 p-4 rounded-xl border border-zinc-800 font-mono whitespace-pre-wrap">
                   {selectedProblemDrawer.notes || "No custom notes recorded for this problem yet."}
                 </p>
               </div>
+
+              {selectedProblemDrawer.codeSnippet && (
+                <div>
+                  <p className="text-xs font-semibold text-zinc-500 uppercase">Saved Solution Snippet</p>
+                  <pre className="text-xs text-emerald-300 bg-zinc-950 p-4 rounded-xl border border-zinc-800 font-mono overflow-x-auto mt-1">
+                    <code>{selectedProblemDrawer.codeSnippet}</code>
+                  </pre>
+                </div>
+              )}
             </div>
           </div>
         </div>
