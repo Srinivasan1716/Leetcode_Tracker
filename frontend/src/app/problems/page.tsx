@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 export interface ProblemItem {
   id: number;
@@ -57,12 +58,44 @@ export default function ProblemsPage() {
   
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-extrabold">Problems Collection</h1>
-        <p className="text-zinc-400 mt-2">Manage and practice your LeetCode problem set.</p>
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        
+        {/* Navigation & Header */}
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
+          <div>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 rounded-xl transition-colors"
+                title="Back to Dashboard"
+              >
+                ←
+              </Link>
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                  Problems Repository
+                </h1>
+                <p className="text-xs sm:text-sm text-zinc-400">
+                  Comprehensive catalogue of algorithms, data structures & practice questions
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+            >
+              + New Problem Entry
+            </button>
+          </div>
+        </header>
+
       </div>
     </main>
   );
