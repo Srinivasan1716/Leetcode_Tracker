@@ -76,6 +76,7 @@ const topicCategories = [
 
 export default function ProblemsPage() {
   const [problemsList, setProblemsList] = useState<ProblemItem[]>(initialProblemsList);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("ALL");
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -290,56 +291,68 @@ export default function ProblemsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/60 text-sm">
-                {paginatedProblems.map((prob) => (
-                  <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
-                    <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
-                      <button
-                        onClick={() => handleToggleBookmark(prob.id)}
-                        className={`text-lg transition-transform active:scale-125 ${
-                          prob.isBookmarked ? "text-amber-400" : "text-zinc-600 hover:text-zinc-400"
-                        }`}
-                        title="Toggle Favorite Bookmark"
-                      >
-                        ★
-                      </button>
-                      <span>{prob.title}</span>
-                      {prob.link && (
-                        <a
-                          href={prob.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-zinc-500 hover:text-amber-400 transition-colors"
+                {isLoading ? (
+                  [1, 2, 3, 4, 5].map((i) => (
+                    <tr key={i} className="animate-pulse">
+                      <td className="py-4 px-6"><div className="h-4 bg-zinc-800 rounded w-48"></div></td>
+                      <td className="py-4 px-6"><div className="h-4 bg-zinc-800 rounded w-24"></div></td>
+                      <td className="py-4 px-6"><div className="h-4 bg-zinc-800 rounded w-16"></div></td>
+                      <td className="py-4 px-6"><div className="h-4 bg-zinc-800 rounded w-20"></div></td>
+                      <td className="py-4 px-6 text-right"><div className="h-4 bg-zinc-800 rounded w-12 ml-auto"></div></td>
+                    </tr>
+                  ))
+                ) : (
+                  paginatedProblems.map((prob) => (
+                    <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
+                      <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
+                        <button
+                          onClick={() => handleToggleBookmark(prob.id)}
+                          className={`text-lg transition-transform active:scale-125 ${
+                            prob.isBookmarked ? "text-amber-400" : "text-zinc-600 hover:text-zinc-400"
+                          }`}
+                          title="Toggle Favorite Bookmark"
                         >
-                          ↗
-                        </a>
-                      )}
-                    </td>
-                    <td className="py-4 px-6 text-zinc-400 text-xs font-mono">
-                      {prob.topic}
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(prob.difficulty)}`}>
-                        {prob.difficulty}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <button
-                        onClick={() => handleToggleStatus(prob.id)}
-                        className={`text-xs px-2.5 py-1 rounded-full font-semibold border transition-all cursor-pointer ${getStatusBadgeStyle(prob.status)}`}
-                      >
-                        {prob.status.replace("_", " ")}
-                      </button>
-                    </td>
-                    <td className="py-4 px-6 text-right">
-                      <button
-                        onClick={() => setSelectedProblemDrawer(prob)}
-                        className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700"
-                      >
-                        View Notes
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                          ★
+                        </button>
+                        <span>{prob.title}</span>
+                        {prob.link && (
+                          <a
+                            href={prob.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-zinc-500 hover:text-amber-400 transition-colors"
+                          >
+                            ↗
+                          </a>
+                        )}
+                      </td>
+                      <td className="py-4 px-6 text-zinc-400 text-xs font-mono">
+                        {prob.topic}
+                      </td>
+                      <td className="py-4 px-6">
+                        <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(prob.difficulty)}`}>
+                          {prob.difficulty}
+                        </span>
+                      </td>
+                      <td className="py-4 px-6">
+                        <button
+                          onClick={() => handleToggleStatus(prob.id)}
+                          className={`text-xs px-2.5 py-1 rounded-full font-semibold border transition-all cursor-pointer ${getStatusBadgeStyle(prob.status)}`}
+                        >
+                          {prob.status.replace("_", " ")}
+                        </button>
+                      </td>
+                      <td className="py-4 px-6 text-right">
+                        <button
+                          onClick={() => setSelectedProblemDrawer(prob)}
+                          className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700"
+                        >
+                          View Notes
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
