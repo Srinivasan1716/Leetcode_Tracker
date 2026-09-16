@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 export interface ProblemItem {
   id: number;
@@ -24,6 +24,14 @@ export interface FilterOptions {
 }
 
 export default function ProblemsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("ALL");
+  const [statusFilter, setStatusFilter] = useState("ALL");
+  const [selectedTopic, setSelectedTopic] = useState("ALL");
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 font-sans">
       <div className="max-w-7xl mx-auto">
