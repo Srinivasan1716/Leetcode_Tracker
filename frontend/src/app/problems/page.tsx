@@ -338,6 +338,19 @@ export default function ProblemsPage() {
 
         {/* Problems Table View Header */}
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-zinc-800 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm sm:text-base font-bold text-white">Problem List Catalogue</h2>
+              <span className="px-2.5 py-0.5 text-xs font-mono bg-zinc-800 text-amber-400 rounded-full border border-zinc-700">
+                {filteredProblems.length} {filteredProblems.length === 1 ? "problem" : "problems"} found
+              </span>
+            </div>
+            {isFilterActive && (
+              <span className="text-xs text-zinc-400 font-mono hidden sm:inline-block">
+                Filtered from {problemsList.length} total entries
+              </span>
+            )}
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[650px]">
               <thead>
