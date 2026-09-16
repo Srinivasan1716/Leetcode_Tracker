@@ -82,7 +82,7 @@ export default function ProblemsPage() {
   const [selectedTopic, setSelectedTopic] = useState("ALL");
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const handleToggleStatus = (id: number) => {
@@ -115,6 +115,12 @@ export default function ProblemsPage() {
     const matchesTopic = selectedTopic === "ALL" || item.topic === selectedTopic;
     return matchesSearch && matchesDifficulty && matchesStatus && matchesTopic;
   });
+
+  const totalPages = Math.ceil(filteredProblems.length / itemsPerPage) || 1;
+  const paginatedProblems = filteredProblems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8">
@@ -239,7 +245,7 @@ export default function ProblemsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/60 text-sm">
-                {filteredProblems.map((prob) => (
+                {paginatedProblems.map((prob) => (
                   <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
                     <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
                       <button
@@ -288,6 +294,34 @@ export default function ProblemsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Pagination Controls Footer */}
+          <div className="p-4 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+            <div>
+              Showing {filteredProblems.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} to{" "}
+              {Math.min(currentPage * itemsPerPage, filteredProblems.length)} of {filteredProblems.length} entries
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                className="px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-lg hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Previous
+              </button>
+              <span className="px-2 font-mono">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                disabled={currentPage >= totalPages}
+                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                className="px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-lg hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
 
