@@ -85,6 +85,21 @@ export default function ProblemsPage() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  const handleToggleStatus = (id: number) => {
+    setProblemsList((prev) =>
+      prev.map((prob) => {
+        if (prob.id !== id) return prob;
+        const nextStatus: ProblemItem["status"] =
+          prob.status === "NOT_STARTED"
+            ? "IN_PROGRESS"
+            : prob.status === "IN_PROGRESS"
+            ? "SOLVED"
+            : "NOT_STARTED";
+        return { ...prob, status: nextStatus };
+      })
+    );
+  };
+
   const filteredProblems = problemsList.filter((item) => {
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.topic.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesDifficulty = difficultyFilter === "ALL" || item.difficulty === difficultyFilter;
@@ -240,9 +255,12 @@ export default function ProblemsPage() {
                       </span>
                     </td>
                     <td className="py-4 px-6">
-                      <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getStatusBadgeStyle(prob.status)}`}>
+                      <button
+                        onClick={() => handleToggleStatus(prob.id)}
+                        className={`text-xs px-2.5 py-1 rounded-full font-semibold border transition-all cursor-pointer ${getStatusBadgeStyle(prob.status)}`}
+                      >
                         {prob.status.replace("_", " ")}
-                      </span>
+                      </button>
                     </td>
                     <td className="py-4 px-6 text-right">
                       <button className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700">
