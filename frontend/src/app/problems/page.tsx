@@ -51,9 +51,9 @@ export const getStatusBadgeStyle = (status: string) => {
 };
 
 const initialProblemsList: ProblemItem[] = [
-  { id: 1, title: "1. Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", isBookmarked: true },
-  { id: 2, title: "2. Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/" },
-  { id: 3, title: "3. Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", isBookmarked: true },
+  { id: 1, title: "1. Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", isBookmarked: true, notes: "Use Hash Map to store complement (target - num). O(n) time, O(n) space.", timeComplexity: "O(N)", spaceComplexity: "O(N)" },
+  { id: 2, title: "2. Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/", notes: "Traverse both lists with carry variable.", timeComplexity: "O(Max(N,M))", spaceComplexity: "O(1)" },
+  { id: 3, title: "3. Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", isBookmarked: true, notes: "Maintain sliding window set of character frequencies.", timeComplexity: "O(N)", spaceComplexity: "O(K)" },
   { id: 4, title: "4. Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
   { id: 5, title: "5. Longest Palindromic Substring", difficulty: "MEDIUM", topic: "Dynamic Programming", status: "SOLVED", link: "https://leetcode.com/problems/longest-palindromic-substring/" },
   { id: 6, title: "11. Container With Most Water", difficulty: "MEDIUM", topic: "Two Pointers", status: "SOLVED", link: "https://leetcode.com/problems/container-with-most-water/" },
@@ -84,6 +84,7 @@ export default function ProblemsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedProblemDrawer, setSelectedProblemDrawer] = useState<ProblemItem | null>(null);
 
   // New problem form fields
   const [newTitle, setNewTitle] = useState("");
@@ -313,8 +314,11 @@ export default function ProblemsPage() {
                       </button>
                     </td>
                     <td className="py-4 px-6 text-right">
-                      <button className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700">
-                        View
+                      <button
+                        onClick={() => setSelectedProblemDrawer(prob)}
+                        className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700"
+                      >
+                        View Notes
                       </button>
                     </td>
                   </tr>
@@ -353,6 +357,51 @@ export default function ProblemsPage() {
         </div>
 
       </div>
+
+      {/* Problem Notes Drawer Panel */}
+      {selectedProblemDrawer && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex justify-end">
+          <div className="bg-zinc-900 border-l border-zinc-800 w-full max-w-lg p-6 space-y-6 overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+              <h3 className="text-xl font-bold text-white">{selectedProblemDrawer.title}</h3>
+              <button
+                onClick={() => setSelectedProblemDrawer(null)}
+                className="text-zinc-500 hover:text-zinc-300 font-mono text-lg"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs font-semibold text-zinc-500 uppercase">Topic & Difficulty</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-xs px-2.5 py-1 bg-zinc-800 rounded-md text-zinc-300">
+                    {selectedProblemDrawer.topic}
+                  </span>
+                  <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(selectedProblemDrawer.difficulty)}`}>
+                    {selectedProblemDrawer.difficulty}
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-zinc-500 uppercase">Complexity Analysis</p>
+                <p className="text-sm font-mono text-amber-400 mt-1">
+                  Time: {selectedProblemDrawer.timeComplexity || "O(N)"} | Space: {selectedProblemDrawer.spaceComplexity || "O(1)"}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-zinc-500 uppercase">Key Notes & Intuition</p>
+                <p className="text-sm text-zinc-300 mt-1 bg-zinc-950 p-4 rounded-xl border border-zinc-800 font-mono">
+                  {selectedProblemDrawer.notes || "No custom notes recorded for this problem yet."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Add Problem Modal Window */}
       {isAddModalOpen && (
