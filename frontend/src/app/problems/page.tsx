@@ -152,22 +152,22 @@ export default function ProblemsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8 relative">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <main className="min-h-screen bg-zinc-950 text-white p-3 sm:p-6 md:p-10 font-sans space-y-6 sm:space-y-8 relative">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
         
         {/* Navigation & Header */}
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
+        <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
           <div>
             <div className="flex items-center gap-3">
               <Link
                 href="/"
-                className="p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 rounded-xl transition-colors"
+                className="p-2 sm:p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 rounded-xl transition-colors"
                 title="Back to Dashboard"
               >
                 ←
               </Link>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
                   Problems Repository
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-400">
@@ -180,7 +180,7 @@ export default function ProblemsPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+              className="w-full sm:w-auto px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/20 active:scale-95 text-center"
             >
               + New Problem Entry
             </button>
@@ -188,26 +188,26 @@ export default function ProblemsPage() {
         </header>
 
         {/* Quick Stats Grid Header */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
-            <p className="text-xs font-semibold text-zinc-400 uppercase">Total Listed</p>
-            <h3 className="text-2xl font-bold text-white mt-1">{problemsList.length}</h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="p-4 sm:p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-[10px] sm:text-xs font-semibold text-zinc-400 uppercase">Total Listed</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">{problemsList.length}</h3>
           </div>
-          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
-            <p className="text-xs font-semibold text-emerald-400 uppercase">Solved</p>
-            <h3 className="text-2xl font-bold text-white mt-1">
+          <div className="p-4 sm:p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-[10px] sm:text-xs font-semibold text-emerald-400 uppercase">Solved</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
               {problemsList.filter((p) => p.status === "SOLVED").length}
             </h3>
           </div>
-          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
-            <p className="text-xs font-semibold text-sky-400 uppercase">In Progress</p>
-            <h3 className="text-2xl font-bold text-white mt-1">
+          <div className="p-4 sm:p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-[10px] sm:text-xs font-semibold text-sky-400 uppercase">In Progress</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
               {problemsList.filter((p) => p.status === "IN_PROGRESS").length}
             </h3>
           </div>
-          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
-            <p className="text-xs font-semibold text-rose-400 uppercase">Hard Mastered</p>
-            <h3 className="text-2xl font-bold text-white mt-1">
+          <div className="p-4 sm:p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
+            <p className="text-[10px] sm:text-xs font-semibold text-rose-400 uppercase">Hard Mastered</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
               {problemsList.filter((p) => p.difficulty === "HARD" && p.status === "SOLVED").length}
             </h3>
           </div>
@@ -231,7 +231,7 @@ export default function ProblemsPage() {
         </div>
 
         {/* Search & Topic Filter Controls */}
-        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 space-y-4">
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 sm:p-5 space-y-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
             {/* Search Input */}
             <div className="relative flex-1 w-full">
@@ -280,7 +280,7 @@ export default function ProblemsPage() {
         {/* Problems Table View Header */}
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[700px]">
+            <table className="w-full text-left border-collapse min-w-[650px]">
               <thead>
                 <tr className="bg-zinc-950/80 border-b border-zinc-800 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                   <th className="py-4 px-6">Problem</th>
