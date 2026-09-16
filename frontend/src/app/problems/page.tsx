@@ -81,6 +81,7 @@ export default function ProblemsPage() {
   const [difficultyFilter, setDifficultyFilter] = useState("ALL");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [selectedTopic, setSelectedTopic] = useState("ALL");
+  const [sortBy, setSortBy] = useState<"DEFAULT" | "TITLE" | "DIFFICULTY">("DEFAULT");
   
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -137,13 +138,22 @@ export default function ProblemsPage() {
     setIsAddModalOpen(false);
   };
 
-  const filteredProblems = problemsList.filter((item) => {
-    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.topic.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesDifficulty = difficultyFilter === "ALL" || item.difficulty === difficultyFilter;
-    const matchesStatus = statusFilter === "ALL" || item.status === statusFilter;
-    const matchesTopic = selectedTopic === "ALL" || item.topic === selectedTopic;
-    return matchesSearch && matchesDifficulty && matchesStatus && matchesTopic;
-  });
+  const filteredProblems = problemsList
+    .filter((item) => {
+      const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.topic.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesDifficulty = difficultyFilter === "ALL" || item.difficulty === difficultyFilter;
+      const matchesStatus = statusFilter === "ALL" || item.status === statusFilter;
+      const matchesTopic = selectedTopic === "ALL" || item.topic === selectedTopic;
+      return matchesSearch && matchesDifficulty && matchesStatus && matchesTopic;
+    })
+    .sort((a, b) => {
+      if (sortBy === "TITLE") return a.title.localeCompare(b.title);
+      if (sortBy === "DIFFICULTY") {
+        const order = { EASY: 1, MEDIUM: 2, HARD: 3 };
+        return order[a.difficulty] - order[b.difficulty];
+      }
+      return 0;
+    });
 
   const totalPages = Math.ceil(filteredProblems.length / itemsPerPage) || 1;
   const paginatedProblems = filteredProblems.slice(
@@ -255,6 +265,17 @@ export default function ProblemsPage() {
                   {cat === "ALL" ? "All Topics" : cat}
                 </option>
               ))}
+            </select>
+
+            {/* Sort Dropdown */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="w-full md:w-44 px-3.5 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-sm text-zinc-300 focus:outline-none focus:border-amber-500/60"
+            >
+              <option value="DEFAULT">Sort By: Default</option>
+              <option value="TITLE">Sort By: Title</option>
+              <option value="DIFFICULTY">Sort By: Difficulty</option>
             </select>
           </div>
 
