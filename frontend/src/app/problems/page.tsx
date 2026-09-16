@@ -176,6 +176,26 @@ export default function ProblemsPage() {
           </div>
         </div>
 
+        {/* Problems Table View Header */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr className="bg-zinc-950/80 border-b border-zinc-800 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+                  <th className="py-4 px-6">Problem</th>
+                  <th className="py-4 px-6">Category</th>
+                  <th className="py-4 px-6">Difficulty</th>
+                  <th className="py-4 px-6">Status</th>
+                  <th className="py-4 px-6 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800/60 text-sm">
+                {/* Rows will be rendered dynamically */}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </main>
   );
