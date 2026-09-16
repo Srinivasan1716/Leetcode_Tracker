@@ -50,6 +50,17 @@ export const getStatusBadgeStyle = (status: string) => {
   }
 };
 
+const initialProblemsList: ProblemItem[] = [
+  { id: 1, title: "1. Two Sum", difficulty: "EASY", topic: "Arrays & Hashing", status: "SOLVED", link: "https://leetcode.com/problems/two-sum/", isBookmarked: true },
+  { id: 2, title: "2. Add Two Numbers", difficulty: "MEDIUM", topic: "Linked List", status: "IN_PROGRESS", link: "https://leetcode.com/problems/add-two-numbers/" },
+  { id: 3, title: "3. Longest Substring Without Repeating Characters", difficulty: "MEDIUM", topic: "Sliding Window", status: "SOLVED", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/", isBookmarked: true },
+  { id: 4, title: "4. Median of Two Sorted Arrays", difficulty: "HARD", topic: "Binary Search", status: "NOT_STARTED", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" },
+  { id: 5, title: "5. Longest Palindromic Substring", difficulty: "MEDIUM", topic: "Dynamic Programming", status: "SOLVED", link: "https://leetcode.com/problems/longest-palindromic-substring/" },
+  { id: 6, title: "11. Container With Most Water", difficulty: "MEDIUM", topic: "Two Pointers", status: "SOLVED", link: "https://leetcode.com/problems/container-with-most-water/" },
+  { id: 7, title: "15. 3Sum", difficulty: "MEDIUM", topic: "Two Pointers", status: "IN_PROGRESS", link: "https://leetcode.com/problems/3sum/" },
+  { id: 8, title: "20. Valid Parentheses", difficulty: "EASY", topic: "Stack & Queue", status: "SOLVED", link: "https://leetcode.com/problems/valid-parentheses/" },
+];
+
 const topicCategories = [
   "ALL",
   "Arrays & Hashing",
@@ -64,6 +75,7 @@ const topicCategories = [
 ];
 
 export default function ProblemsPage() {
+  const [problemsList, setProblemsList] = useState<ProblemItem[]>(initialProblemsList);
   const [searchQuery, setSearchQuery] = useState("");
   const [difficultyFilter, setDifficultyFilter] = useState("ALL");
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -72,6 +84,14 @@ export default function ProblemsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const filteredProblems = problemsList.filter((item) => {
+    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.topic.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesDifficulty = difficultyFilter === "ALL" || item.difficulty === difficultyFilter;
+    const matchesStatus = statusFilter === "ALL" || item.status === statusFilter;
+    const matchesTopic = selectedTopic === "ALL" || item.topic === selectedTopic;
+    return matchesSearch && matchesDifficulty && matchesStatus && matchesTopic;
+  });
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans space-y-8">
@@ -113,19 +133,25 @@ export default function ProblemsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
             <p className="text-xs font-semibold text-zinc-400 uppercase">Total Listed</p>
-            <h3 className="text-2xl font-bold text-white mt-1">75</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">{problemsList.length}</h3>
           </div>
           <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
             <p className="text-xs font-semibold text-emerald-400 uppercase">Solved</p>
-            <h3 className="text-2xl font-bold text-white mt-1">42</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">
+              {problemsList.filter((p) => p.status === "SOLVED").length}
+            </h3>
           </div>
           <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
             <p className="text-xs font-semibold text-sky-400 uppercase">In Progress</p>
-            <h3 className="text-2xl font-bold text-white mt-1">18</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">
+              {problemsList.filter((p) => p.status === "IN_PROGRESS").length}
+            </h3>
           </div>
           <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-xl">
             <p className="text-xs font-semibold text-rose-400 uppercase">Hard Mastered</p>
-            <h3 className="text-2xl font-bold text-white mt-1">12</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">
+              {problemsList.filter((p) => p.difficulty === "HARD" && p.status === "SOLVED").length}
+            </h3>
           </div>
         </div>
 
@@ -190,7 +216,41 @@ export default function ProblemsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/60 text-sm">
-                {/* Rows will be rendered dynamically */}
+                {filteredProblems.map((prob) => (
+                  <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
+                    <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
+                      <span>{prob.title}</span>
+                      {prob.link && (
+                        <a
+                          href={prob.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-zinc-500 hover:text-amber-400 transition-colors"
+                        >
+                          ↗
+                        </a>
+                      )}
+                    </td>
+                    <td className="py-4 px-6 text-zinc-400 text-xs font-mono">
+                      {prob.topic}
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(prob.difficulty)}`}>
+                        {prob.difficulty}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className={`text-xs px-2.5 py-1 rounded-full font-semibold border ${getStatusBadgeStyle(prob.status)}`}>
+                        {prob.status.replace("_", " ")}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6 text-right">
+                      <button className="text-xs text-zinc-400 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700">
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
