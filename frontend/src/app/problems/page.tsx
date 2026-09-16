@@ -94,6 +94,15 @@ export default function ProblemsPage() {
   const [newDifficulty, setNewDifficulty] = useState<"EASY" | "MEDIUM" | "HARD">("EASY");
   const [newLink, setNewLink] = useState("");
 
+  const resetAllFilters = () => {
+    setSearchQuery("");
+    setDifficultyFilter("ALL");
+    setStatusFilter("ALL");
+    setSelectedTopic("ALL");
+    setSortBy("DEFAULT");
+    setCurrentPage(1);
+  };
+
   const handleToggleStatus = (id: number) => {
     setProblemsList((prev) =>
       prev.map((prob) => {
@@ -160,6 +169,8 @@ export default function ProblemsPage() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const isFilterActive = searchQuery || difficultyFilter !== "ALL" || statusFilter !== "ALL" || selectedTopic !== "ALL" || sortBy !== "DEFAULT";
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-3 sm:p-6 md:p-10 font-sans space-y-6 sm:space-y-8 relative">
@@ -279,22 +290,33 @@ export default function ProblemsPage() {
             </select>
           </div>
 
-          {/* Difficulty Tier Buttons Bar */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
-            <span className="text-zinc-500 font-medium">Difficulty:</span>
-            {["ALL", "EASY", "MEDIUM", "HARD"].map((diff) => (
+          {/* Difficulty Tier Buttons & Reset Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-zinc-800/60 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="text-zinc-500 font-medium">Difficulty:</span>
+              {["ALL", "EASY", "MEDIUM", "HARD"].map((diff) => (
+                <button
+                  key={diff}
+                  onClick={() => setDifficultyFilter(diff)}
+                  className={`px-3 py-1.5 rounded-lg font-medium transition-all ${
+                    difficultyFilter === diff
+                      ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                      : "bg-zinc-950/80 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
+                  }`}
+                >
+                  {diff === "ALL" ? "All Difficulties" : diff}
+                </button>
+              ))}
+            </div>
+
+            {isFilterActive && (
               <button
-                key={diff}
-                onClick={() => setDifficultyFilter(diff)}
-                className={`px-3 py-1.5 rounded-lg font-medium transition-all ${
-                  difficultyFilter === diff
-                    ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                    : "bg-zinc-950/80 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
-                }`}
+                onClick={resetAllFilters}
+                className="text-amber-400 hover:text-amber-300 text-xs underline font-medium"
               >
-                {diff === "ALL" ? "All Difficulties" : diff}
+                Reset All Filters
               </button>
-            ))}
+            )}
           </div>
         </div>
 
