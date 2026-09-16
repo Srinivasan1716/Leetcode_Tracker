@@ -136,6 +136,24 @@ export default function ProblemsPage() {
               ))}
             </select>
           </div>
+
+          {/* Difficulty Tier Buttons Bar */}
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
+            <span className="text-zinc-500 font-medium">Difficulty:</span>
+            {["ALL", "EASY", "MEDIUM", "HARD"].map((diff) => (
+              <button
+                key={diff}
+                onClick={() => setDifficultyFilter(diff)}
+                className={`px-3 py-1.5 rounded-lg font-medium transition-all ${
+                  difficultyFilter === diff
+                    ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                    : "bg-zinc-950/80 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
+                }`}
+              >
+                {diff === "ALL" ? "All Difficulties" : diff}
+              </button>
+            ))}
+          </div>
         </div>
 
       </div>
