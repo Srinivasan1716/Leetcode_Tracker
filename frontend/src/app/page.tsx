@@ -718,7 +718,13 @@ export default function Home() {
                               {prob.status.replace("_", " ")}
                             </span>
                           </td>
-                          <td className="py-4 px-6 text-right">
+                          <td className="py-4 px-6 text-right flex items-center justify-end gap-2">
+                            <button
+                              onClick={() => setSelectedProblemDrawer(prob)}
+                              className="text-xs text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 px-2.5 py-1.5 rounded-lg border border-zinc-700 transition-all"
+                            >
+                              Details
+                            </button>
                             <button
                               onClick={() => handleToggleStatus(prob.id)}
                               className="text-xs text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-3 py-1.5 rounded-lg transition-all active:scale-95"
@@ -808,6 +814,54 @@ export default function Home() {
       <footer className="mt-12 pt-6 border-t border-zinc-800/60 text-center text-xs text-zinc-500 max-w-7xl mx-auto w-full">
         <p>LeetCode Tracker &copy; {new Date().getFullYear()} • Built with Next.js & TypeScript</p>
       </footer>
+
+      {/* Problem Details Side Drawer */}
+      {selectedProblemDrawer && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex justify-end">
+          <div className="bg-zinc-900 border-l border-zinc-800 w-full max-w-md p-6 space-y-5 overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+              <h3 className="text-lg font-bold text-white">{selectedProblemDrawer.title}</h3>
+              <button
+                onClick={() => setSelectedProblemDrawer(null)}
+                className="text-zinc-500 hover:text-zinc-300 font-mono text-lg"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="space-y-3 text-xs">
+              <div>
+                <p className="text-zinc-500 font-semibold uppercase">Topic Category</p>
+                <p className="text-zinc-200 mt-1 font-mono">{selectedProblemDrawer.topic || "General"}</p>
+              </div>
+              <div>
+                <p className="text-zinc-500 font-semibold uppercase">Difficulty</p>
+                <span className={`inline-block mt-1 px-2.5 py-1 rounded-full font-semibold border ${getDifficultyColor(selectedProblemDrawer.difficulty)}`}>
+                  {selectedProblemDrawer.difficulty}
+                </span>
+              </div>
+              <div>
+                <p className="text-zinc-500 font-semibold uppercase">Status</p>
+                <span className={`inline-block mt-1 px-2.5 py-1 rounded-full font-semibold border ${getStatusBadge(selectedProblemDrawer.status)}`}>
+                  {selectedProblemDrawer.status.replace("_", " ")}
+                </span>
+              </div>
+              {selectedProblemDrawer.link && (
+                <div>
+                  <p className="text-zinc-500 font-semibold uppercase">LeetCode Link</p>
+                  <a
+                    href={selectedProblemDrawer.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-amber-400 hover:underline mt-1 block truncate font-mono"
+                  >
+                    {selectedProblemDrawer.link}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Add Problem Modal Interface */}
       {isAddModalOpen && (
