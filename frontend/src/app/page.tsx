@@ -30,6 +30,20 @@ export interface UserStreak {
   completedToday: number;
 }
 
+export interface StudySession {
+  id: number;
+  problemTitle: string;
+  durationMinutes: number;
+  date: string;
+}
+
+export interface RevisionSchedule {
+  problemId: number;
+  title: string;
+  dueDate: string;
+  intervalDays: number;
+}
+
 export interface Dashboard {
   totalProblems: number;
   solved: number;
