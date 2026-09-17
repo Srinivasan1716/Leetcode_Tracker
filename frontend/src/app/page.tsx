@@ -636,7 +636,7 @@ export default function Home() {
               {/* Study List Preset Tags */}
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-800/60 text-xs">
                 <span className="text-zinc-500 font-medium">Curated Lists:</span>
-                {["ALL", "Blind 75", "NeetCode 150", "Must Review", "Company Top"].map((tag) => (
+                {["ALL", "Blind 75", "NeetCode 150", "Must Review", "Company Top", "Meta", "Google", "Amazon"].map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setActiveTagFilter(tag)}
