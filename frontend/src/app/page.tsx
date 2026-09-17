@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 /**
  * Interface definitions for LeetCode Tracker Dashboard
@@ -264,6 +265,13 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/problems"
+              className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 rounded-lg text-xs sm:text-sm font-medium text-amber-400 transition-all flex items-center justify-center gap-2 active:scale-95"
+            >
+              <span>Problems Catalogue →</span>
+            </Link>
+
             <button
               onClick={() => setIsAddModalOpen(true)}
               className="flex-1 sm:flex-initial px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold rounded-lg text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95"
