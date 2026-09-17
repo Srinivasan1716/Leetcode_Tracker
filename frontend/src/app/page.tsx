@@ -787,10 +787,16 @@ export default function Home() {
 
             {/* Topic Mastery Categories */}
             <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <h2 className="text-lg sm:text-xl font-bold text-white">Topic Mastery</h2>
                   <p className="text-xs text-zinc-400">Progress across Data Structure & Algorithm categories</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase tracking-wider text-zinc-500 font-mono">Top Category:</span>
+                  <span className="text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-lg">
+                    Arrays & Hashing (66%)
+                  </span>
                 </div>
               </div>
 
