@@ -398,7 +398,29 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Enhanced Statistics Summary Grid */}
+            {/* Spaced Repetition Revision Reminders */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="p-1.5 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-lg text-xs">🔔</span>
+                  <h3 className="text-sm font-bold text-white">Upcoming Revisions (Spaced Repetition)</h3>
+                </div>
+                <span className="text-[10px] text-zinc-500 font-mono">3 Due This Week</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {sampleRevisions.map((rev) => (
+                  <div key={rev.problemId} className="p-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl flex items-center justify-between text-xs">
+                    <div className="truncate mr-2">
+                      <p className="font-semibold text-zinc-200 truncate">{rev.title}</p>
+                      <p className="text-[10px] text-zinc-500 font-mono">Interval: {rev.intervalDays}d</p>
+                    </div>
+                    <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded text-[10px] font-mono whitespace-nowrap">
+                      {rev.dueDate}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               
               {/* Total Problems Card */}
