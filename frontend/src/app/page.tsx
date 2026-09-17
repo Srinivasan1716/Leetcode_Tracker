@@ -506,6 +506,9 @@ export default function Home() {
                     <span className="font-semibold text-emerald-400 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                       Easy
+                      <span className="text-[10px] bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded text-emerald-400 font-mono">
+                        {calculatePercentage(dashboard.easySolved, dashboard.easyTotal || dashboard.easySolved || 1)}%
+                      </span>
                     </span>
                     <span className="text-zinc-300 font-mono">
                       {dashboard.easySolved} <span className="text-zinc-500">/ {dashboard.easyTotal || dashboard.easySolved || 0}</span>
