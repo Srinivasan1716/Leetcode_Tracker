@@ -150,6 +150,8 @@ export default function Home() {
   const [selectedProblemDrawer, setSelectedProblemDrawer] = useState<Problem | null>(null);
   const [dailyTargetGoal, setDailyTargetGoal] = useState(3);
   const [isEditingTarget, setIsEditingTarget] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
 
   // Add problem form fields
   const [newTitle, setNewTitle] = useState("");
@@ -735,6 +737,28 @@ export default function Home() {
                     )}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Table Pagination Footer Bar */}
+              <div className="p-4 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                <span>Showing {filteredProblems.length} matching entries</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    className="px-2.5 py-1 bg-zinc-950 border border-zinc-800 rounded hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Prev
+                  </button>
+                  <span>Page {currentPage}</span>
+                  <button
+                    disabled={currentPage * itemsPerPage >= filteredProblems.length}
+                    onClick={() => setCurrentPage((p) => p + 1)}
+                    className="px-2.5 py-1 bg-zinc-950 border border-zinc-800 rounded hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
 
