@@ -120,6 +120,17 @@ const defaultStreak: UserStreak = {
   completedToday: 2,
 };
 
+const sampleRevisions: RevisionSchedule[] = [
+  { problemId: 1, title: "1. Two Sum", dueDate: "Today", intervalDays: 3 },
+  { problemId: 3, title: "3. Longest Substring Without Repeating Characters", dueDate: "Tomorrow", intervalDays: 7 },
+  { problemId: 5, title: "5. Longest Palindromic Substring", dueDate: "In 3 Days", intervalDays: 14 },
+];
+
+const sampleSessions: StudySession[] = [
+  { id: 1, problemTitle: "Two Sum", durationMinutes: 25, date: "2026-09-16" },
+  { id: 2, problemTitle: "Longest Substring", durationMinutes: 40, date: "2026-09-17" },
+];
+
 export default function Home() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [loading, setLoading] = useState(true);
