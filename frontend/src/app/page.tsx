@@ -247,7 +247,11 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative flex flex-col justify-between">
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative flex flex-col justify-between overflow-hidden">
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 w-full">
         
         {/* Navigation & Top Header */}
