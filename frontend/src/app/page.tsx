@@ -675,6 +675,19 @@ export default function Home() {
                       filteredProblems.map((prob) => (
                         <tr key={prob.id} className="hover:bg-zinc-800/40 transition-all">
                           <td className="py-4 px-6 font-medium text-white flex items-center gap-2">
+                            <button
+                              onClick={() => {
+                                setProblems((prev) =>
+                                  prev.map((p) => (p.id === prob.id ? { ...p, tags: p.tags?.includes("Favorite") ? p.tags.filter(t => t !== "Favorite") : [...(p.tags || []), "Favorite"] } : p))
+                                );
+                              }}
+                              className={`text-base transition-transform active:scale-125 ${
+                                prob.tags?.includes("Favorite") ? "text-amber-400" : "text-zinc-600 hover:text-zinc-400"
+                              }`}
+                              title="Toggle Favorite"
+                            >
+                              ★
+                            </button>
                             <span>{prob.title}</span>
                             {prob.link && (
                               <a
