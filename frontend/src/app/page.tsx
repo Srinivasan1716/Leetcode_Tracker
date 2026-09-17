@@ -883,8 +883,20 @@ export default function Home() {
       </div>
 
       {/* Footer Branding */}
-      <footer className="mt-12 pt-6 border-t border-zinc-800/60 text-center text-xs text-zinc-500 max-w-7xl mx-auto w-full">
+      <footer className="mt-12 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 max-w-7xl mx-auto w-full">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="font-mono text-[11px] text-zinc-400">System Status: Operational</span>
+        </div>
         <p>LeetCode Tracker &copy; {new Date().getFullYear()} • Built with Next.js & TypeScript</p>
+        <div className="flex items-center gap-4 text-[11px] font-mono">
+          <a href="https://github.com/Srinivasan1716/Leetcode_Tracker" target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">
+            GitHub Repo
+          </a>
+          <a href="https://leetcode.com" target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">
+            LeetCode ↗
+          </a>
+        </div>
       </footer>
 
       {/* Problem Details Side Drawer */}
