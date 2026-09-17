@@ -697,17 +697,34 @@ export default function Home() {
 
             {/* Problem Table List */}
             <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl overflow-hidden">
-              <div className="p-4 sm:p-6 border-b border-zinc-800/80 flex items-center justify-between">
+              <div className="p-4 sm:p-6 border-b border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-lg sm:text-xl font-bold text-white">Problem Collection</h2>
                   <p className="text-xs text-zinc-400">Showing {filteredProblems.length} matching problem entries</p>
                 </div>
-                <button
-                  onClick={() => alert(`Exporting ${filteredProblems.length} problem records...`)}
-                  className="px-3 py-1.5 bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-xs font-mono text-zinc-300 transition-all"
-                >
-                  ↓ Export CSV
-                </button>
+                <div className="flex items-center gap-2">
+                  <div className="flex bg-zinc-950 border border-zinc-800 rounded-lg p-1 text-xs font-mono">
+                    {(["ALL", "REVISION", "FAVORITES"] as const).map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveViewTab(tab)}
+                        className={`px-2.5 py-1 rounded-md transition-all ${
+                          activeViewTab === tab
+                            ? "bg-zinc-800 text-amber-400 font-bold"
+                            : "text-zinc-400 hover:text-zinc-200"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => alert(`Exporting ${filteredProblems.length} problem records...`)}
+                    className="px-3 py-1.5 bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-xs font-mono text-zinc-300 transition-all"
+                  >
+                    ↓ Export CSV
+                  </button>
+                </div>
               </div>
 
               <div className="overflow-x-auto">
