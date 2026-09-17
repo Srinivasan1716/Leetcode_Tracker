@@ -134,6 +134,8 @@ export default function Home() {
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [activeTagFilter, setActiveTagFilter] = useState<string>("ALL");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [activeViewTab, setActiveViewTab] = useState<"ALL" | "REVISION" | "FAVORITES">("ALL");
+  const [selectedProblemDrawer, setSelectedProblemDrawer] = useState<Problem | null>(null);
 
   // Add problem form fields
   const [newTitle, setNewTitle] = useState("");
