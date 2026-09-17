@@ -740,10 +740,11 @@ export default function Home() {
                   return (
                     <div
                       key={index}
-                      className="p-4 bg-zinc-950/50 rounded-xl border border-zinc-800/60 hover:border-zinc-700 transition-all space-y-2.5"
+                      onClick={() => setSearchQuery(topic.name)}
+                      className="p-4 bg-zinc-950/50 rounded-xl border border-zinc-800/60 hover:border-amber-500/40 transition-all cursor-pointer space-y-2.5 group"
                     >
                       <div className="flex items-center justify-between">
-                        <h3 className="text-sm font-semibold text-zinc-200 truncate">
+                        <h3 className="text-sm font-semibold text-zinc-200 group-hover:text-amber-400 transition-colors truncate">
                           {topic.name}
                         </h3>
                         <span className="text-xs font-mono text-zinc-400">
