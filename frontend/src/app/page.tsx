@@ -488,7 +488,24 @@ export default function Home() {
 
             </div>
 
-            {/* Difficulty Breakdown & Progress Fill Section */}
+            {/* Daily Practice Goals Widget Banner */}
+            <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-xl font-bold">
+                  🎯
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Daily Target Velocity</h4>
+                  <p className="text-xs text-zinc-400">Targeting {dailyTargetGoal} problem solutions every day for optimal interview readiness</p>
+                </div>
+              </div>
+              <div className="w-full sm:w-64 bg-zinc-950/80 p-2 rounded-xl border border-zinc-800 flex items-center justify-between text-xs">
+                <span className="text-zinc-400">Pace Progress</span>
+                <span className="font-bold text-amber-400 font-mono">
+                  {streakInfo.completedToday >= dailyTargetGoal ? "Goal Met! 🔥" : `${dailyTargetGoal - streakInfo.completedToday} left today`}
+                </span>
+              </div>
+            </div>
             <div className="bg-zinc-900/80 backdrop-blur border border-zinc-800/90 rounded-2xl p-5 sm:p-8 space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
