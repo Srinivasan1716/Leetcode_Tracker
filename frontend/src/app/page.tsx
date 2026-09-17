@@ -349,13 +349,32 @@ export default function Home() {
 
               <div className="flex items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl w-full md:w-auto justify-between md:justify-start">
                 <div>
-                  <p className="text-xs text-zinc-500 uppercase font-semibold">Today Target</p>
-                  <p className="text-base sm:text-lg font-bold text-amber-400">
-                    {streakInfo.completedToday} / {streakInfo.dailyTarget} Solved
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-zinc-500 uppercase font-semibold">Today Target</p>
+                    <button
+                      onClick={() => setIsEditingTarget(!isEditingTarget)}
+                      className="text-[10px] text-amber-400 hover:underline font-mono"
+                    >
+                      {isEditingTarget ? "Done" : "Edit"}
+                    </button>
+                  </div>
+                  {isEditingTarget ? (
+                    <input
+                      type="number"
+                      min={1}
+                      max={20}
+                      value={dailyTargetGoal}
+                      onChange={(e) => setDailyTargetGoal(Math.max(1, parseInt(e.target.value) || 1))}
+                      className="w-16 px-2 py-0.5 mt-1 bg-zinc-900 border border-amber-500/50 rounded text-xs text-amber-400 font-bold focus:outline-none"
+                    />
+                  ) : (
+                    <p className="text-base sm:text-lg font-bold text-amber-400">
+                      {streakInfo.completedToday} / {dailyTargetGoal} Solved
+                    </p>
+                  )}
                 </div>
                 <div className="w-12 h-12 rounded-full border-4 border-amber-500/30 flex items-center justify-center font-bold text-xs text-amber-400">
-                  {calculatePercentage(streakInfo.completedToday, streakInfo.dailyTarget)}%
+                  {calculatePercentage(streakInfo.completedToday, dailyTargetGoal)}%
                 </div>
               </div>
             </div>
