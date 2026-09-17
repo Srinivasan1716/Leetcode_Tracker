@@ -347,7 +347,24 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl w-full md:w-auto justify-between md:justify-start">
+              <div className="flex flex-col sm:flex-row items-center gap-6 bg-zinc-950/60 border border-zinc-800 px-6 py-3 rounded-xl w-full md:w-auto justify-between md:justify-start">
+                <div className="flex items-center gap-1.5">
+                  {["M", "T", "W", "T", "F", "S", "S"].map((day, idx) => (
+                    <div key={idx} className="flex flex-col items-center gap-1">
+                      <span className="text-[9px] text-zinc-500 font-mono">{day}</span>
+                      <div
+                        className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
+                          idx < 5
+                            ? "bg-amber-500/20 text-amber-400 border border-amber-500/40"
+                            : "bg-zinc-900 text-zinc-600 border border-zinc-800"
+                        }`}
+                      >
+                        {idx < 5 ? "✓" : "•"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-zinc-500 uppercase font-semibold">Today Target</p>
