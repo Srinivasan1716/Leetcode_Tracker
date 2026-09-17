@@ -676,6 +676,12 @@ export default function Home() {
                   <h2 className="text-lg sm:text-xl font-bold text-white">Problem Collection</h2>
                   <p className="text-xs text-zinc-400">Showing {filteredProblems.length} matching problem entries</p>
                 </div>
+                <button
+                  onClick={() => alert(`Exporting ${filteredProblems.length} problem records...`)}
+                  className="px-3 py-1.5 bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-xs font-mono text-zinc-300 transition-all"
+                >
+                  ↓ Export CSV
+                </button>
               </div>
 
               <div className="overflow-x-auto">
