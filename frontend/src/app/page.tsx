@@ -913,6 +913,7 @@ export default function Home() {
                   placeholder="e.g. 3Sum"
                   className="w-full px-3.5 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-sm text-white focus:outline-none focus:border-amber-500"
                 />
+                <p className="text-[10px] text-zinc-500 mt-1">Include the LeetCode number prefix for easier search identification (e.g. 15. 3Sum)</p>
               </div>
 
               <div>
