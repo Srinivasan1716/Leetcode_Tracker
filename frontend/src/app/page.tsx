@@ -148,6 +148,8 @@ export default function Home() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [activeViewTab, setActiveViewTab] = useState<"ALL" | "REVISION" | "FAVORITES">("ALL");
   const [selectedProblemDrawer, setSelectedProblemDrawer] = useState<Problem | null>(null);
+  const [dailyTargetGoal, setDailyTargetGoal] = useState(3);
+  const [isEditingTarget, setIsEditingTarget] = useState(false);
 
   // Add problem form fields
   const [newTitle, setNewTitle] = useState("");
