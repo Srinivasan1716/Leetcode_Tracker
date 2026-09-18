@@ -311,7 +311,23 @@ export default function AnalyticsPage() {
             </span>
           </div>
         </div>
-                className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
+        {/* Weakest Topics Identify Section */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-rose-400">Needs Focus & Revision (< 75% Accuracy)</h3>
+            <Link href="/problems" className="text-xs text-amber-400 hover:underline font-mono">
+              Practice Weak Areas →
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="px-3 py-1 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold rounded-lg">
+              Dynamic Programming (64% acc, 8/25 solved)
+            </span>
+            <span className="px-3 py-1 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold rounded-lg">
+              Trees & Graphs (72% acc, 15/30 solved)
+            </span>
+          </div>
+        </div>
                   timeRange === range
                     ? "bg-amber-500 text-zinc-950"
                     : "text-zinc-400 hover:text-zinc-200"
