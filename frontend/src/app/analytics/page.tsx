@@ -121,7 +121,40 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        {/* Time Range Filter Controls Bar */}
+        {/* Monthly Activity Heatmap Grid */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-base font-bold text-white">Monthly Activity Heatmap</h3>
+              <p className="text-xs text-zinc-400">Daily submission activity for September 2026</p>
+            </div>
+            <span className="text-xs font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-lg">
+              30 Days Recorded
+            </span>
+          </div>
+
+          <div className="grid grid-cols-6 sm:grid-cols-10 md:grid-cols-15 gap-2 pt-2">
+            {sampleActivityData.map((day, idx) => (
+              <div
+                key={idx}
+                title={`${day.date}: ${day.count} problems solved`}
+                className={`h-8 rounded-lg flex items-center justify-center text-[10px] font-mono transition-all hover:scale-110 cursor-pointer ${
+                  day.level === 4
+                    ? "bg-amber-500 text-zinc-950 font-bold"
+                    : day.level === 3
+                    ? "bg-amber-500/70 text-zinc-950 font-semibold"
+                    : day.level === 2
+                    ? "bg-amber-500/40 text-amber-300"
+                    : day.level === 1
+                    ? "bg-amber-500/20 text-amber-400/80"
+                    : "bg-zinc-950 text-zinc-600 border border-zinc-800/80"
+                }`}
+              >
+                {day.count > 0 ? day.count : ""}
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="flex items-center justify-between bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4">
           <span className="text-xs text-zinc-400 font-medium">Time Window Horizon:</span>
           <div className="flex bg-zinc-950 border border-zinc-800 rounded-xl p-1 text-xs font-mono">
