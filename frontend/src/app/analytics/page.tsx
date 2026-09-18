@@ -95,8 +95,12 @@ export default function AnalyticsPage() {
 
   const totalLogTimeMinutes = logs.reduce((acc, curr) => acc + curr.durationMinutes, 0);
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans">
-      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+    <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans relative flex flex-col justify-between overflow-hidden">
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 w-full">
         
         {/* Navigation & Header */}
         <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
