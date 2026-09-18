@@ -426,33 +426,41 @@ export default function AnalyticsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/60 font-mono">
-                {logs
-                  .filter((log) =>
-                    searchQuery
-                      ? log.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        log.topic.toLowerCase().includes(searchQuery.toLowerCase())
-                      : true
-                  )
-                  .map((log) => (
-                  <tr key={log.id} className="hover:bg-zinc-800/40">
-                    <td className="p-3 text-zinc-400">{log.date}</td>
-                    <td className="p-3 text-white font-semibold">{log.title}</td>
-                    <td className="p-3 text-zinc-300">{log.topic}</td>
-                    <td className="p-3">
-                      <span className={`px-2 py-0.5 rounded text-[10px] ${
-                        log.difficulty === "EASY"
-                          ? "text-emerald-400 bg-emerald-500/10"
-                          : log.difficulty === "MEDIUM"
-                          ? "text-amber-400 bg-amber-500/10"
-                          : "text-rose-400 bg-rose-500/10"
-                      }`}>
-                        {log.difficulty}
-                      </span>
+                {logs.length > 0 ? (
+                  logs
+                    .filter((log) =>
+                      searchQuery
+                        ? log.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          log.topic.toLowerCase().includes(searchQuery.toLowerCase())
+                        : true
+                    )
+                    .map((log) => (
+                      <tr key={log.id} className="hover:bg-zinc-800/40">
+                        <td className="p-3 text-zinc-400">{log.date}</td>
+                        <td className="p-3 text-white font-semibold">{log.title}</td>
+                        <td className="p-3 text-zinc-300">{log.topic}</td>
+                        <td className="p-3">
+                          <span className={`px-2 py-0.5 rounded text-[10px] ${
+                            log.difficulty === "EASY"
+                              ? "text-emerald-400 bg-emerald-500/10"
+                              : log.difficulty === "MEDIUM"
+                              ? "text-amber-400 bg-amber-500/10"
+                              : "text-rose-400 bg-rose-500/10"
+                          }`}>
+                            {log.difficulty}
+                          </span>
+                        </td>
+                        <td className="p-3 text-amber-400">{log.durationMinutes} min</td>
+                        <td className="p-3 text-zinc-400">{log.notes || "-"}</td>
+                      </tr>
+                    ))
+                ) : (
+                  <tr>
+                    <td colSpan={6} className="py-8 text-center text-zinc-500 text-xs">
+                      No study session logs recorded yet. Click "+ Log Session" to add your first entry!
                     </td>
-                    <td className="p-3 text-amber-400">{log.durationMinutes} min</td>
-                    <td className="p-3 text-zinc-400">{log.notes || "-"}</td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
