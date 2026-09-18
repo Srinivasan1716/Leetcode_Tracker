@@ -155,7 +155,41 @@ export default function AnalyticsPage() {
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4">
+        {/* Difficulty Breakdown Distribution Bars */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <h3 className="text-base font-bold text-white">Difficulty Ratio Distribution</h3>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-emerald-400 font-semibold">Easy Problems (42 solved / 50 target)</span>
+                <span className="font-mono text-zinc-300">84%</span>
+              </div>
+              <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-800">
+                <div className="h-full bg-emerald-500 rounded-full w-[84%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-amber-400 font-semibold">Medium Problems (65 solved / 100 target)</span>
+                <span className="font-mono text-zinc-300">65%</span>
+              </div>
+              <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-800">
+                <div className="h-full bg-amber-500 rounded-full w-[65%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1">
+                <span className="text-rose-400 font-semibold">Hard Problems (15 solved / 40 target)</span>
+                <span className="font-mono text-zinc-300">37.5%</span>
+              </div>
+              <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-800">
+                <div className="h-full bg-rose-500 rounded-full w-[37.5%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
           <span className="text-xs text-zinc-400 font-medium">Time Window Horizon:</span>
           <div className="flex bg-zinc-950 border border-zinc-800 rounded-xl p-1 text-xs font-mono">
             {(["7D", "30D", "90D", "ALL"] as const).map((range) => (
