@@ -72,6 +72,7 @@ export default function AnalyticsPage() {
   const [monthlyGoalTarget, setMonthlyGoalTarget] = React.useState<number>(90);
   const [isLogModalOpen, setIsLogModalOpen] = React.useState<boolean>(false);
   const [selectedCompanyFilter, setSelectedCompanyFilter] = React.useState<string>("ALL");
+  const [isFavoriteOnly, setIsFavoriteOnly] = React.useState<boolean>(false);
   const [newTitle, setNewTitle] = React.useState<string>("");
   const [newTopic, setNewTopic] = React.useState<string>("Arrays & Hashing");
   const [newDuration, setNewDuration] = React.useState<number>(30);
