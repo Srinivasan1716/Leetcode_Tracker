@@ -444,7 +444,28 @@ export default function AnalyticsPage() {
                     className="bg-amber-500 h-full rounded-full"
                   ></div>
                 </div>
-                <p className="text-[10px] text-zinc-500 font-mono">
+        {/* Complexity Distribution Audit Widget */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <h3 className="text-base font-bold text-white">Algorithm Complexity Efficiency Audit</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="p-4 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-2">
+              <span className="text-zinc-400 font-semibold uppercase">Time Complexity Ratio</span>
+              <div className="space-y-1 font-mono">
+                <div className="flex justify-between"><span>O(1) / O(log N)</span><span className="text-emerald-400 font-bold">35%</span></div>
+                <div className="flex justify-between"><span>O(N) Linear</span><span className="text-amber-400 font-bold">48%</span></div>
+                <div className="flex justify-between"><span>O(N²) Quadratic</span><span className="text-rose-400 font-bold">17%</span></div>
+              </div>
+            </div>
+            <div className="p-4 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-2">
+              <span className="text-zinc-400 font-semibold uppercase">Space Complexity Ratio</span>
+              <div className="space-y-1 font-mono">
+                <div className="flex justify-between"><span>O(1) Auxiliary Space</span><span className="text-emerald-400 font-bold">52%</span></div>
+                <div className="flex justify-between"><span>O(N) Hash / Stack</span><span className="text-amber-400 font-bold">41%</span></div>
+                <div className="flex justify-between"><span>O(N²) Memory Matrix</span><span className="text-rose-400 font-bold">7%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
                   Solved {c.completedCount} / {c.targetCount} top tagged problems
                 </p>
               </div>
