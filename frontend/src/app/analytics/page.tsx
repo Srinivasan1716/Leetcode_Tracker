@@ -83,6 +83,8 @@ export default function AnalyticsPage() {
     setNewTitle("");
     setIsLogModalOpen(false);
   };
+
+  const totalLogTimeMinutes = logs.reduce((acc, curr) => acc + curr.durationMinutes, 0);
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans">
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
