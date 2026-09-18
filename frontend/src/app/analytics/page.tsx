@@ -381,9 +381,18 @@ export default function AnalyticsPage() {
         </div>
         {/* Recent Study Session Activity Log Table */}
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden space-y-4 p-5 sm:p-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-white">Recent Study Session Logs</h3>
-            <span className="text-xs text-zinc-400 font-mono">{logs.length} Entries Recorded</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-white">Recent Study Session Logs</h3>
+              <span className="text-xs text-zinc-400 font-mono">{logs.length} Entries Recorded</span>
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search session title or topic..."
+              className="px-3.5 py-1.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500"
+            />
           </div>
 
           <div className="overflow-x-auto">
