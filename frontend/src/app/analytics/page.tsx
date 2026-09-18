@@ -341,7 +341,14 @@ export default function AnalyticsPage() {
           </div>
           <p className="text-[11px] text-zinc-400 font-mono">You are 80% on track to reach your monthly goal of 90 problems!</p>
         </div>
-                    ? "bg-amber-500 text-zinc-950"
+        {/* Submission Acceptance Rate Overview */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-2">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-semibold text-zinc-400 uppercase">First-Submission Acceptance Rate</span>
+            <span className="font-mono text-emerald-400 font-bold">78.5%</span>
+          </div>
+          <p className="text-[11px] text-zinc-500">Out of 140 total submissions, 110 passed all test cases on first run.</p>
+        </div>
                     : "text-zinc-400 hover:text-zinc-200"
                 }`}
               >
