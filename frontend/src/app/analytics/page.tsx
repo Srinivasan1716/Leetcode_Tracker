@@ -228,17 +228,26 @@ export default function AnalyticsPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div className="p-3 bg-zinc-950/60 border border-amber-500/30 rounded-xl space-y-1">
-              <span className="text-[10px] text-amber-400 font-mono">Today (Due Now)</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[10px] text-amber-400 font-mono">Today (Due Now)</span>
+                <span className="text-[9px] bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded font-mono font-bold">HIGH PRIORITY</span>
+              </div>
               <p className="font-semibold text-white">1. Two Sum</p>
               <p className="text-[10px] text-zinc-500">Interval: 3 Days</p>
             </div>
             <div className="p-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-1">
-              <span className="text-[10px] text-sky-400 font-mono">Tomorrow</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[10px] text-sky-400 font-mono">Tomorrow</span>
+                <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold">MEDIUM</span>
+              </div>
               <p className="font-semibold text-white">3. Longest Substring</p>
               <p className="text-[10px] text-zinc-500">Interval: 7 Days</p>
             </div>
             <div className="p-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-1">
-              <span className="text-[10px] text-zinc-400 font-mono">In 3 Days</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[10px] text-zinc-400 font-mono">In 3 Days</span>
+                <span className="text-[9px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-mono">NORMAL</span>
+              </div>
               <p className="font-semibold text-white">5. Longest Palindromic</p>
               <p className="text-[10px] text-zinc-500">Interval: 14 Days</p>
             </div>
