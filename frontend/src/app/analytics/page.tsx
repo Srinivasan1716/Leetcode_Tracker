@@ -399,7 +399,14 @@ export default function AnalyticsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/60 font-mono">
-                {logs.map((log) => (
+                {logs
+                  .filter((log) =>
+                    searchQuery
+                      ? log.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        log.topic.toLowerCase().includes(searchQuery.toLowerCase())
+                      : true
+                  )
+                  .map((log) => (
                   <tr key={log.id} className="hover:bg-zinc-800/40">
                     <td className="p-3 text-zinc-400">{log.date}</td>
                     <td className="p-3 text-white font-semibold">{log.title}</td>
