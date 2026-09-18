@@ -63,10 +63,39 @@ export default function AnalyticsPage() {
   const [logs, setLogs] = React.useState<StudyLogEntry[]>(sampleLogs);
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <h1 className="text-2xl font-bold">Analytics & Progress Tracker</h1>
-        <p className="text-xs text-zinc-400">Detailed insights into problem solving velocity and revision schedules</p>
-      </div>
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+        
+        {/* Navigation & Header */}
+        <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80">
+          <div>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="p-2 sm:p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 rounded-xl transition-colors"
+                title="Back to Dashboard"
+              >
+                ←
+              </Link>
+              <div>
+                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
+                  Analytics & Insights
+                </h1>
+                <p className="text-xs sm:text-sm text-zinc-400">
+                  Performance velocity metrics, spaced repetition status & topic mastery data
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/problems"
+              className="px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 font-bold rounded-xl text-xs sm:text-sm transition-all text-center"
+            >
+              Problems Catalogue →
+            </Link>
+          </div>
+        </header>
     </main>
   );
 }
