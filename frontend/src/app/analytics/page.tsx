@@ -120,6 +120,26 @@ export default function AnalyticsPage() {
             <p className="text-[10px] text-zinc-500 mt-1">Strongest: Arrays & Hashing</p>
           </div>
         </div>
+
+        {/* Time Range Filter Controls Bar */}
+        <div className="flex items-center justify-between bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4">
+          <span className="text-xs text-zinc-400 font-medium">Time Window Horizon:</span>
+          <div className="flex bg-zinc-950 border border-zinc-800 rounded-xl p-1 text-xs font-mono">
+            {(["7D", "30D", "90D", "ALL"] as const).map((range) => (
+              <button
+                key={range}
+                onClick={() => setTimeRange(range)}
+                className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
+                  timeRange === range
+                    ? "bg-amber-500 text-zinc-950"
+                    : "text-zinc-400 hover:text-zinc-200"
+                }`}
+              >
+                {range}
+              </button>
+            ))}
+          </div>
+        </div>
     </main>
   );
 }
