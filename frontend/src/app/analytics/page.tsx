@@ -96,6 +96,30 @@ export default function AnalyticsPage() {
             </Link>
           </div>
         </header>
+
+        {/* Quick Stats Grid Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-2xl">
+            <p className="text-xs font-semibold text-zinc-400 uppercase">Total Study Time</p>
+            <h3 className="text-2xl font-extrabold text-white mt-2">26.8 hrs</h3>
+            <p className="text-[10px] text-emerald-400 mt-1">↑ +4.2 hrs vs last week</p>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-2xl">
+            <p className="text-xs font-semibold text-emerald-400 uppercase">Avg Problem Accuracy</p>
+            <h3 className="text-2xl font-extrabold text-white mt-2">84.2%</h3>
+            <p className="text-[10px] text-zinc-500 mt-1">Based on first-attempt submissions</p>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-2xl">
+            <p className="text-xs font-semibold text-amber-400 uppercase">Solving Velocity</p>
+            <h3 className="text-2xl font-extrabold text-white mt-2">2.4 / day</h3>
+            <p className="text-[10px] text-zinc-500 mt-1">Target pace: 3.0 / day</p>
+          </div>
+          <div className="p-5 bg-zinc-900/80 border border-zinc-800 rounded-2xl">
+            <p className="text-xs font-semibold text-sky-400 uppercase">Topics Above 80%</p>
+            <h3 className="text-2xl font-extrabold text-white mt-2">5 Categories</h3>
+            <p className="text-[10px] text-zinc-500 mt-1">Strongest: Arrays & Hashing</p>
+          </div>
+        </div>
     </main>
   );
 }
