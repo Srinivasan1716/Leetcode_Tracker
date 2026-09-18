@@ -67,6 +67,22 @@ export default function AnalyticsPage() {
   const [newTitle, setNewTitle] = React.useState<string>("");
   const [newTopic, setNewTopic] = React.useState<string>("Arrays & Hashing");
   const [newDuration, setNewDuration] = React.useState<number>(30);
+
+  const handleAddLogSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+    const newEntry: StudyLogEntry = {
+      id: Date.now(),
+      date: new Date().toISOString().split("T")[0],
+      title: newTitle.trim(),
+      topic: newTopic,
+      difficulty: "MEDIUM",
+      durationMinutes: newDuration,
+    };
+    setLogs((prev) => [newEntry, ...prev]);
+    setNewTitle("");
+    setIsLogModalOpen(false);
+  };
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans">
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
