@@ -271,8 +271,28 @@ export default function AnalyticsPage() {
             ))}
           </div>
         </div>
-              <button
-                key={range}
+        {/* Time Spent per Category Breakdown */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <h3 className="text-base font-bold text-white">Time Invested per Category</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800 rounded-xl">
+              <p className="text-zinc-400 font-mono text-[10px]">Arrays & Hashing</p>
+              <p className="text-lg font-bold text-amber-400 mt-1">4.0 hrs</p>
+            </div>
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800 rounded-xl">
+              <p className="text-zinc-400 font-mono text-[10px]">Dynamic Programming</p>
+              <p className="text-lg font-bold text-indigo-400 mt-1">6.6 hrs</p>
+            </div>
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800 rounded-xl">
+              <p className="text-zinc-400 font-mono text-[10px]">Trees & Graphs</p>
+              <p className="text-lg font-bold text-emerald-400 mt-1">5.3 hrs</p>
+            </div>
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800 rounded-xl">
+              <p className="text-zinc-400 font-mono text-[10px]">Binary Search</p>
+              <p className="text-lg font-bold text-sky-400 mt-1">3.5 hrs</p>
+            </div>
+          </div>
+        </div>
                 onClick={() => setTimeRange(range)}
                 className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
                   timeRange === range
