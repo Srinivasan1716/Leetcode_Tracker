@@ -220,7 +220,30 @@ export default function AnalyticsPage() {
             ))}
           </div>
         </div>
-          <div className="flex bg-zinc-950 border border-zinc-800 rounded-xl p-1 text-xs font-mono">
+        {/* Revision Schedule Calendar Preview */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Spaced Repetition Calendar</h3>
+            <span className="text-xs text-amber-400 font-mono">3 Items Due Today</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div className="p-3 bg-zinc-950/60 border border-amber-500/30 rounded-xl space-y-1">
+              <span className="text-[10px] text-amber-400 font-mono">Today (Due Now)</span>
+              <p className="font-semibold text-white">1. Two Sum</p>
+              <p className="text-[10px] text-zinc-500">Interval: 3 Days</p>
+            </div>
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-1">
+              <span className="text-[10px] text-sky-400 font-mono">Tomorrow</span>
+              <p className="font-semibold text-white">3. Longest Substring</p>
+              <p className="text-[10px] text-zinc-500">Interval: 7 Days</p>
+            </div>
+            <div className="p-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-1">
+              <span className="text-[10px] text-zinc-400 font-mono">In 3 Days</span>
+              <p className="font-semibold text-white">5. Longest Palindromic</p>
+              <p className="text-[10px] text-zinc-500">Interval: 14 Days</p>
+            </div>
+          </div>
+        </div>
             {(["7D", "30D", "90D", "ALL"] as const).map((range) => (
               <button
                 key={range}
