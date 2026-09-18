@@ -57,6 +57,10 @@ const sampleLogs: StudyLogEntry[] = [
 ];
 
 export default function AnalyticsPage() {
+  const [timeRange, setTimeRange] = React.useState<"7D" | "30D" | "90D" | "ALL">("30D");
+  const [selectedTopicFilter, setSelectedTopicFilter] = React.useState<string>("ALL");
+  const [searchQuery, setSearchQuery] = React.useState<string>("");
+  const [logs, setLogs] = React.useState<StudyLogEntry[]>(sampleLogs);
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-4 sm:p-6 md:p-10 font-sans">
       <div className="max-w-7xl mx-auto space-y-6">
