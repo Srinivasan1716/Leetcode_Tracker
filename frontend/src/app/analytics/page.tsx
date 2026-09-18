@@ -253,7 +253,24 @@ export default function AnalyticsPage() {
             </div>
           </div>
         </div>
-            {(["7D", "30D", "90D", "ALL"] as const).map((range) => (
+        {/* Study Streak Velocity Chart Widget */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Streak Velocity Trend</h3>
+            <span className="text-xs text-emerald-400 font-mono">7 Days Active 🔥</span>
+          </div>
+          <div className="flex items-end gap-2 h-24 pt-4 border-b border-zinc-800 pb-2">
+            {[2, 3, 1, 4, 2, 5, 3].map((val, idx) => (
+              <div key={idx} className="flex-1 flex flex-col items-center gap-1 group">
+                <div
+                  style={{ height: `${val * 16}px` }}
+                  className="w-full bg-amber-500/80 hover:bg-amber-400 rounded-t transition-all group-hover:scale-y-105"
+                ></div>
+                <span className="text-[9px] text-zinc-500 font-mono">Day {idx + 1}</span>
+              </div>
+            ))}
+          </div>
+        </div>
               <button
                 key={range}
                 onClick={() => setTimeRange(range)}
