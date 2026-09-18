@@ -190,7 +190,36 @@ export default function AnalyticsPage() {
             </div>
           </div>
         </div>
-          <span className="text-xs text-zinc-400 font-medium">Time Window Horizon:</span>
+        {/* Topic Mastery Metrics Grid */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Topic Accuracy Breakdown</h3>
+            <span className="text-xs text-zinc-400 font-mono">Accuracy % on First Pass</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {sampleTopicMetrics.map((topic) => (
+              <div key={topic.name} className="p-3.5 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-semibold text-zinc-200">{topic.name}</span>
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                    topic.accuracy >= 85
+                      ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                      : topic.accuracy >= 75
+                      ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                      : "bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                  }`}>
+                    {topic.accuracy}%
+                  </span>
+                </div>
+                <div className="flex justify-between text-[11px] text-zinc-500 font-mono">
+                  <span>Solved: {topic.solved}/{topic.total}</span>
+                  <span>Time: {topic.timeSpentMinutes}m</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
           <div className="flex bg-zinc-950 border border-zinc-800 rounded-xl p-1 text-xs font-mono">
             {(["7D", "30D", "90D", "ALL"] as const).map((range) => (
               <button
