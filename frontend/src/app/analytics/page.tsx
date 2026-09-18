@@ -73,6 +73,7 @@ export default function AnalyticsPage() {
   const [isLogModalOpen, setIsLogModalOpen] = React.useState<boolean>(false);
   const [selectedCompanyFilter, setSelectedCompanyFilter] = React.useState<string>("ALL");
   const [isFavoriteOnly, setIsFavoriteOnly] = React.useState<boolean>(false);
+  const [logPage, setLogPage] = React.useState<number>(1);
   const [newTitle, setNewTitle] = React.useState<string>("");
   const [newTopic, setNewTopic] = React.useState<string>("Arrays & Hashing");
   const [newDuration, setNewDuration] = React.useState<number>(30);
