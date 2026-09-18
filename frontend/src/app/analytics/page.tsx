@@ -444,7 +444,16 @@ export default function AnalyticsPage() {
                     className="bg-amber-500 h-full rounded-full"
                   ></div>
                 </div>
-        {/* Complexity Distribution Audit Widget */}
+        {/* Problem Memory Retention Rate Card */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Algorithm Retention Score</h3>
+            <span className="text-xs text-emerald-400 font-mono font-bold">89% Retention Rate</span>
+          </div>
+          <p className="text-xs text-zinc-400">
+            Based on periodic review testing, you remember optimal approaches for 89% of problems after 14 days.
+          </p>
+        </div>
         <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
           <h3 className="text-base font-bold text-white">Algorithm Complexity Efficiency Audit</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
