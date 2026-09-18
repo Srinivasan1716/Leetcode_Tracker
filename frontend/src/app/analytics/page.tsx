@@ -293,7 +293,24 @@ export default function AnalyticsPage() {
             </div>
           </div>
         </div>
-                onClick={() => setTimeRange(range)}
+        {/* Top Performing Topics Badge Summary */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-3">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Top Performing Topics (≥ 85% Accuracy)</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-lg">
+              Arrays & Hashing (92%)
+            </span>
+            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-lg">
+              Linked List (90%)
+            </span>
+            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-lg">
+              Two Pointers (88%)
+            </span>
+            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-lg">
+              Sliding Window (85%)
+            </span>
+          </div>
+        </div>
                 className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
                   timeRange === range
                     ? "bg-amber-500 text-zinc-950"
