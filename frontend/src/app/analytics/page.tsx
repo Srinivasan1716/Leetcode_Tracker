@@ -118,8 +118,11 @@ export default function AnalyticsPage() {
                 ←
               </Link>
               <div>
-                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
-                  Analytics & Insights
+                <h1 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
+                  <span>Analytics & Insights</span>
+                  <span className="text-xs px-2.5 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono rounded-full">
+                    78.5% Solved Pace
+                  </span>
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-400">
                   Performance velocity metrics, spaced repetition status & topic mastery data
