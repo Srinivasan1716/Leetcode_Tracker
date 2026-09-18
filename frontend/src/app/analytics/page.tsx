@@ -122,6 +122,13 @@ export default function AnalyticsPage() {
 
           <div className="flex items-center gap-3">
             <button
+              onClick={() => window.print()}
+              className="px-3 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-mono text-xs rounded-xl transition-all"
+              title="Print Summary Report"
+            >
+              🖨️ Print
+            </button>
+            <button
               onClick={() => alert("Generating full performance analytics CSV report...")}
               className="px-3 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-mono text-xs rounded-xl transition-all"
             >
