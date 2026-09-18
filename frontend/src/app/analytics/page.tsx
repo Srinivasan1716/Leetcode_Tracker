@@ -424,7 +424,32 @@ export default function AnalyticsPage() {
         </div>
                 }`}
               >
-                {range}
+        {/* Company Interview Readiness Score Cards */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Target Company Interview Readiness</h3>
+            <span className="text-xs text-amber-400 font-mono">Curated Question Solved Rate</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {sampleCompanies.map((c) => (
+              <div key={c.company} className="p-4 bg-zinc-950/60 border border-zinc-800/80 rounded-xl space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-white text-sm">{c.company}</span>
+                  <span className="text-xs font-mono text-amber-400 font-bold">{c.readinessPercentage}%</span>
+                </div>
+                <div className="w-full bg-zinc-900 rounded-full h-2 overflow-hidden border border-zinc-800">
+                  <div
+                    style={{ width: `${c.readinessPercentage}%` }}
+                    className="bg-amber-500 h-full rounded-full"
+                  ></div>
+                </div>
+                <p className="text-[10px] text-zinc-500 font-mono">
+                  Solved {c.completedCount} / {c.targetCount} top tagged problems
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
               </button>
             ))}
           </div>
