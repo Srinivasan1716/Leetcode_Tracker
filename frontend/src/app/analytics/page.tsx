@@ -56,6 +56,13 @@ const sampleLogs: StudyLogEntry[] = [
   { id: 3, date: "2026-09-16", title: "15. 3Sum", topic: "Two Pointers", difficulty: "MEDIUM", durationMinutes: 45, notes: "Sort array and two pointer scan" },
 ];
 
+const sampleCompanies: CompanyReadiness[] = [
+  { company: "Meta", targetCount: 50, completedCount: 38, readinessPercentage: 76 },
+  { company: "Google", targetCount: 60, completedCount: 42, readinessPercentage: 70 },
+  { company: "Amazon", targetCount: 45, completedCount: 36, readinessPercentage: 80 },
+  { company: "Apple", targetCount: 30, completedCount: 24, readinessPercentage: 80 },
+];
+
 export default function AnalyticsPage() {
   const [timeRange, setTimeRange] = React.useState<"7D" | "30D" | "90D" | "ALL">("30D");
   const [selectedTopicFilter, setSelectedTopicFilter] = React.useState<string>("ALL");
