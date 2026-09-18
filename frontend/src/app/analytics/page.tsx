@@ -349,7 +349,50 @@ export default function AnalyticsPage() {
           </div>
           <p className="text-[11px] text-zinc-500">Out of 140 total submissions, 110 passed all test cases on first run.</p>
         </div>
-                    : "text-zinc-400 hover:text-zinc-200"
+        {/* Recent Study Session Activity Log Table */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl overflow-hidden space-y-4 p-5 sm:p-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Recent Study Session Logs</h3>
+            <span className="text-xs text-zinc-400 font-mono">{logs.length} Entries Recorded</span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px] text-xs">
+              <thead>
+                <tr className="bg-zinc-950/80 text-zinc-400 uppercase font-mono border-b border-zinc-800">
+                  <th className="p-3">Date</th>
+                  <th className="p-3">Problem Title</th>
+                  <th className="p-3">Topic</th>
+                  <th className="p-3">Difficulty</th>
+                  <th className="p-3">Time</th>
+                  <th className="p-3">Notes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800/60 font-mono">
+                {logs.map((log) => (
+                  <tr key={log.id} className="hover:bg-zinc-800/40">
+                    <td className="p-3 text-zinc-400">{log.date}</td>
+                    <td className="p-3 text-white font-semibold">{log.title}</td>
+                    <td className="p-3 text-zinc-300">{log.topic}</td>
+                    <td className="p-3">
+                      <span className={`px-2 py-0.5 rounded text-[10px] ${
+                        log.difficulty === "EASY"
+                          ? "text-emerald-400 bg-emerald-500/10"
+                          : log.difficulty === "MEDIUM"
+                          ? "text-amber-400 bg-amber-500/10"
+                          : "text-rose-400 bg-rose-500/10"
+                      }`}>
+                        {log.difficulty}
+                      </span>
+                    </td>
+                    <td className="p-3 text-amber-400">{log.durationMinutes} min</td>
+                    <td className="p-3 text-zinc-400">{log.notes || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
                 }`}
               >
                 {range}
