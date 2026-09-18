@@ -328,7 +328,17 @@ export default function AnalyticsPage() {
             </span>
           </div>
         </div>
-                  timeRange === range
+        {/* Target vs Actual Progress Comparison */}
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-white">Monthly Target Pace vs Actual</h3>
+            <span className="text-xs text-amber-400 font-mono">72 / 90 Target Solved</span>
+          </div>
+          <div className="w-full bg-zinc-950 rounded-full h-3 overflow-hidden border border-zinc-800">
+            <div className="bg-gradient-to-r from-amber-500 to-emerald-400 h-full rounded-full w-[80%]"></div>
+          </div>
+          <p className="text-[11px] text-zinc-400 font-mono">You are 80% on track to reach your monthly goal of 90 problems!</p>
+        </div>
                     ? "bg-amber-500 text-zinc-950"
                     : "text-zinc-400 hover:text-zinc-200"
                 }`}
