@@ -541,6 +541,23 @@ export default function AnalyticsPage() {
             ))}
           </div>
         </div>
+
+      {/* Footer Summary Branding */}
+      <footer className="mt-12 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 max-w-7xl mx-auto w-full">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="font-mono text-[11px] text-zinc-400">Analytics Engine: Active</span>
+        </div>
+        <p>LeetCode Tracker &copy; {new Date().getFullYear()} • Built with Next.js & TypeScript</p>
+        <div className="flex items-center gap-4 text-[11px] font-mono">
+          <Link href="/" className="hover:text-amber-400 transition-colors">
+            Dashboard
+          </Link>
+          <Link href="/problems" className="hover:text-amber-400 transition-colors">
+            Problems
+          </Link>
+        </div>
+      </footer>
     </main>
   );
 }
