@@ -104,7 +104,7 @@ const sampleProblems: Problem[] = [
 ];
 
 const defaultTopics: TopicStat[] = [
-  { name: "Arrays and Hashing", total: 15, solved: 10 },
+  { name: "Arrays & Hashing", total: 15, solved: 10 },
   { name: "Two Pointers", total: 8, solved: 5 },
   { name: "Sliding Window", total: 6, solved: 4 },
   { name: "Stack & Queue", total: 7, solved: 3 },
