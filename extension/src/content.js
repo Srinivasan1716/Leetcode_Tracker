@@ -190,3 +190,10 @@ function showToastNotification(message, isError = false) {
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 4000);
 }
+
+chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  if (req.action === 'SHOW_TOAST') {
+    showToastNotification(req.message, req.isError);
+    sendResponse({ received: true });
+  }
+});
