@@ -197,3 +197,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     sendResponse({ received: true });
   }
 });
+
+function isContestPage() {
+  return window.location.pathname.includes('/contest/');
+}
