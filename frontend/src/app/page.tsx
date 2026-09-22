@@ -1067,3 +1067,9 @@ export const computeWeeklyTarget = (completed: number, target: number = 10) => (
   target,
   percentage: Math.min(100, Math.round((completed / target) * 100))
 });
+
+// Difficulty Tier Distribution Breakdown helper
+export const computeDifficultyStats = (easy: number, med: number, hard: number) => {
+  const total = easy + med + hard || 1;
+  return { easyRate: (easy / total) * 100, medRate: (med / total) * 100, hardRate: (hard / total) * 100 };
+};
