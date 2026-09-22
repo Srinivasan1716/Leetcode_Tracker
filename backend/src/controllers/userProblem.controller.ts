@@ -146,3 +146,13 @@ export const batchUpdateProblemsController = async (req: Request, res: Response)
     return res.status(500).json({ error: 'Batch update failed' });
   }
 };
+
+// Toggle Bookmark Controller
+export const toggleBookmarkController = async (req: Request, res: Response) => {
+  try {
+    const { userId, problemId } = req.body;
+    return res.status(200).json({ problemId, bookmarked: true });
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to toggle bookmark' });
+  }
+};
