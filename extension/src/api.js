@@ -19,3 +19,17 @@ export async function sendSubmissionToBackend(serverUrl, apiKey, payload) {
 
   return await response.json();
 }
+
+export async function sendWithRetry(serverUrl, apiKey, payload, maxRetries = 3) {
+  let attempt = 0;
+  while (attempt < maxRetries) {
+    try {
+      return await sendSubmissionToBackend(serverUrl, apiKey, payload);
+    } catch (err) {
+      attempt++;
+      if (attempt >= maxRetries) throw err;
+      const delay = Math.pow(2, attempt) * 1000;
+      await new Promise(r => setTimeout(r, delay));
+    }
+  }
+}
