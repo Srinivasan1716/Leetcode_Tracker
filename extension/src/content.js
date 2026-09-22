@@ -62,3 +62,16 @@ function parseProblemSlugAndTitle() {
   const title = titleEl ? titleEl.textContent.trim() : slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   return { slug, title };
 }
+
+function parseDifficulty() {
+  const diffEl = document.querySelector('[data-degree]') ||
+                 document.querySelector('.text-difficulty-easy, .text-difficulty-medium, .text-difficulty-hard') ||
+                 Array.from(document.querySelectorAll('div, span')).find(el => ['Easy', 'Medium', 'Hard'].includes(el.textContent.trim()));
+  if (diffEl) {
+    const text = diffEl.textContent.trim();
+    if (/easy/i.test(text)) return 'EASY';
+    if (/medium/i.test(text)) return 'MEDIUM';
+    if (/hard/i.test(text)) return 'HARD';
+  }
+  return 'MEDIUM';
+}
