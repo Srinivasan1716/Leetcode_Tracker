@@ -655,3 +655,8 @@ export const formatPercentileTag = (percentile?: number) => {
 export const getSpaceBadge = (space?: string) => {
   return space ? `O(${space})` : 'O(1)';
 };
+
+// Time Complexity Pill Indicator
+export const getTimeBadge = (time?: string) => {
+  return time ? `O(${time})` : 'O(N)';
+};
