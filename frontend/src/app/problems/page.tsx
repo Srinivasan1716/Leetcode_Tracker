@@ -670,3 +670,6 @@ export interface ProblemNoteState {
   notes: string;
   isSaving: boolean;
 }
+
+// Auto-save debounce notification
+export const noteSaveIndicator = { saved: 'Saved to cloud', saving: 'Saving...', error: 'Save failed' };
