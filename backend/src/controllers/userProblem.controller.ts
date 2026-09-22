@@ -189,3 +189,10 @@ export const computeDifficultyMetrics = (problems: any[]) => {
     return acc;
   }, {});
 };
+
+// Export User Problems CSV Controller
+export const exportProblemsCsvController = async (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename="leetcode_problems.csv"');
+  return res.status(200).send('id,title,difficulty,status\n');
+};
