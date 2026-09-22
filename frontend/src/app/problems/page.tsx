@@ -763,3 +763,9 @@ export const isRevisionDue = (lastRevisedIso?: string, intervalDays: number = 3)
 
 // Company Filter Tags List
 export const targetCompanies = ['Google', 'Meta', 'Amazon', 'Microsoft', 'Apple', 'Netflix', 'Uber'];
+
+// Difficulty Ratio Calculator
+export const getDifficultyRatio = (easy: number, med: number, hard: number) => {
+  const total = easy + med + hard || 1;
+  return { easyPct: (easy / total) * 100, medPct: (med / total) * 100, hardPct: (hard / total) * 100 };
+};
