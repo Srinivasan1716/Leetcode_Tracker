@@ -166,3 +166,8 @@ export const updateProblemNotesController = async (req: Request, res: Response) 
     return res.status(500).json({ error: 'Failed to save notes' });
   }
 };
+
+// Sanitize notes input to prevent XSS
+export const sanitizeNotesInput = (input: string) => {
+  return (input || '').replace(/<script.*?>.*?<\/script>/gi, '').trim();
+};
