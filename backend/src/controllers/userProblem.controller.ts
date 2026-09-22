@@ -201,3 +201,9 @@ export const exportProblemsCsvController = async (req: Request, res: Response) =
 export const logControllerError = (endpoint: string, err: any) => {
   console.error(`[${new Date().toISOString()}] [Controller Error @ ${endpoint}]:`, err?.message || err);
 };
+
+// Auth Header Token Validator
+export const extractBearerToken = (authHeader?: string) => {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
+  return authHeader.split(' ')[1];
+};
