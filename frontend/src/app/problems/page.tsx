@@ -650,3 +650,8 @@ export const formatPercentileTag = (percentile?: number) => {
   if (!percentile) return 'Beats --%';
   return `Beats ${percentile.toFixed(1)}%`;
 };
+
+// Space Complexity Badge Helper
+export const getSpaceBadge = (space?: string) => {
+  return space ? `O(${space})` : 'O(1)';
+};
