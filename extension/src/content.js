@@ -156,3 +156,9 @@ function detectLeetCodeLayout() {
   console.log(`[LeetCode Tracker] Detected layout: ${isDynamicLayout ? 'Dynamic v2' : 'Standard'}`);
   return isDynamicLayout;
 }
+
+function extractProblemTags() {
+  const tagElements = document.querySelectorAll('a[href*="/tag/"]');
+  const tags = Array.from(tagElements).map(el => el.textContent.trim()).filter(Boolean);
+  return Array.from(new Set(tags));
+}
