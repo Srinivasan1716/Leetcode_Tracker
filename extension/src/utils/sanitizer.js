@@ -16,3 +16,13 @@ export function sanitizeSubmission(payload) {
     sanitized: true
   };
 }
+
+export function validateCodeLength(code) {
+  if (!code || code.trim().length === 0) {
+    return { valid: false, reason: "Code is empty" };
+  }
+  if (code.length > 500000) {
+    return { valid: false, reason: "Code exceeds max payload size (500KB)" };
+  }
+  return { valid: true };
+}
