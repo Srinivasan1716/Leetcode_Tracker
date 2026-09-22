@@ -181,3 +181,11 @@ export const getRevisionHistoryController = async (req: Request, res: Response) 
     return res.status(500).json({ error: 'Failed to fetch revision history' });
   }
 };
+
+// Difficulty Statistics Aggregator
+export const computeDifficultyMetrics = (problems: any[]) => {
+  return problems.reduce((acc, p) => {
+    acc[p.difficulty] = (acc[p.difficulty] || 0) + 1;
+    return acc;
+  }, {});
+};
