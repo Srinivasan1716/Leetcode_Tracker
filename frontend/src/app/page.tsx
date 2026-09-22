@@ -1176,3 +1176,10 @@ export const getPerformanceRating = (runtimeMs: number) => {
   if (runtimeMs < 150) return { label: 'Optimal', color: 'text-sky-400' };
   return { label: 'Needs Optimization', color: 'text-amber-400' };
 };
+
+// Bookmark Favorite Problem Quick Toggle
+export const toggleFavoriteStatus = (favorites: Set<number>, id: number): Set<number> => {
+  const next = new Set(favorites);
+  if (next.has(id)) next.delete(id); else next.add(id);
+  return next;
+};
