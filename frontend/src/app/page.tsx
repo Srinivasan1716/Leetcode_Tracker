@@ -1150,3 +1150,10 @@ export const searchProblemByKeyword = (p: Problem, query: string) => {
   const q = query.toLowerCase().trim();
   return p.title.toLowerCase().includes(q) || (p.topic && p.topic.toLowerCase().includes(q));
 };
+
+// Keyboard Navigation Shortcut Hint
+export const KEYBOARD_NAVIGATION_HINTS = [
+  { key: 'Cmd+K / Ctrl+K', label: 'Quick Search' },
+  { key: 'N', label: 'New Problem Entry' },
+  { key: 'R', label: 'Refresh Analytics' }
+];
