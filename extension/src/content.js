@@ -13,3 +13,20 @@ if (document.readyState === "complete" || document.readyState === "interactive")
 } else {
   window.addEventListener("DOMContentLoaded", initSubmissionWatcher);
 }
+
+function findSubmitButton() {
+  return document.querySelector('[data-e2e-locator="console-submit-button"]') ||
+         document.querySelector('button[data-cy="submit-code-btn"]') ||
+         Array.from(document.querySelectorAll('button')).find(el => el.textContent.trim().toLowerCase() === 'submit');
+}
+
+function attachSubmitObserver() {
+  const submitBtn = findSubmitButton();
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      console.log("[LeetCode Tracker] Submit button clicked, watching for result...");
+      watchSubmissionResult();
+    });
+  }
+}
+setInterval(attachSubmitObserver, 2000);
