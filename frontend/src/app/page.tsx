@@ -1060,3 +1060,10 @@ export const getStreakBadge = (streak: number) => {
   if (streak >= 7) return { title: 'Consistent Solver', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30' };
   return { title: 'Getting Started', color: 'text-zinc-400 bg-zinc-800 border-zinc-700' };
 };
+
+// Weekly Target Progress Calculator
+export const computeWeeklyTarget = (completed: number, target: number = 10) => ({
+  completed,
+  target,
+  percentage: Math.min(100, Math.round((completed / target) * 100))
+});
