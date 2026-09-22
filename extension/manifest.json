@@ -2,5 +2,18 @@
   "manifest_version": 3,
   "name": "LeetCode Tracker Sync",
   "version": "1.0.0",
-  "description": "Automatically capture and sync LeetCode submissions directly to your LeetCode Tracker dashboard."
+  "description": "Automatically capture and sync LeetCode submissions directly to your LeetCode Tracker dashboard.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://leetcode.com/*",
+    "*://*.leetcode.com/*",
+    "*://leetcode.cn/*",
+    "http://localhost:*/*",
+    "https://*/*"
+  ]
 }
