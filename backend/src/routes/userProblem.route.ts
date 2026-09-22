@@ -26,3 +26,6 @@ router.post('/bookmark', updateStatusController);
 
 // Problem Notes Update Route
 router.put('/notes', updateStatusController);
+
+// User Problem History Fetch Route
+router.get('/history/:userId', getUserProblemsController);
