@@ -747,3 +747,9 @@ export const exportProblemsToMarkdown = (items: ProblemItem[]) => {
 export const bulkUpdateStatus = (items: ProblemItem[], ids: number[], status: 'NOT_STARTED' | 'IN_PROGRESS' | 'SOLVED') => {
   return items.map(item => ids.includes(item.id) ? { ...item, status } : item);
 };
+
+// Spaced Repetition Revision Interval Calculator
+export const getNextRevisionIntervalDays = (reviewCount: number = 0) => {
+  const intervals = [1, 3, 7, 14, 30, 60];
+  return intervals[Math.min(reviewCount, intervals.length - 1)];
+};
