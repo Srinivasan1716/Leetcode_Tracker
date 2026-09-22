@@ -17,3 +17,6 @@ router.get("/:userId/:problemId", getUserProblemController);
 export default router;
 // Sync Submission Endpoint
 router.post('/sync', updateStatusController);
+
+// Request validation helper
+const validateSyncRequest = (req: any, res: any, next: any) => next();
