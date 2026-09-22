@@ -644,3 +644,9 @@ export const copySnippetToClipboard = async (text: string) => {
   }
   return false;
 };
+
+// Runtime & Memory Percentile Helper
+export const formatPercentileTag = (percentile?: number) => {
+  if (!percentile) return 'Beats --%';
+  return `Beats ${percentile.toFixed(1)}%`;
+};
