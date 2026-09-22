@@ -1130,3 +1130,9 @@ export interface TimelineSubmissionItem {
   runtime: string;
   timestamp: string;
 }
+
+// Dashboard Company Tag Filter Helper
+export const filterByCompany = (problems: Problem[], company: string) => {
+  if (!company || company === 'ALL') return problems;
+  return problems.filter(p => p.tags?.includes(company));
+};
