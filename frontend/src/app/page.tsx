@@ -1053,3 +1053,10 @@ export const useLeetCodeSync = (onSync?: (data: any) => void) => {
 
 // Quick Problem Filter State Type
 export type QuickFilterMode = 'ALL' | 'SOLVED_ONLY' | 'REVISION_DUE' | 'IN_PROGRESS';
+
+// Streak Milestone Badge Generator
+export const getStreakBadge = (streak: number) => {
+  if (streak >= 30) return { title: 'Coding Master', color: 'text-amber-400 bg-amber-500/10 border-amber-500/30' };
+  if (streak >= 7) return { title: 'Consistent Solver', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30' };
+  return { title: 'Getting Started', color: 'text-zinc-400 bg-zinc-800 border-zinc-700' };
+};
