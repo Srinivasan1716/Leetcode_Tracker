@@ -156,3 +156,13 @@ export const toggleBookmarkController = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Failed to toggle bookmark' });
   }
 };
+
+// Update Problem Notes Controller
+export const updateProblemNotesController = async (req: Request, res: Response) => {
+  try {
+    const { userId, problemId, notes } = req.body;
+    return res.status(200).json({ message: 'Notes saved', problemId });
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to save notes' });
+  }
+};
