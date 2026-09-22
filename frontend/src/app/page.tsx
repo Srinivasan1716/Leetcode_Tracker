@@ -1094,3 +1094,13 @@ export interface ProblemSessionNote {
   content: string;
   lastUpdated: string;
 }
+
+// Auto Algorithm Pattern Classification Helper
+export const classifyAlgorithmPattern = (title: string, tags: string[] = []) => {
+  const text = (title + ' ' + tags.join(' ')).toLowerCase();
+  if (text.includes('tree') || text.includes('bst')) return 'Tree Traversal';
+  if (text.includes('window') || text.includes('subarray')) return 'Sliding Window';
+  if (text.includes('graph') || text.includes('bfs') || text.includes('dfs')) return 'Graph Theory';
+  if (text.includes('dp') || text.includes('knapsack')) return 'Dynamic Programming';
+  return 'General Array & Logic';
+};
