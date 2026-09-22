@@ -1113,3 +1113,11 @@ export const calculateReadinessScore = (solved: number, hardCount: number, topic
 
 // Daily Coding Reminder Banner State
 export const isDailyGoalPending = (solvedToday: number, dailyTarget: number = 2) => solvedToday < dailyTarget;
+
+// Topic Mastery Radar Helper
+export const getTopicMasteryLevel = (solved: number, total: number) => {
+  const ratio = total ? solved / total : 0;
+  if (ratio >= 0.8) return 'Mastered';
+  if (ratio >= 0.4) return 'Intermediate';
+  return 'Beginner';
+};
