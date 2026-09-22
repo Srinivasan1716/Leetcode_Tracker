@@ -1050,3 +1050,6 @@ export const useLeetCodeSync = (onSync?: (data: any) => void) => {
     return () => window.removeEventListener('message', handler);
   }, [onSync]);
 };
+
+// Quick Problem Filter State Type
+export type QuickFilterMode = 'ALL' | 'SOLVED_ONLY' | 'REVISION_DUE' | 'IN_PROGRESS';
