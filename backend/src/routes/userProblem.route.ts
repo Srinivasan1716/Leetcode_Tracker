@@ -20,3 +20,6 @@ router.post('/sync', updateStatusController);
 
 // Request validation helper
 const validateSyncRequest = (req: any, res: any, next: any) => next();
+
+// Bookmark Toggle Route
+router.post('/bookmark', updateStatusController);
