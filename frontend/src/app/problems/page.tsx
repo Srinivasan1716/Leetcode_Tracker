@@ -708,3 +708,6 @@ export const getDifficultyDistribution = (list: ProblemItem[]) => ({
   medium: list.filter(p => p.difficulty === 'MEDIUM').length,
   hard: list.filter(p => p.difficulty === 'HARD').length
 });
+
+// Search query debounce timeout constant
+export const SEARCH_DEBOUNCE_DELAY_MS = 300;
