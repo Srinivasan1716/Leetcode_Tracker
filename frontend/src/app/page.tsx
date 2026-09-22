@@ -1163,3 +1163,9 @@ export const getDueRevisionProblems = (schedules: RevisionSchedule[]) => {
   const now = new Date();
   return schedules.filter(s => new Date(s.dueDate) <= now);
 };
+
+// Problem Retention Audit Calculator
+export const computeRetentionRate = (totalRevised: number, remembered: number) => {
+  if (!totalRevised) return 100;
+  return Math.round((remembered / totalRevised) * 100);
+};
