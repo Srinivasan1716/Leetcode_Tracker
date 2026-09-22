@@ -684,3 +684,10 @@ export const filterBookmarkedOnly = (problems: ProblemItem[], onlyBookmarked: bo
   if (!onlyBookmarked) return problems;
   return problems.filter(p => p.isBookmarked);
 };
+
+// Status Cycle Helper: NOT_STARTED -> IN_PROGRESS -> SOLVED
+export const getNextProblemStatus = (current: string): 'NOT_STARTED' | 'IN_PROGRESS' | 'SOLVED' => {
+  if (current === 'NOT_STARTED') return 'IN_PROGRESS';
+  if (current === 'IN_PROGRESS') return 'SOLVED';
+  return 'NOT_STARTED';
+};
