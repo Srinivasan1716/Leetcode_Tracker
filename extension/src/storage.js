@@ -21,3 +21,16 @@ export const StorageManager = {
     await this.setSettings({ recentSyncs: updated });
   }
 };
+
+export async function enqueueOfflineSubmission(submission) {
+  return new Promise((resolve) => {
+    chrome.storage.local.get(['offlineQueue'], (data) => {
+      const queue = data.offlineQueue || [];
+      queue.push({ ...submission, queuedAt: new Date().toISOString() });
+      chrome.storage.local.set({ offlineQueue: queue }, () => {
+        console.log("[LeetCode Tracker] Submission enqueued offline:", submission.slug);
+        resolve(queue.length);
+      });
+    });
+  });
+}
