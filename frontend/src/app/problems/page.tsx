@@ -735,3 +735,10 @@ export const exportProblemsToJson = (items: ProblemItem[]) => {
   a.setAttribute('download', `leetcode-tracker-export-${Date.now()}.json`);
   a.click();
 };
+
+// Export to Markdown Table Utility
+export const exportProblemsToMarkdown = (items: ProblemItem[]) => {
+  const header = '| # | Title | Difficulty | Topic | Status |\n|---|---|---|---|---|\n';
+  const rows = items.map(p => `| ${p.id} | ${p.title} | ${p.difficulty} | ${p.topic} | ${p.status} |`).join('\n');
+  return header + rows;
+};
