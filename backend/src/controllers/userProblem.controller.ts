@@ -126,3 +126,13 @@ export const syncSubmissionController = async (req: Request, res: Response) => {
 export const validateSyncPayload = (body: any) => {
   return !!(body && body.slug && body.code);
 };
+
+// Sync submission rate limiter store
+const syncRateLimitMap = new Map<string, number>();
+export const checkSyncRateLimit = (ip: string) => {
+  const now = Date.now();
+  const last = syncRateLimitMap.get(ip) || 0;
+  if (now - last < 1000) return false;
+  syncRateLimitMap.set(ip, now);
+  return true;
+};
