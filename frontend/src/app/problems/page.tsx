@@ -784,3 +784,6 @@ export const getLanguageBadgeColor = (lang: string) => {
 export const formatCodeWithLineNumbers = (code: string) => {
   return code.split('\n').map((line, idx) => `${String(idx + 1).padStart(3, ' ')} | ${line}`).join('\n');
 };
+
+// Keyboard shortcut tooltip description
+export const SEARCH_KEYBOARD_SHORTCUT = 'Press / to search';
