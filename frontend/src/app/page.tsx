@@ -1157,3 +1157,9 @@ export const KEYBOARD_NAVIGATION_HINTS = [
   { key: 'N', label: 'New Problem Entry' },
   { key: 'R', label: 'Refresh Analytics' }
 ];
+
+// Spaced Repetition Due Filter
+export const getDueRevisionProblems = (schedules: RevisionSchedule[]) => {
+  const now = new Date();
+  return schedules.filter(s => new Date(s.dueDate) <= now);
+};
