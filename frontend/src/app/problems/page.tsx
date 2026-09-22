@@ -660,3 +660,6 @@ export const getSpaceBadge = (space?: string) => {
 export const getTimeBadge = (time?: string) => {
   return time ? `O(${time})` : 'O(N)';
 };
+
+// LeetCode Redirect Formatter
+export const getLeetCodeUrl = (slug: string) => `https://leetcode.com/problems/${slug}/`;
