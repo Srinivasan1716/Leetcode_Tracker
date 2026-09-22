@@ -173,3 +173,20 @@ function isDebouncedClick() {
   lastClickTime = now;
   return false;
 }
+
+function showToastNotification(message, isError = false) {
+  const toast = document.createElement('div');
+  toast.style.position = 'fixed';
+  toast.style.bottom = '20px';
+  toast.style.right = '20px';
+  toast.style.zIndex = '999999';
+  toast.style.padding = '12px 18px';
+  toast.style.borderRadius = '8px';
+  toast.style.background = isError ? '#da3633' : '#238636';
+  toast.style.color = '#ffffff';
+  toast.style.fontWeight = '500';
+  toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+  toast.textContent = `[LeetCode Tracker] ${message}`;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
