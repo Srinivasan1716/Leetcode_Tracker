@@ -60,3 +60,14 @@ function updateBadgeCounter(count) {
     chrome.action.setBadgeText({ text: '' });
   }
 }
+
+async function validateTokenOnStartup() {
+  const data = await chrome.storage.local.get(['serverUrl', 'apiKey']);
+  if (!data.apiKey) {
+    console.warn("[LeetCode Tracker] No API Key found on startup.");
+    updateBadgeCounter(1);
+  } else {
+    updateBadgeCounter(0);
+  }
+}
+chrome.runtime.onStartup.addListener(validateTokenOnStartup);
