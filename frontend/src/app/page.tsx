@@ -1073,3 +1073,10 @@ export const computeDifficultyStats = (easy: number, med: number, hard: number) 
   const total = easy + med + hard || 1;
   return { easyRate: (easy / total) * 100, medRate: (med / total) * 100, hardRate: (hard / total) * 100 };
 };
+
+// Problem Solving Active Timer State
+export interface ActiveTimerState {
+  seconds: number;
+  isRunning: boolean;
+  problemId?: number;
+}
