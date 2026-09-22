@@ -108,3 +108,44 @@ function extractRuntimeAndMemory() {
   });
   return { runtime, memory };
 }
+
+function watchSubmissionResult() {
+  let checks = 0;
+  const interval = setInterval(() => {
+    checks++;
+    const acceptedBanner = Array.from(document.querySelectorAll('*')).find(el =>
+      el.textContent && el.textContent.trim() === 'Accepted' && el.classList.contains('text-green-s') ||
+      el.getAttribute('data-e2e-locator') === 'submission-result' ||
+      el.textContent.includes('Accepted')
+    );
+
+    if (acceptedBanner) {
+      clearInterval(interval);
+      console.log("[LeetCode Tracker] Submission verified as ACCEPTED!");
+      captureAndTransmitSubmission();
+    }
+    if (checks > 30) clearInterval(interval);
+  }, 1000);
+}
+
+function captureAndTransmitSubmission() {
+  const { slug, title } = parseProblemSlugAndTitle();
+  const difficulty = parseDifficulty();
+  const language = detectProgrammingLanguage();
+  const { runtime, memory } = extractRuntimeAndMemory();
+  const code = extractMonacoCode();
+
+  const payload = {
+    slug,
+    title,
+    difficulty,
+    language,
+    runtime,
+    memory,
+    code,
+    submittedAt: new Date().toISOString(),
+    status: 'ACCEPTED'
+  };
+
+  chrome.runtime.sendMessage({ action: 'SYNC_SUBMISSION', payload });
+}
