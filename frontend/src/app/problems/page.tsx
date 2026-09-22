@@ -726,3 +726,12 @@ export const EmptyProblemsPlaceholder = () => (
     <p className="text-xs mt-1 text-zinc-600">Try adjusting your filter search parameters.</p>
   </div>
 );
+
+// Export to JSON Utility
+export const exportProblemsToJson = (items: ProblemItem[]) => {
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(items, null, 2));
+  const a = document.createElement('a');
+  a.setAttribute('href', dataStr);
+  a.setAttribute('download', `leetcode-tracker-export-${Date.now()}.json`);
+  a.click();
+};
