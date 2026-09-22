@@ -673,3 +673,8 @@ export interface ProblemNoteState {
 
 // Auto-save debounce notification
 export const noteSaveIndicator = { saved: 'Saved to cloud', saving: 'Saving...', error: 'Save failed' };
+
+// Bookmark Toggle Persistence Helper
+export const toggleProblemBookmark = (problems: ProblemItem[], id: number): ProblemItem[] => {
+  return problems.map(p => p.id === id ? { ...p, isBookmarked: !p.isBookmarked } : p);
+};
