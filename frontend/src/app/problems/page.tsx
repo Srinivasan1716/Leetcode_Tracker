@@ -663,3 +663,10 @@ export const getTimeBadge = (time?: string) => {
 
 // LeetCode Redirect Formatter
 export const getLeetCodeUrl = (slug: string) => `https://leetcode.com/problems/${slug}/`;
+
+// Inline Notes Component Interface
+export interface ProblemNoteState {
+  problemId: number;
+  notes: string;
+  isSaving: boolean;
+}
