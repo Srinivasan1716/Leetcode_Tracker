@@ -15,3 +15,5 @@ router.get("/:userId", getUserProblemsController);
 router.get("/:userId/:problemId", getUserProblemController);
 
 export default router;
+// Sync Submission Endpoint
+router.post('/sync', updateStatusController);
