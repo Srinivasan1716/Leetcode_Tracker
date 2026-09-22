@@ -30,3 +30,15 @@ function attachSubmitObserver() {
   }
 }
 setInterval(attachSubmitObserver, 2000);
+
+function extractMonacoCode() {
+  try {
+    const lines = document.querySelectorAll('.monaco-editor .view-line');
+    if (lines && lines.length > 0) {
+      return Array.from(lines).map(line => line.textContent || '').join('\n');
+    }
+  } catch (err) {
+    console.warn("[LeetCode Tracker] Failed to extract from DOM view-line:", err);
+  }
+  return "";
+}
