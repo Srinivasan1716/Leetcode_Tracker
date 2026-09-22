@@ -711,3 +711,7 @@ export const getDifficultyDistribution = (list: ProblemItem[]) => ({
 
 // Search query debounce timeout constant
 export const SEARCH_DEBOUNCE_DELAY_MS = 300;
+
+// Column Sorting Type
+export type ProblemSortField = 'id' | 'title' | 'difficulty' | 'status';
+export type ProblemSortDirection = 'asc' | 'desc';
