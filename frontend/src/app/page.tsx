@@ -1110,3 +1110,6 @@ export const calculateReadinessScore = (solved: number, hardCount: number, topic
   const score = Math.min(100, Math.round((solved * 0.4) + (hardCount * 1.5) + (topicsCovered * 3)));
   return score;
 };
+
+// Daily Coding Reminder Banner State
+export const isDailyGoalPending = (solvedToday: number, dailyTarget: number = 2) => solvedToday < dailyTarget;
