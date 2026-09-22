@@ -1040,3 +1040,13 @@ export default function Home() {
     </main>
   );
 }
+// Live LeetCode Sync Listener Hook
+export const useLeetCodeSync = (onSync?: (data: any) => void) => {
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      if (e.data?.type === 'LEETCODE_SUBMISSION_SYNCED') onSync?.(e.data.payload);
+    };
+    window.addEventListener('message', handler);
+    return () => window.removeEventListener('message', handler);
+  }, [onSync]);
+};
