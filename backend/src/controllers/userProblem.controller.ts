@@ -171,3 +171,13 @@ export const updateProblemNotesController = async (req: Request, res: Response) 
 export const sanitizeNotesInput = (input: string) => {
   return (input || '').replace(/<script.*?>.*?<\/script>/gi, '').trim();
 };
+
+// Fetch Problem Revision History Controller
+export const getRevisionHistoryController = async (req: Request, res: Response) => {
+  try {
+    const { problemId } = req.params;
+    return res.status(200).json({ revisions: [] });
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to fetch revision history' });
+  }
+};
