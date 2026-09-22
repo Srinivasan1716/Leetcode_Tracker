@@ -1104,3 +1104,9 @@ export const classifyAlgorithmPattern = (title: string, tags: string[] = []) => 
   if (text.includes('dp') || text.includes('knapsack')) return 'Dynamic Programming';
   return 'General Array & Logic';
 };
+
+// Interview Readiness Score Calculator
+export const calculateReadinessScore = (solved: number, hardCount: number, topicsCovered: number) => {
+  const score = Math.min(100, Math.round((solved * 0.4) + (hardCount * 1.5) + (topicsCovered * 3)));
+  return score;
+};
