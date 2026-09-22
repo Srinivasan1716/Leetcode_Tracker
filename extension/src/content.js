@@ -53,3 +53,12 @@ function hookNetworkSubmissions() {
     });
   }
 }
+
+function parseProblemSlugAndTitle() {
+  const urlPath = window.location.pathname;
+  const match = urlPath.match(/\/problems\/([^/]+)/);
+  const slug = match ? match[1] : "unknown-problem";
+  const titleEl = document.querySelector('[data-cy="question-title"]') || document.querySelector('.text-title-large');
+  const title = titleEl ? titleEl.textContent.trim() : slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  return { slug, title };
+}
