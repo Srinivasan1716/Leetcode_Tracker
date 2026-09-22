@@ -1136,3 +1136,8 @@ export const filterByCompany = (problems: Problem[], company: string) => {
   if (!company || company === 'ALL') return problems;
   return problems.filter(p => p.tags?.includes(company));
 };
+
+// Export Summary Report Trigger
+export const generateDashboardSummaryText = (data: Dashboard) => {
+  return `LeetCode Tracker Summary: Solved ${data.solved}/${data.totalProblems} (Easy: ${data.easySolved}, Med: ${data.mediumSolved}, Hard: ${data.hardSolved})`;
+};
