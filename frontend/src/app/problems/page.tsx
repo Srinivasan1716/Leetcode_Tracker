@@ -779,3 +779,8 @@ export const getLanguageBadgeColor = (lang: string) => {
     default: return 'text-zinc-400 bg-zinc-500/10';
   }
 };
+
+// Code Line Number Formatter
+export const formatCodeWithLineNumbers = (code: string) => {
+  return code.split('\n').map((line, idx) => `${String(idx + 1).padStart(3, ' ')} | ${line}`).join('\n');
+};
