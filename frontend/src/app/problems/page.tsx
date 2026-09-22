@@ -678,3 +678,9 @@ export const noteSaveIndicator = { saved: 'Saved to cloud', saving: 'Saving...',
 export const toggleProblemBookmark = (problems: ProblemItem[], id: number): ProblemItem[] => {
   return problems.map(p => p.id === id ? { ...p, isBookmarked: !p.isBookmarked } : p);
 };
+
+// Bookmarked Filter Predicate
+export const filterBookmarkedOnly = (problems: ProblemItem[], onlyBookmarked: boolean) => {
+  if (!onlyBookmarked) return problems;
+  return problems.filter(p => p.isBookmarked);
+};
