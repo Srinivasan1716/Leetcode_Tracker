@@ -13,3 +13,9 @@ This Chrome Extension (Manifest V3) automatically captures your accepted LeetCod
 2. Enable **Developer mode** in the top-right corner.
 3. Click **Load unpacked** and select this `extension/` folder.
 4. Click extension icon, open Settings, and enter your API Token.
+
+## Architecture Pipeline
+- `content.js`: Observes DOM & captures accepted submissions on `leetcode.com/problems/*`.
+- `background.js`: Service worker handling offline queuing, alarms, and background network sync.
+- `api.js`: Exponential backoff client for REST API endpoints.
+- `popup.html`: Quick inspection of sync connection and recent submission logs.
