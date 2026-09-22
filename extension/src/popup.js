@@ -47,3 +47,23 @@ function renderRecentSubmissions(items) {
     </div>
   `).join('');
 }
+
+document.getElementById('syncNowBtn')?.addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0]?.id) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'TRIGGER_MANUAL_SYNC' }, (response) => {
+        alert(response?.message || "Sync triggered for active tab.");
+      });
+    }
+  });
+});
+
+document.getElementById('openOptionsBtn')?.addEventListener('click', () => {
+  chrome.runtime.openOptionsPage();
+});
+
+document.getElementById('openDashboardBtn')?.addEventListener('click', () => {
+  chrome.storage.local.get(['dashboardUrl'], (data) => {
+    chrome.tabs.create({ url: data.dashboardUrl || 'http://localhost:3000' });
+  });
+});
