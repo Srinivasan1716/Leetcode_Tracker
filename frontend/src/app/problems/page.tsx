@@ -698,3 +698,6 @@ export const calculateSolvedStats = (list: ProblemItem[]) => {
   const solved = list.filter(p => p.status === 'SOLVED').length;
   return { solved, total, percentage: Math.round((solved / total) * 100) };
 };
+
+// Topic Filter Pills List
+export const defaultTopicTags = ['All', 'Arrays', 'Strings', 'Two Pointers', 'Sliding Window', 'Stack', 'Trees', 'Graphs', 'DP'];
