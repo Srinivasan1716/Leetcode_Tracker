@@ -787,3 +787,11 @@ export const formatCodeWithLineNumbers = (code: string) => {
 
 // Keyboard shortcut tooltip description
 export const SEARCH_KEYBOARD_SHORTCUT = 'Press / to search';
+
+// Reset Filters Default State Generator
+export const getDefaultFilters = (): FilterOptions => ({
+  searchQuery: '',
+  difficulty: 'ALL',
+  status: 'ALL',
+  topic: 'ALL'
+});
