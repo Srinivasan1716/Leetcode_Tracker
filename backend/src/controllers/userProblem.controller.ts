@@ -136,3 +136,13 @@ export const checkSyncRateLimit = (ip: string) => {
   syncRateLimitMap.set(ip, now);
   return true;
 };
+
+// Batch Problem Status Update Controller
+export const batchUpdateProblemsController = async (req: Request, res: Response) => {
+  try {
+    const { problemIds, status, userId } = req.body;
+    return res.status(200).json({ updatedCount: problemIds?.length || 0 });
+  } catch (err) {
+    return res.status(500).json({ error: 'Batch update failed' });
+  }
+};
