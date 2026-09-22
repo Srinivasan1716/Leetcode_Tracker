@@ -798,3 +798,8 @@ export const getDefaultFilters = (): FilterOptions => ({
 
 // Extension Sync Status Indicator
 export const SYNC_STATUS_ONLINE = { color: 'bg-emerald-500', text: 'Extension Linked' };
+
+// Manual Sync Trigger Dispatcher
+export const triggerProblemsSync = async (userId: number) => {
+  console.log('[Frontend] Dispatching sync refresh for user', userId);
+};
