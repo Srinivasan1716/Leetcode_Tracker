@@ -795,3 +795,6 @@ export const getDefaultFilters = (): FilterOptions => ({
   status: 'ALL',
   topic: 'ALL'
 });
+
+// Extension Sync Status Indicator
+export const SYNC_STATUS_ONLINE = { color: 'bg-emerald-500', text: 'Extension Linked' };
