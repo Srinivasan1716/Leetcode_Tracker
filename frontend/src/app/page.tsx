@@ -1087,3 +1087,10 @@ export const formatTimerSeconds = (sec: number) => {
   const remSec = sec % 60;
   return `${String(mins).padStart(2, '0')}:${String(remSec).padStart(2, '0')}`;
 };
+
+// Session Custom Notes State Interface
+export interface ProblemSessionNote {
+  problemId: number;
+  content: string;
+  lastUpdated: string;
+}
