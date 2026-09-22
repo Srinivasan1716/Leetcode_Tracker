@@ -1183,3 +1183,6 @@ export const toggleFavoriteStatus = (favorites: Set<number>, id: number): Set<nu
   if (next.has(id)) next.delete(id); else next.add(id);
   return next;
 };
+
+// Target Interview Companies Config
+export const INTERVIEW_TARGET_COMPANIES = ['FAANG', 'Startups', 'Fintech', 'Quant', 'General Tech'];
