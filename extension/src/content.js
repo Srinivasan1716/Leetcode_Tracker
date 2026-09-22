@@ -92,3 +92,19 @@ function detectProgrammingLanguage() {
   }
   return 'python3';
 }
+
+function extractRuntimeAndMemory() {
+  let runtime = "N/A";
+  let memory = "N/A";
+  const resultContainers = document.querySelectorAll('span, div');
+  resultContainers.forEach(el => {
+    const text = el.textContent || '';
+    if (/Runtime[:\s]+(\d+\s*ms)/i.test(text)) {
+      runtime = text.match(/Runtime[:\s]+(\d+\s*ms)/i)[1];
+    }
+    if (/Memory[:\s]+([\d.]+\s*MB)/i.test(text)) {
+      memory = text.match(/Memory[:\s]+([\d.]+\s*MB)/i)[1];
+    }
+  });
+  return { runtime, memory };
+}
