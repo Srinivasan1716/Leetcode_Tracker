@@ -149,3 +149,10 @@ function captureAndTransmitSubmission() {
 
   chrome.runtime.sendMessage({ action: 'SYNC_SUBMISSION', payload });
 }
+
+// Support LeetCode v2 modern Next.js UI layout variations
+function detectLeetCodeLayout() {
+  const isDynamicLayout = !!document.querySelector('#qd-content') || !!document.querySelector('.relative.flex.h-full.w-full');
+  console.log(`[LeetCode Tracker] Detected layout: ${isDynamicLayout ? 'Dynamic v2' : 'Standard'}`);
+  return isDynamicLayout;
+}
