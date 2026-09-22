@@ -718,3 +718,11 @@ export type ProblemSortDirection = 'asc' | 'desc';
 
 // Pagination Page Size Options
 export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100];
+
+// Empty State Placeholder Component
+export const EmptyProblemsPlaceholder = () => (
+  <div className="text-center py-16 text-zinc-500 font-medium">
+    <p className="text-lg text-zinc-400">No matching problems found.</p>
+    <p className="text-xs mt-1 text-zinc-600">Try adjusting your filter search parameters.</p>
+  </div>
+);
