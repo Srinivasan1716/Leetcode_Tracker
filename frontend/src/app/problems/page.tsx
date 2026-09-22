@@ -632,3 +632,6 @@ export const CodePreviewModal = ({ code, isOpen, onClose }: { code: string; isOp
     </div>
   );
 };
+
+// Syntax Theme Config
+export const syntaxThemes = ['emerald-dark', 'github-dark', 'one-dark-pro', 'monokai'];
