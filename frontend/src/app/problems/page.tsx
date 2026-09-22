@@ -701,3 +701,10 @@ export const calculateSolvedStats = (list: ProblemItem[]) => {
 
 // Topic Filter Pills List
 export const defaultTopicTags = ['All', 'Arrays', 'Strings', 'Two Pointers', 'Sliding Window', 'Stack', 'Trees', 'Graphs', 'DP'];
+
+// Difficulty Tier Distribution Helper
+export const getDifficultyDistribution = (list: ProblemItem[]) => ({
+  easy: list.filter(p => p.difficulty === 'EASY').length,
+  medium: list.filter(p => p.difficulty === 'MEDIUM').length,
+  hard: list.filter(p => p.difficulty === 'HARD').length
+});
