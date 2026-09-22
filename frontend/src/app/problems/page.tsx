@@ -769,3 +769,13 @@ export const getDifficultyRatio = (easy: number, med: number, hard: number) => {
   const total = easy + med + hard || 1;
   return { easyPct: (easy / total) * 100, medPct: (med / total) * 100, hardPct: (hard / total) * 100 };
 };
+
+// Solution Language Badge
+export const getLanguageBadgeColor = (lang: string) => {
+  switch (lang.toLowerCase()) {
+    case 'python': case 'python3': return 'text-yellow-400 bg-yellow-500/10';
+    case 'cpp': return 'text-blue-400 bg-blue-500/10';
+    case 'java': return 'text-orange-400 bg-orange-500/10';
+    default: return 'text-zinc-400 bg-zinc-500/10';
+  }
+};
