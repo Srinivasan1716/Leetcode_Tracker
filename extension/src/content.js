@@ -201,3 +201,10 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 function isContestPage() {
   return window.location.pathname.includes('/contest/');
 }
+
+// Cleanup listeners on window unload
+window.addEventListener('beforeunload', () => {
+  if (typeof observer !== 'undefined' && observer.disconnect) {
+    observer.disconnect();
+  }
+});
