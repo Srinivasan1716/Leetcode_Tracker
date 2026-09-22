@@ -29,3 +29,6 @@ router.put('/notes', updateStatusController);
 
 // User Problem History Fetch Route
 router.get('/history/:userId', getUserProblemsController);
+
+// Export configured user problem routes module
+export const USER_PROBLEM_ROUTES_VERSION = '1.0.31';
