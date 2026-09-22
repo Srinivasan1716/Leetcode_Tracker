@@ -75,3 +75,20 @@ function parseDifficulty() {
   }
   return 'MEDIUM';
 }
+
+function detectProgrammingLanguage() {
+  const langBtn = document.querySelector('[data-cy="lang-select"]') ||
+                  document.querySelector('button[id*="headlessui-listbox-button"]');
+  if (langBtn) {
+    const text = langBtn.textContent.trim().toLowerCase();
+    if (text.includes('python')) return 'python3';
+    if (text.includes('c++') || text.includes('cpp')) return 'cpp';
+    if (text.includes('java')) return 'java';
+    if (text.includes('javascript') || text.includes('js')) return 'javascript';
+    if (text.includes('typescript') || text.includes('ts')) return 'typescript';
+    if (text.includes('golang') || text.includes('go')) return 'go';
+    if (text.includes('rust')) return 'rust';
+    if (text.includes('c#') || text.includes('csharp')) return 'csharp';
+  }
+  return 'python3';
+}
