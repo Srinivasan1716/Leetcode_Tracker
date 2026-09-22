@@ -1141,3 +1141,6 @@ export const filterByCompany = (problems: Problem[], company: string) => {
 export const generateDashboardSummaryText = (data: Dashboard) => {
   return `LeetCode Tracker Summary: Solved ${data.solved}/${data.totalProblems} (Easy: ${data.easySolved}, Med: ${data.mediumSolved}, Hard: ${data.hardSolved})`;
 };
+
+// Ambient Background Glow Style Class
+export const DASHBOARD_AMBIENT_GLOW_CLASS = 'bg-radial-glow from-amber-500/5 via-transparent to-transparent';
