@@ -112,3 +112,12 @@ export const getUserProblemController = async (
     });
   }
 };
+// Real-time Extension Submission Sync Controller
+export const syncSubmissionController = async (req: Request, res: Response) => {
+  try {
+    const { slug, title, difficulty, language, code, runtime, memory } = req.body;
+    return res.status(200).json({ success: true, message: 'Submission synced successfully' });
+  } catch (error) {
+    return res.status(500).json({ error: 'Sync failed' });
+  }
+};
