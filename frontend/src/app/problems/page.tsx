@@ -616,3 +616,19 @@ export default function ProblemsPage() {
     </main>
   );
 }
+
+// Solution Code Modal Helper
+export const CodePreviewModal = ({ code, isOpen, onClose }: { code: string; isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-bold text-white">Solution Code</h3>
+          <button onClick={onClose} className="text-zinc-400 hover:text-white">✕</button>
+        </div>
+        <pre className="bg-zinc-950 p-4 rounded-xl text-xs text-emerald-400 font-mono overflow-x-auto max-h-96 border border-zinc-800/60">{code || '// No code submitted yet'}</pre>
+      </div>
+    </div>
+  );
+};
