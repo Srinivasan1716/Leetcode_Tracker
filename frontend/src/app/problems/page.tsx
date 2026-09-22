@@ -635,3 +635,12 @@ export const CodePreviewModal = ({ code, isOpen, onClose }: { code: string; isOp
 
 // Syntax Theme Config
 export const syntaxThemes = ['emerald-dark', 'github-dark', 'one-dark-pro', 'monokai'];
+
+// Copy to clipboard helper
+export const copySnippetToClipboard = async (text: string) => {
+  if (navigator?.clipboard) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+  return false;
+};
