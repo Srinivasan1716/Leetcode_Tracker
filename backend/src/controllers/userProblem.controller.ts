@@ -196,3 +196,8 @@ export const exportProblemsCsvController = async (req: Request, res: Response) =
   res.setHeader('Content-Disposition', 'attachment; filename="leetcode_problems.csv"');
   return res.status(200).send('id,title,difficulty,status\n');
 };
+
+// Controller Error Logging Utility
+export const logControllerError = (endpoint: string, err: any) => {
+  console.error(`[${new Date().toISOString()}] [Controller Error @ ${endpoint}]:`, err?.message || err);
+};
