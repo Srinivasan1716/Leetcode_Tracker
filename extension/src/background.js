@@ -43,3 +43,11 @@ chrome.alarms.create("retryOfflineQueue", { periodInMinutes: 5 });
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "retryOfflineQueue") flushOfflineQueue();
 });
+
+// Batch synchronization helper for past solved problem items
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.action === 'BATCH_SYNC_SUBMISSIONS') {
+    console.log(`[LeetCode Tracker] Batch syncing ${msg.items?.length || 0} problems.`);
+    sendResponse({ status: 'ACCEPTED_FOR_SYNC' });
+  }
+});
