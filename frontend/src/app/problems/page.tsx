@@ -753,3 +753,10 @@ export const getNextRevisionIntervalDays = (reviewCount: number = 0) => {
   const intervals = [1, 3, 7, 14, 30, 60];
   return intervals[Math.min(reviewCount, intervals.length - 1)];
 };
+
+// Revision Due Badge Component
+export const isRevisionDue = (lastRevisedIso?: string, intervalDays: number = 3) => {
+  if (!lastRevisedIso) return false;
+  const diffDays = (Date.now() - new Date(lastRevisedIso).getTime()) / (1000 * 60 * 60 * 24);
+  return diffDays >= intervalDays;
+};
