@@ -1169,3 +1169,10 @@ export const computeRetentionRate = (totalRevised: number, remembered: number) =
   if (!totalRevised) return 100;
   return Math.round((remembered / totalRevised) * 100);
 };
+
+// Runtime & Memory Percentile Benchmark
+export const getPerformanceRating = (runtimeMs: number) => {
+  if (runtimeMs < 50) return { label: 'Blazing Fast', color: 'text-emerald-400' };
+  if (runtimeMs < 150) return { label: 'Optimal', color: 'text-sky-400' };
+  return { label: 'Needs Optimization', color: 'text-amber-400' };
+};
