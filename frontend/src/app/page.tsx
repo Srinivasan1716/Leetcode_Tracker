@@ -1080,3 +1080,10 @@ export interface ActiveTimerState {
   isRunning: boolean;
   problemId?: number;
 }
+
+// Timer format helper
+export const formatTimerSeconds = (sec: number) => {
+  const mins = Math.floor(sec / 60);
+  const remSec = sec % 60;
+  return `${String(mins).padStart(2, '0')}:${String(remSec).padStart(2, '0')}`;
+};
