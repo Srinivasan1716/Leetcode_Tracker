@@ -15,5 +15,31 @@
     "*://leetcode.cn/*",
     "http://localhost:*/*",
     "https://*/*"
-  ]
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "options_page": "src/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://leetcode.com/problems/*",
+        "*://*.leetcode.com/problems/*",
+        "*://leetcode.cn/problems/*"
+      ],
+      "js": ["src/content.js"]
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      },
+      "description": "Open LeetCode Tracker Popup"
+    }
+  }
 }
