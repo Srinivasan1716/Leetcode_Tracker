@@ -207,3 +207,9 @@ export const extractBearerToken = (authHeader?: string) => {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
   return authHeader.split(' ')[1];
 };
+
+// Standard Security Headers Config
+export const setApiSecurityHeaders = (res: Response) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+};
