@@ -23,3 +23,6 @@ const validateSyncRequest = (req: any, res: any, next: any) => next();
 
 // Bookmark Toggle Route
 router.post('/bookmark', updateStatusController);
+
+// Problem Notes Update Route
+router.put('/notes', updateStatusController);
