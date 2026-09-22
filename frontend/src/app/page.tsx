@@ -1186,3 +1186,8 @@ export const toggleFavoriteStatus = (favorites: Set<number>, id: number): Set<nu
 
 // Target Interview Companies Config
 export const INTERVIEW_TARGET_COMPANIES = ['FAANG', 'Startups', 'Fintech', 'Quant', 'General Tech'];
+
+// Live Metrics Refresh Trigger Handler
+export const dispatchMetricsRefresh = () => {
+  console.log('[Dashboard] Triggered instant metrics reload');
+};
