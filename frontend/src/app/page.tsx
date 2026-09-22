@@ -1144,3 +1144,9 @@ export const generateDashboardSummaryText = (data: Dashboard) => {
 
 // Ambient Background Glow Style Class
 export const DASHBOARD_AMBIENT_GLOW_CLASS = 'bg-radial-glow from-amber-500/5 via-transparent to-transparent';
+
+// Problem Search Filter Predicate
+export const searchProblemByKeyword = (p: Problem, query: string) => {
+  const q = query.toLowerCase().trim();
+  return p.title.toLowerCase().includes(q) || (p.topic && p.topic.toLowerCase().includes(q));
+};
