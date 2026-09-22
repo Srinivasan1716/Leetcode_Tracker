@@ -691,3 +691,10 @@ export const getNextProblemStatus = (current: string): 'NOT_STARTED' | 'IN_PROGR
   if (current === 'IN_PROGRESS') return 'SOLVED';
   return 'NOT_STARTED';
 };
+
+// Progress Summary Calculation
+export const calculateSolvedStats = (list: ProblemItem[]) => {
+  const total = list.length || 1;
+  const solved = list.filter(p => p.status === 'SOLVED').length;
+  return { solved, total, percentage: Math.round((solved / total) * 100) };
+};
