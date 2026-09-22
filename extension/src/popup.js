@@ -28,3 +28,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 });
+
+function renderRecentSubmissions(items) {
+  const recentList = document.getElementById('recent-list');
+  if (!recentList) return;
+  if (items.length === 0) {
+    recentList.innerHTML = '<p class="empty-state">No submissions synced yet.</p>';
+    return;
+  }
+
+  recentList.innerHTML = items.slice(0, 5).map(item => `
+    <div class="submission-item">
+      <div>
+        <div class="title">${item.title || item.slug}</div>
+        <div style="font-size: 10px; color: #8b949e;">${item.language} &bull; ${item.runtime || ''}</div>
+      </div>
+      <span class="difficulty-badge ${item.difficulty || 'MEDIUM'}">${item.difficulty || 'MED'}</span>
+    </div>
+  `).join('');
+}
