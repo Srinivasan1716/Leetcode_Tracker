@@ -51,3 +51,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     sendResponse({ status: 'ACCEPTED_FOR_SYNC' });
   }
 });
+
+function updateBadgeCounter(count) {
+  if (count > 0) {
+    chrome.action.setBadgeText({ text: String(count) });
+    chrome.action.setBadgeBackgroundColor({ color: '#f85149' });
+  } else {
+    chrome.action.setBadgeText({ text: '' });
+  }
+}
