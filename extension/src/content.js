@@ -162,3 +162,14 @@ function extractProblemTags() {
   const tags = Array.from(tagElements).map(el => el.textContent.trim()).filter(Boolean);
   return Array.from(new Set(tags));
 }
+
+let lastClickTime = 0;
+function isDebouncedClick() {
+  const now = Date.now();
+  if (now - lastClickTime < 3000) {
+    console.log("[LeetCode Tracker] Ignored duplicate rapid submission click.");
+    return true;
+  }
+  lastClickTime = now;
+  return false;
+}
