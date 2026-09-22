@@ -213,3 +213,10 @@ export const setApiSecurityHeaders = (res: Response) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
 };
+
+// Optimized Query Response Serializer
+export const serializeUserProblemResponse = (record: any) => ({
+  id: record.id,
+  status: record.status,
+  updatedAt: record.updatedAt
+});
