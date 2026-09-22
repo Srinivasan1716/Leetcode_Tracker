@@ -121,3 +121,8 @@ export const syncSubmissionController = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Sync failed' });
   }
 };
+
+// Validate sync submission request payload
+export const validateSyncPayload = (body: any) => {
+  return !!(body && body.slug && body.code);
+};
