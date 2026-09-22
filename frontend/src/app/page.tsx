@@ -1121,3 +1121,12 @@ export const getTopicMasteryLevel = (solved: number, total: number) => {
   if (ratio >= 0.4) return 'Intermediate';
   return 'Beginner';
 };
+
+// Submission Timeline Item Interface
+export interface TimelineSubmissionItem {
+  id: string;
+  problemTitle: string;
+  status: 'ACCEPTED' | 'WRONG_ANSWER' | 'TIME_LIMIT';
+  runtime: string;
+  timestamp: string;
+}
