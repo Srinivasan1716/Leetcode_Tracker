@@ -42,3 +42,14 @@ function extractMonacoCode() {
   }
   return "";
 }
+
+function hookNetworkSubmissions() {
+  const originalFetch = window.fetch;
+  if (window.fetch) {
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === "LEETCODE_SUBMISSION_SUCCESS") {
+        handleAcceptedSubmission(event.data.payload);
+      }
+    });
+  }
+}
