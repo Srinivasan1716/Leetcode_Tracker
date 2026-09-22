@@ -760,3 +760,6 @@ export const isRevisionDue = (lastRevisedIso?: string, intervalDays: number = 3)
   const diffDays = (Date.now() - new Date(lastRevisedIso).getTime()) / (1000 * 60 * 60 * 24);
   return diffDays >= intervalDays;
 };
+
+// Company Filter Tags List
+export const targetCompanies = ['Google', 'Meta', 'Amazon', 'Microsoft', 'Apple', 'Netflix', 'Uber'];
