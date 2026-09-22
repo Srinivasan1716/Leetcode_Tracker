@@ -742,3 +742,8 @@ export const exportProblemsToMarkdown = (items: ProblemItem[]) => {
   const rows = items.map(p => `| ${p.id} | ${p.title} | ${p.difficulty} | ${p.topic} | ${p.status} |`).join('\n');
   return header + rows;
 };
+
+// Bulk Status Updater Function
+export const bulkUpdateStatus = (items: ProblemItem[], ids: number[], status: 'NOT_STARTED' | 'IN_PROGRESS' | 'SOLVED') => {
+  return items.map(item => ids.includes(item.id) ? { ...item, status } : item);
+};
