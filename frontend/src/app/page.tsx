@@ -1191,3 +1191,6 @@ export const INTERVIEW_TARGET_COMPANIES = ['FAANG', 'Startups', 'Fintech', 'Quan
 export const dispatchMetricsRefresh = () => {
   console.log('[Dashboard] Triggered instant metrics reload');
 };
+
+// Footer System Status Indicator Component
+export const SYSTEM_STATUS_READY = { status: 'ONLINE', version: 'v1.0.47', syncActive: true };
