@@ -30,3 +30,15 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
+
+// Optional auth middleware - passes even without token
+export const optionalAuth = (req: AuthRequest, res: Response, next: NextFunction) => {
+  const token = extractToken(req);
+  if (!token) return next();
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
+    req.userId = decoded.userId;
+    req.email = decoded.email;
+  } catch (_) {}
+  next();
+};
