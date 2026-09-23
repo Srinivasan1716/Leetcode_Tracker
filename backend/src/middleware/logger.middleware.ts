@@ -38,3 +38,11 @@ export const sanitizeLogFields = (body: Record<string, unknown>) => {
   sensitive.forEach(f => { if (safe[f]) safe[f] = "***REDACTED***"; });
   return safe;
 };
+
+// Request body logger for debugging (dev only)
+export const bodyLogger = (req: Request, _res: Response, next: NextFunction) => {
+  if (process.env.NODE_ENV === "development" && req.body) {
+    console.log(`[Body] ${req.method} ${req.path}`, sanitizeLogFields(req.body));
+  }
+  next();
+};
