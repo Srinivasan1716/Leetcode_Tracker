@@ -745,3 +745,11 @@ export const getTopicMasteryScore = (accuracy: number, solvedCount: number) => {
 
 // Custom Time Range Filter Pills List
 export const TIME_RANGE_PILLS = ['This Week', 'This Month', 'Last 3 Months', 'All Time'];
+
+// Quick Stats Overview Card Data Generator
+export const generateQuickStatsData = (totalHours: number, solvedCount: number, accuracy: number) => ({
+  totalHours,
+  solvedCount,
+  accuracy: `${accuracy}%`,
+  status: 'OPTIMAL'
+});
