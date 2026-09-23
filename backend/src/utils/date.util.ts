@@ -10,3 +10,9 @@ export const daysBetween = (dateA: string, dateB: string): number => {
   const msPerDay = 1000 * 60 * 60 * 24;
   return Math.abs(Math.floor((new Date(dateA).getTime() - new Date(dateB).getTime()) / msPerDay));
 };
+
+// Check if a date is today
+export const isToday = (iso: string): boolean => {
+  const today = new Date().toISOString().split("T")[0];
+  return iso.startsWith(today);
+};
