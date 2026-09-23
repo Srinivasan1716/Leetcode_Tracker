@@ -56,3 +56,12 @@ export const getUserStreakController = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Streak calculation failed' });
   }
 };
+
+// Company Readiness Score Aggregator Controller
+export const getCompanyReadinessController = async (req: Request, res: Response) => {
+  try {
+    return res.status(200).json({ companies: [{ name: 'Meta', score: 76 }, { name: 'Google', score: 68 }] });
+  } catch (err) {
+    return res.status(500).json({ error: 'Company readiness failed' });
+  }
+};
