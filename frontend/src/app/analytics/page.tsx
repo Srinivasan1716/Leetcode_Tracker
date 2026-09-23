@@ -567,3 +567,9 @@ export const computeWeeklyTrend = (logs: StudyLogEntry[]) => {
   const totalMinutes = logs.reduce((acc, l) => acc + l.durationMinutes, 0);
   return { totalMinutes, avgPerDay: Math.round(totalMinutes / 7) };
 };
+
+// Topic Mastery Percentage Progress Calculator
+export const getTopicMasteryPercentage = (solved: number, total: number) => {
+  if (!total) return 0;
+  return Math.min(100, Math.round((solved / total) * 100));
+};
