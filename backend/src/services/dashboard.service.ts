@@ -64,3 +64,11 @@ export const computeDailySolvedCount = (solvedAtDates: string[]): number => {
   const today = new Date().toISOString().split("T")[0];
   return solvedAtDates.filter(d => d.startsWith(today)).length;
 };
+
+// Get top 5 recently solved problems
+export const getRecentlySolvedProblems = (problems: any[], limit: number = 5) => {
+  return problems
+    .filter(p => p.status === "SOLVED" && p.solvedAt)
+    .sort((a, b) => new Date(b.solvedAt).getTime() - new Date(a.solvedAt).getTime())
+    .slice(0, limit);
+};
