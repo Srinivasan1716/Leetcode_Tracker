@@ -14,3 +14,8 @@ export const toSnakeCase = (str: string): string => {
 export const slugify = (str: string): string => {
   return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 };
+
+// Truncate long string with ellipsis
+export const truncate = (str: string, maxLen: number = 50): string => {
+  return str.length > maxLen ? str.slice(0, maxLen) + "..." : str;
+};
