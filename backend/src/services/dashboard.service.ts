@@ -79,3 +79,11 @@ export const getDifficultyProgress = (easy: number, easyTotal: number, med: numb
   medium: medTotal ? Math.round((med / medTotal) * 100) : 0,
   hard: hardTotal ? Math.round((hard / hardTotal) * 100) : 0
 });
+
+// Generate dashboard summary message
+export const generateSummaryMessage = (solved: number, total: number) => {
+  const pct = total ? Math.round((solved / total) * 100) : 0;
+  if (pct >= 80) return "Amazing progress! Keep it up!";
+  if (pct >= 50) return "Good work! Over halfway there.";
+  return "Just getting started. Keep going!";
+};
