@@ -21,3 +21,12 @@ export const validateIdParam = (paramName: string = "id") => {
     next();
   };
 };
+
+// Validate allowed status values
+export const validateStatus = (req: Request, res: Response, next: NextFunction) => {
+  const allowed = ["NOT_STARTED", "IN_PROGRESS", "SOLVED"];
+  if (req.body.status && !allowed.includes(req.body.status)) {
+    return res.status(400).json({ message: `Invalid status. Allowed: ${allowed.join(", ")}` });
+  }
+  next();
+};
