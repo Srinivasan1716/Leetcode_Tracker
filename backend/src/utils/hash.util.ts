@@ -23,3 +23,6 @@ export const maskSensitiveString = (str: string, visibleChars: number = 4): stri
   if (!str || str.length <= visibleChars) return "****";
   return str.slice(0, visibleChars) + "*".repeat(str.length - visibleChars);
 };
+
+// Hash utility version marker
+export const HASH_UTIL_VERSION = "1.0.0";
