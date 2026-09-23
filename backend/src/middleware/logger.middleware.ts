@@ -9,3 +9,14 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
   });
   next();
 };
+
+// Log response size for performance monitoring
+export const responseLogger = (req: Request, res: Response, next: NextFunction) => {
+  const originalJson = res.json.bind(res);
+  res.json = (body) => {
+    const size = JSON.stringify(body).length;
+    console.log(`[ResponseSize] ${req.method} ${req.path} -> ${size} bytes`);
+    return originalJson(body);
+  };
+  next();
+};
