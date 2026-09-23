@@ -709,3 +709,9 @@ export const toggleFavoriteTopic = (favs: string[], topic: string) => {
 
 // Topic Filter Pills Configuration
 export const TOPIC_FILTER_PILLS = ['All Topics', 'Arrays', 'Strings', 'Dynamic Programming', 'Trees', 'Graphs', 'Binary Search'];
+
+// Revision Calendar Item Search Helper
+export const searchRevisionItems = (logs: StudyLogEntry[], query: string) => {
+  const q = query.toLowerCase().trim();
+  return logs.filter(l => l.title.toLowerCase().includes(q) || l.topic.toLowerCase().includes(q));
+};
