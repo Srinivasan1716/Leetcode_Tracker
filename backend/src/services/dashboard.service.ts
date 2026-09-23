@@ -72,3 +72,10 @@ export const getRecentlySolvedProblems = (problems: any[], limit: number = 5) =>
     .sort((a, b) => new Date(b.solvedAt).getTime() - new Date(a.solvedAt).getTime())
     .slice(0, limit);
 };
+
+// Compute solved percentage by difficulty
+export const getDifficultyProgress = (easy: number, easyTotal: number, med: number, medTotal: number, hard: number, hardTotal: number) => ({
+  easy: easyTotal ? Math.round((easy / easyTotal) * 100) : 0,
+  medium: medTotal ? Math.round((med / medTotal) * 100) : 0,
+  hard: hardTotal ? Math.round((hard / hardTotal) * 100) : 0
+});
