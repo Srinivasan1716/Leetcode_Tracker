@@ -687,3 +687,6 @@ export const ZeroLogsPlaceholder = () => (
     No study sessions logged for the selected period.
   </div>
 );
+
+// Dark mode ambient glow styling helper
+export const ANALYTICS_GLOW_CLASS = 'shadow-2xl shadow-emerald-500/5 backdrop-blur-md';
