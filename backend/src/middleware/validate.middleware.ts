@@ -40,3 +40,13 @@ export const sanitizeBody = (req: Request, _res: Response, next: NextFunction) =
   }
   next();
 };
+
+// Validate pagination query params
+export const validatePagination = (req: Request, res: Response, next: NextFunction) => {
+  const page = Number(req.query.page || 1);
+  const limit = Number(req.query.limit || 10);
+  if (page < 1 || limit < 1 || limit > 100) {
+    return res.status(400).json({ message: "Invalid pagination params" });
+  }
+  next();
+};
