@@ -29,3 +29,6 @@ export const authRateLimiter = createRateLimiter(5, 15 * 60);
 
 // Sync submission rate limiter (10 req / 1 min)
 export const syncRateLimiter = createRateLimiter(10, 60);
+
+// General API rate limiter (100 req / 1 min)
+export const generalRateLimiter = createRateLimiter(100, 60);
