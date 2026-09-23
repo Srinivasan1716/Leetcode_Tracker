@@ -680,3 +680,10 @@ export const paginateLogs = (logs: StudyLogEntry[], page: number, perPage: numbe
   const start = (page - 1) * perPage;
   return logs.slice(start, start + perPage);
 };
+
+// Zero Session Logs Placeholder Component
+export const ZeroLogsPlaceholder = () => (
+  <div className="py-10 text-center text-zinc-500 font-medium text-xs">
+    No study sessions logged for the selected period.
+  </div>
+);
