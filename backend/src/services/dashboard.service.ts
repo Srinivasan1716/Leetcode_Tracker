@@ -87,3 +87,6 @@ export const generateSummaryMessage = (solved: number, total: number) => {
   if (pct >= 50) return "Good work! Over halfway there.";
   return "Just getting started. Keep going!";
 };
+
+// Dashboard controller version marker
+export const DASHBOARD_SERVICE_VERSION = "1.0.35";
