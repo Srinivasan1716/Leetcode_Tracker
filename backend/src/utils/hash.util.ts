@@ -17,3 +17,9 @@ export const generateRandomToken = (length: number = 32): string => {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
 };
+
+// Mask sensitive string for safe logging
+export const maskSensitiveString = (str: string, visibleChars: number = 4): string => {
+  if (!str || str.length <= visibleChars) return "****";
+  return str.slice(0, visibleChars) + "*".repeat(str.length - visibleChars);
+};
