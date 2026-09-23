@@ -18,3 +18,8 @@ export const parsePagination = (query: Record<string, unknown>): PaginationParam
 export const computeTotalPages = (total: number, limit: number): number => {
   return Math.ceil(total / Math.max(1, limit));
 };
+
+// Check if there is a next page
+export const hasNextPage = (page: number, total: number, limit: number): boolean => {
+  return page < computeTotalPages(total, limit);
+};
