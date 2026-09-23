@@ -706,3 +706,6 @@ export const getHeaderProgressBadge = (solved: number, goal: number = 100) => ({
 export const toggleFavoriteTopic = (favs: string[], topic: string) => {
   return favs.includes(topic) ? favs.filter(t => t !== topic) : [...favs, topic];
 };
+
+// Topic Filter Pills Configuration
+export const TOPIC_FILTER_PILLS = ['All Topics', 'Arrays', 'Strings', 'Dynamic Programming', 'Trees', 'Graphs', 'Binary Search'];
