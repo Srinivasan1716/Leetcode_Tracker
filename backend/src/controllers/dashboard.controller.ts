@@ -77,3 +77,13 @@ export const validateDateRange = (startDate?: string, endDate?: string) => {
   if (!startDate || !endDate) return true;
   return new Date(startDate) <= new Date(endDate);
 };
+
+// Rate Limiting Helper for Analytics
+const analyticsRateMap = new Map<string, number>();
+export const checkAnalyticsRateLimit = (ip: string) => {
+  const now = Date.now();
+  const last = analyticsRateMap.get(ip) || 0;
+  if (now - last < 500) return false;
+  analyticsRateMap.set(ip, now);
+  return true;
+};
