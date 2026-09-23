@@ -32,3 +32,11 @@ export const syncRateLimiter = createRateLimiter(10, 60);
 
 // General API rate limiter (100 req / 1 min)
 export const generalRateLimiter = createRateLimiter(100, 60);
+
+// Clean up expired rate limit entries periodically
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, record] of rateLimitMap.entries()) {
+    if (now > record.resetAt) rateLimitMap.delete(key);
+  }
+}, 60 * 1000);
