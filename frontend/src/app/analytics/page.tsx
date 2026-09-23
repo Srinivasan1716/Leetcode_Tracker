@@ -721,3 +721,10 @@ export const computeCategoryTimeBreakdown = (metrics: TopicMetric[]) => {
   const total = metrics.reduce((acc, m) => acc + m.timeSpentMinutes, 0) || 1;
   return metrics.map(m => ({ name: m.name, percentage: Math.round((m.timeSpentMinutes / total) * 100) }));
 };
+
+// Spaced Repetition Due Priority Labeler
+export const getRevisionPriorityBadge = (dueDays: number) => {
+  if (dueDays <= 0) return { label: 'Overdue', color: 'text-rose-400 bg-rose-500/10' };
+  if (dueDays === 1) return { label: 'Due Tomorrow', color: 'text-amber-400 bg-amber-500/10' };
+  return { label: `Due in ${dueDays}d`, color: 'text-emerald-400 bg-emerald-500/10' };
+};
