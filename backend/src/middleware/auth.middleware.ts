@@ -49,3 +49,14 @@ export const adminGuard = (req: AuthRequest, res: Response, next: NextFunction) 
   // In production, check admin role from DB
   next();
 };
+
+// Token expiry check helper
+export const isTokenExpired = (token: string): boolean => {
+  try {
+    const decoded = jwt.decode(token) as { exp?: number };
+    if (!decoded?.exp) return true;
+    return Date.now() / 1000 > decoded.exp;
+  } catch {
+    return true;
+  }
+};
