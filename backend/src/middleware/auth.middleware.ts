@@ -60,3 +60,8 @@ export const isTokenExpired = (token: string): boolean => {
     return true;
   }
 };
+
+// Log auth attempt for security audit
+export const logAuthAttempt = (req: Request, success: boolean) => {
+  console.log(`[Auth] ${new Date().toISOString()} | IP: ${req.ip} | ${success ? "SUCCESS" : "FAILED"}`);
+};
