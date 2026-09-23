@@ -87,3 +87,9 @@ export const checkAnalyticsRateLimit = (ip: string) => {
   analyticsRateMap.set(ip, now);
   return true;
 };
+
+// Serializer for Analytics Response Cache
+export const serializeAnalyticsCache = (data: any) => ({
+  data,
+  cachedAt: new Date().toISOString()
+});
