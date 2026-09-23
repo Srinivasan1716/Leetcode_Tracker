@@ -626,3 +626,8 @@ export const exportAnalyticsCsv = (metrics: TopicMetric[]) => {
   a.download = `leetcode-analytics-${Date.now()}.csv`;
   a.click();
 };
+
+// Printable Summary Trigger
+export const printStudySummary = () => {
+  if (typeof window !== 'undefined') window.print();
+};
