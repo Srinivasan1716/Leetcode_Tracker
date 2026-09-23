@@ -21,3 +21,8 @@ export const verifyAccessToken = (token: string): { userId: number; email: strin
 export const generateResetToken = (email: string): string => {
   return jwt.sign({ email, purpose: "reset" }, SECRET, { expiresIn: "15m" });
 };
+
+// Decode token without verifying (for reading expiry)
+export const decodeTokenPayload = (token: string) => {
+  try { return jwt.decode(token); } catch { return null; }
+};
