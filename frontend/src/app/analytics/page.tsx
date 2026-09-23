@@ -647,3 +647,8 @@ export const calculateRetentionRate = (reviewedCount: number, retainedCount: num
 export const getTopPerformingTopics = (metrics: TopicMetric[]) => {
   return [...metrics].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
 };
+
+// Weakest Topics Identifier for Targeted Practice
+export const getWeakestTopics = (metrics: TopicMetric[]) => {
+  return [...metrics].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
+};
