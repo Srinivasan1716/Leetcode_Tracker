@@ -71,3 +71,9 @@ export const exportAnalyticsCsvController = async (req: Request, res: Response) 
   res.setHeader('Content-Type', 'text/csv');
   return res.status(200).send('topic,accuracy,solved\n');
 };
+
+// Validate Analytics Date Range Query
+export const validateDateRange = (startDate?: string, endDate?: string) => {
+  if (!startDate || !endDate) return true;
+  return new Date(startDate) <= new Date(endDate);
+};
