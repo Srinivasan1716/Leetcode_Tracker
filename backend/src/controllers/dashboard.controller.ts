@@ -42,3 +42,8 @@ export const calculateDifficultyBreakdown = (easy: number, medium: number, hard:
   mediumPercentage: Math.round((medium / (easy + medium + hard || 1)) * 100),
   hardPercentage: Math.round((hard / (easy + medium + hard || 1)) * 100)
 });
+
+// Topic Performance Ranking Aggregator
+export const rankTopicsByPerformance = (topics: { name: string; accuracy: number }[]) => {
+  return [...topics].sort((a, b) => b.accuracy - a.accuracy);
+};
