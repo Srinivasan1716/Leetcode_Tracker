@@ -594,3 +594,14 @@ export const getTierDistributionStats = (easy: number, med: number, hard: number
   medPct: Math.round((med / (easy + med + hard || 1)) * 100),
   hardPct: Math.round((hard / (easy + med + hard || 1)) * 100)
 });
+
+// Monthly Activity Heatmap Color Formatter
+export const getHeatmapColorClass = (level: 0 | 1 | 2 | 3 | 4) => {
+  switch (level) {
+    case 4: return 'bg-emerald-400 border-emerald-300';
+    case 3: return 'bg-emerald-500 border-emerald-400';
+    case 2: return 'bg-emerald-600/80 border-emerald-500';
+    case 1: return 'bg-emerald-900/60 border-emerald-800';
+    default: return 'bg-zinc-900 border-zinc-800';
+  }
+};
