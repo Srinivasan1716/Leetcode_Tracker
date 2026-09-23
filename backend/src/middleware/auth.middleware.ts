@@ -7,3 +7,10 @@ export interface AuthRequest extends Request {
   userId?: number;
   email?: string;
 }
+
+// Extract Bearer token from Authorization header
+const extractToken = (req: Request): string | null => {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith("Bearer ")) return null;
+  return header.split(" ")[1];
+};
