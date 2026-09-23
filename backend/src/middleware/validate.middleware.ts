@@ -30,3 +30,13 @@ export const validateStatus = (req: Request, res: Response, next: NextFunction) 
   }
   next();
 };
+
+// Sanitize string inputs to prevent injection
+export const sanitizeBody = (req: Request, _res: Response, next: NextFunction) => {
+  for (const key of Object.keys(req.body)) {
+    if (typeof req.body[key] === "string") {
+      req.body[key] = req.body[key].trim().replace(/<[^>]*>/g, "");
+    }
+  }
+  next();
+};
