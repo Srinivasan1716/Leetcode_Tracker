@@ -18,3 +18,8 @@ export const sendPaginated = (res: Response, data: unknown[], total: number, pag
     pagination: { total, page, limit, totalPages: Math.ceil(total / limit) }
   });
 };
+
+// Created (201) response shorthand
+export const sendCreated = (res: Response, data: unknown, message: string = "Created successfully") => {
+  return res.status(201).json({ success: true, message, data });
+};
