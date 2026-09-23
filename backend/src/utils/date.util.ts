@@ -25,3 +25,12 @@ export const getStartOfWeek = (): string => {
   d.setDate(diff);
   return d.toISOString().split("T")[0];
 };
+
+// Get last N days as ISO date string array
+export const getLastNDays = (n: number): string[] => {
+  return Array.from({ length: n }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    return d.toISOString().split("T")[0];
+  }).reverse();
+};
