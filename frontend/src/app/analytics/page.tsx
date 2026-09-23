@@ -587,3 +587,10 @@ export const calculateStreakVelocity = (currentStreak: number, maxStreak: number
   maxStreak,
   velocityRatio: maxStreak ? Math.round((currentStreak / maxStreak) * 100) : 0
 });
+
+// Difficulty Tier Breakdown Distribution Helper
+export const getTierDistributionStats = (easy: number, med: number, hard: number) => ({
+  easyPct: Math.round((easy / (easy + med + hard || 1)) * 100),
+  medPct: Math.round((med / (easy + med + hard || 1)) * 100),
+  hardPct: Math.round((hard / (easy + med + hard || 1)) * 100)
+});
