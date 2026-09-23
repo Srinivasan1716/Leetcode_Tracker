@@ -674,3 +674,9 @@ export interface RevisionTooltipState {
   topicName?: string;
   accuracy?: number;
 }
+
+// Activity Log Pagination Helper
+export const paginateLogs = (logs: StudyLogEntry[], page: number, perPage: number = 5) => {
+  const start = (page - 1) * perPage;
+  return logs.slice(start, start + perPage);
+};
