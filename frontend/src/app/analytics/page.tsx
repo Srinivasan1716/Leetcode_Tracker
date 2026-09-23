@@ -652,3 +652,6 @@ export const getTopPerformingTopics = (metrics: TopicMetric[]) => {
 export const getWeakestTopics = (metrics: TopicMetric[]) => {
   return [...metrics].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
 };
+
+// Company Filter Options List
+export const COMPANY_FILTER_OPTIONS = ['All Companies', 'Google', 'Meta', 'Amazon', 'Microsoft', 'Apple', 'Netflix'];
