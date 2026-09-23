@@ -561,3 +561,9 @@ export default function AnalyticsPage() {
     </main>
   );
 }
+
+// Weekly Study Time Trend Calculator
+export const computeWeeklyTrend = (logs: StudyLogEntry[]) => {
+  const totalMinutes = logs.reduce((acc, l) => acc + l.durationMinutes, 0);
+  return { totalMinutes, avgPerDay: Math.round(totalMinutes / 7) };
+};
