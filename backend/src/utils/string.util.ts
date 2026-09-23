@@ -9,3 +9,8 @@ export const toTitleCase = (str: string): string => {
 export const toSnakeCase = (str: string): string => {
   return str.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
 };
+
+// Slugify a problem title
+export const slugify = (str: string): string => {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+};
