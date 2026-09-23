@@ -701,3 +701,8 @@ export const getHeaderProgressBadge = (solved: number, goal: number = 100) => ({
   label: `${solved}/${goal} Solved`,
   percentage: Math.min(100, Math.round((solved / goal) * 100))
 });
+
+// Favorite Revision List Toggle Helper
+export const toggleFavoriteTopic = (favs: string[], topic: string) => {
+  return favs.includes(topic) ? favs.filter(t => t !== topic) : [...favs, topic];
+};
