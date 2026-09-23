@@ -16,3 +16,12 @@ export const isToday = (iso: string): boolean => {
   const today = new Date().toISOString().split("T")[0];
   return iso.startsWith(today);
 };
+
+// Get start of week date (Monday)
+export const getStartOfWeek = (): string => {
+  const d = new Date();
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  d.setDate(diff);
+  return d.toISOString().split("T")[0];
+};
