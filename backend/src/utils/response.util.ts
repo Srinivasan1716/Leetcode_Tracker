@@ -23,3 +23,6 @@ export const sendPaginated = (res: Response, data: unknown[], total: number, pag
 export const sendCreated = (res: Response, data: unknown, message: string = "Created successfully") => {
   return res.status(201).json({ success: true, message, data });
 };
+
+// No content (204) response helper
+export const sendNoContent = (res: Response) => res.status(204).send();
