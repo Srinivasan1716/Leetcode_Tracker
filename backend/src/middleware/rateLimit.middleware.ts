@@ -2,3 +2,24 @@ import { Request, Response, NextFunction } from "express";
 
 // In-memory rate limit store
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+// Core rate limiter factory function
+export const createRateLimiter = (maxRequests: number, windowSeconds: number) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const key = req.ip || "unknown";
+    const now = Date.now();
+    const record = rateLimitMap.get(key);
+    if (!record || now > record.resetAt) {
+      rateLimitMap.set(key, { count: 1, resetAt: now + windowSeconds * 1000 });
+      return next();
+    }
+    if (record.count >= maxRequests) {
+      return res.status(429).json({
+        message: "Too many requests. Please try again later.",
+        retryAfterSeconds: Math.ceil((record.resetAt - now) / 1000)
+      });
+    }
+    record.count++;
+    next();
+  };
+};
