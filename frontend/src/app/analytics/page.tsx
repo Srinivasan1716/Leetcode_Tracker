@@ -728,3 +728,12 @@ export const getRevisionPriorityBadge = (dueDays: number) => {
   if (dueDays === 1) return { label: 'Due Tomorrow', color: 'text-amber-400 bg-amber-500/10' };
   return { label: `Due in ${dueDays}d`, color: 'text-emerald-400 bg-emerald-500/10' };
 };
+
+// Revision Schedule Calendar Preview Helper
+export const getUpcomingRevisionDates = (daysCount: number = 7) => {
+  return Array.from({ length: daysCount }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() + i);
+    return d.toISOString().split('T')[0];
+  });
+};
