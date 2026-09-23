@@ -19,3 +19,6 @@ export const slugify = (str: string): string => {
 export const truncate = (str: string, maxLen: number = 50): string => {
   return str.length > maxLen ? str.slice(0, maxLen) + "..." : str;
 };
+
+// Strip HTML tags from string input
+export const stripHtml = (str: string): string => str.replace(/<[^>]*>/g, "").trim();
