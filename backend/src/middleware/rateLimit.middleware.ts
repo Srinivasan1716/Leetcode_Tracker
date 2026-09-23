@@ -26,3 +26,6 @@ export const createRateLimiter = (maxRequests: number, windowSeconds: number) =>
 
 // Auth endpoint rate limiter (strict: 5 req / 15 min)
 export const authRateLimiter = createRateLimiter(5, 15 * 60);
+
+// Sync submission rate limiter (10 req / 1 min)
+export const syncRateLimiter = createRateLimiter(10, 60);
