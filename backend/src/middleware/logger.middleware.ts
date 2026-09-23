@@ -30,3 +30,11 @@ export const slowRequestLogger = (req: Request, res: Response, next: NextFunctio
   });
   next();
 };
+
+// Sanitize sensitive fields from logs
+export const sanitizeLogFields = (body: Record<string, unknown>) => {
+  const sensitive = ["password", "token", "apiKey", "secret"];
+  const safe = { ...body };
+  sensitive.forEach(f => { if (safe[f]) safe[f] = "***REDACTED***"; });
+  return safe;
+};
