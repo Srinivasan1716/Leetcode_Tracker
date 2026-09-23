@@ -26,3 +26,9 @@ export const asyncHandler = (fn: Function) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 };
+
+// Input validation error formatter
+export const formatValidationError = (errors: string[]) => ({
+  message: "Validation failed",
+  errors
+});
