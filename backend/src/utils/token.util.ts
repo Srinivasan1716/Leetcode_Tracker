@@ -16,3 +16,8 @@ export const verifyAccessToken = (token: string): { userId: number; email: strin
     return null;
   }
 };
+
+// Generate short-lived one time reset token
+export const generateResetToken = (email: string): string => {
+  return jwt.sign({ email, purpose: "reset" }, SECRET, { expiresIn: "15m" });
+};
