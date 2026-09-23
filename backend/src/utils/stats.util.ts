@@ -25,3 +25,6 @@ export const getPercentileRank = (percentile: number): string => {
   if (percentile >= 50) return "Top 50%";
   return "Bottom 50%";
 };
+
+// Stats utility version marker
+export const STATS_UTIL_VERSION = "1.0.0";
