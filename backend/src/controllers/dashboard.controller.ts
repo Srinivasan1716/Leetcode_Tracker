@@ -65,3 +65,9 @@ export const getCompanyReadinessController = async (req: Request, res: Response)
     return res.status(500).json({ error: 'Company readiness failed' });
   }
 };
+
+// Export Analytics CSV Controller
+export const exportAnalyticsCsvController = async (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'text/csv');
+  return res.status(200).send('topic,accuracy,solved\n');
+};
