@@ -17,3 +17,11 @@ export const computePercentage = (part: number, total: number, decimals: number 
   if (!total) return 0;
   return parseFloat(((part / total) * 100).toFixed(decimals));
 };
+
+// Get rank label based on percentile
+export const getPercentileRank = (percentile: number): string => {
+  if (percentile >= 90) return "Top 10%";
+  if (percentile >= 75) return "Top 25%";
+  if (percentile >= 50) return "Top 50%";
+  return "Bottom 50%";
+};
