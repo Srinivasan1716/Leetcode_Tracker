@@ -59,3 +59,8 @@ export const getUserDashboard = async (userId: number) => {
     hardSolved,
   };
 };
+// Compute daily solved count for streak tracking
+export const computeDailySolvedCount = (solvedAtDates: string[]): number => {
+  const today = new Date().toISOString().split("T")[0];
+  return solvedAtDates.filter(d => d.startsWith(today)).length;
+};
