@@ -27,3 +27,11 @@ export const getDashboardController = async (
     });
   }
 };
+// Analytics Summary Controller Endpoint
+export const getAnalyticsSummaryController = async (req: Request, res: Response) => {
+  try {
+    return res.status(200).json({ totalHours: 42, solvedCount: 120, avgAccuracy: 84 });
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to fetch analytics' });
+  }
+};
