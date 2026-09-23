@@ -46,3 +46,6 @@ export const bodyLogger = (req: Request, _res: Response, next: NextFunction) => 
   }
   next();
 };
+
+// Export combined middleware logger chain
+export const combinedLogger = [requestLogger, slowRequestLogger];
