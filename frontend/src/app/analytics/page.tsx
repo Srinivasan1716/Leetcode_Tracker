@@ -573,3 +573,10 @@ export const getTopicMasteryPercentage = (solved: number, total: number) => {
   if (!total) return 0;
   return Math.min(100, Math.round((solved / total) * 100));
 };
+
+// Company Interview Readiness Score Helper
+export const computeOverallReadiness = (companies: CompanyReadiness[]) => {
+  if (!companies.length) return 0;
+  const sum = companies.reduce((acc, c) => acc + c.readinessPercentage, 0);
+  return Math.round(sum / companies.length);
+};
