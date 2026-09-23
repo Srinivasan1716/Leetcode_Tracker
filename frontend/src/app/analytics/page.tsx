@@ -737,3 +737,8 @@ export const getUpcomingRevisionDates = (daysCount: number = 7) => {
     return d.toISOString().split('T')[0];
   });
 };
+
+// Topic Mastery Radar Level Helper
+export const getTopicMasteryScore = (accuracy: number, solvedCount: number) => {
+  return Math.min(100, Math.round((accuracy * 0.6) + (solvedCount * 2)));
+};
