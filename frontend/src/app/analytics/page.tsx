@@ -636,3 +636,9 @@ export const printStudySummary = () => {
 export const getComplexityAuditScore = (timeScore: number, spaceScore: number) => {
   return Math.round((timeScore + spaceScore) / 2);
 };
+
+// Retention Rate Statistics Calculator
+export const calculateRetentionRate = (reviewedCount: number, retainedCount: number) => {
+  if (!reviewedCount) return 100;
+  return Math.min(100, Math.round((retainedCount / reviewedCount) * 100));
+};
