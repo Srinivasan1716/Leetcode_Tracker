@@ -611,3 +611,6 @@ export const getAvgSessionDuration = (logs: StudyLogEntry[]) => {
   if (!logs.length) return 0;
   return Math.round(logs.reduce((sum, l) => sum + l.durationMinutes, 0) / logs.length);
 };
+
+// Date Range Filter Preset Options
+export type AnalyticsDatePreset = '7D' | '30D' | '90D' | 'ALL_TIME';
