@@ -580,3 +580,10 @@ export const computeOverallReadiness = (companies: CompanyReadiness[]) => {
   const sum = companies.reduce((acc, c) => acc + c.readinessPercentage, 0);
   return Math.round(sum / companies.length);
 };
+
+// Study Streak Velocity Metric Calculator
+export const calculateStreakVelocity = (currentStreak: number, maxStreak: number) => ({
+  currentStreak,
+  maxStreak,
+  velocityRatio: maxStreak ? Math.round((currentStreak / maxStreak) * 100) : 0
+});
