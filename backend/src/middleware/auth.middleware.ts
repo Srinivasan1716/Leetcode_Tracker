@@ -42,3 +42,10 @@ export const optionalAuth = (req: AuthRequest, res: Response, next: NextFunction
   } catch (_) {}
   next();
 };
+
+// Admin role guard middleware
+export const adminGuard = (req: AuthRequest, res: Response, next: NextFunction) => {
+  if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
+  // In production, check admin role from DB
+  next();
+};
