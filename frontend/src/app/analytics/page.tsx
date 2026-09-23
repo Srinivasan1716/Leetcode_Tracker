@@ -631,3 +631,8 @@ export const exportAnalyticsCsv = (metrics: TopicMetric[]) => {
 export const printStudySummary = () => {
   if (typeof window !== 'undefined') window.print();
 };
+
+// Complexity Audit Rating Helper
+export const getComplexityAuditScore = (timeScore: number, spaceScore: number) => {
+  return Math.round((timeScore + spaceScore) / 2);
+};
