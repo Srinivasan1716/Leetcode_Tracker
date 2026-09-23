@@ -715,3 +715,9 @@ export const searchRevisionItems = (logs: StudyLogEntry[], query: string) => {
   const q = query.toLowerCase().trim();
   return logs.filter(l => l.title.toLowerCase().includes(q) || l.topic.toLowerCase().includes(q));
 };
+
+// Category Time Breakdown Summary Calculator
+export const computeCategoryTimeBreakdown = (metrics: TopicMetric[]) => {
+  const total = metrics.reduce((acc, m) => acc + m.timeSpentMinutes, 0) || 1;
+  return metrics.map(m => ({ name: m.name, percentage: Math.round((m.timeSpentMinutes / total) * 100) }));
+};
