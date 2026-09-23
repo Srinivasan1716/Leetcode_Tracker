@@ -23,3 +23,13 @@ export const computeTotalPages = (total: number, limit: number): number => {
 export const hasNextPage = (page: number, total: number, limit: number): boolean => {
   return page < computeTotalPages(total, limit);
 };
+
+// Build pagination metadata object for API response
+export const buildPaginationMeta = (page: number, limit: number, total: number) => ({
+  page,
+  limit,
+  total,
+  totalPages: computeTotalPages(total, limit),
+  hasNext: hasNextPage(page, total, limit),
+  hasPrev: page > 1
+});
