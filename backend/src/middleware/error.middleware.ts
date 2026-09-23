@@ -19,3 +19,10 @@ export const errorHandler = (err: Error, req: Request, res: Response, _next: Nex
   console.error(`[Error] ${req.method} ${req.path}:`, err.message);
   res.status(status).json({ message: err.message || "Internal server error" });
 };
+
+// Async handler wrapper to avoid try/catch repetition
+export const asyncHandler = (fn: Function) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
+};
