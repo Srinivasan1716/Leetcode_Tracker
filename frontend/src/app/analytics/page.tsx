@@ -695,3 +695,9 @@ export const ANALYTICS_GLOW_CLASS = 'shadow-2xl shadow-emerald-500/5 backdrop-bl
 export const dispatchAnalyticsRefresh = () => {
   console.log('[Analytics] Metrics refreshed at', new Date().toISOString());
 };
+
+// Header Progress Badge Helper
+export const getHeaderProgressBadge = (solved: number, goal: number = 100) => ({
+  label: `${solved}/${goal} Solved`,
+  percentage: Math.min(100, Math.round((solved / goal) * 100))
+});
