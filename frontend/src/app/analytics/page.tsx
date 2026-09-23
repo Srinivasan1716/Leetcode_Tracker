@@ -614,3 +614,15 @@ export const getAvgSessionDuration = (logs: StudyLogEntry[]) => {
 
 // Date Range Filter Preset Options
 export type AnalyticsDatePreset = '7D' | '30D' | '90D' | 'ALL_TIME';
+
+// Export Analytics Report to CSV Utility
+export const exportAnalyticsCsv = (metrics: TopicMetric[]) => {
+  const header = 'Topic,Solved,Total,Accuracy(%),TimeSpent(min)\n';
+  const rows = metrics.map(m => `${m.name},${m.solved},${m.total},${m.accuracy},${m.timeSpentMinutes}`).join('\n');
+  const blob = new Blob([header + rows], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `leetcode-analytics-${Date.now()}.csv`;
+  a.click();
+};
