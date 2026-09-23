@@ -655,3 +655,9 @@ export const getWeakestTopics = (metrics: TopicMetric[]) => {
 
 // Company Filter Options List
 export const COMPANY_FILTER_OPTIONS = ['All Companies', 'Google', 'Meta', 'Amazon', 'Microsoft', 'Apple', 'Netflix'];
+
+// Overall Acceptance Rate Formatter
+export const formatAcceptanceRate = (accepted: number, totalSubmissions: number) => {
+  if (!totalSubmissions) return '0.0%';
+  return `${((accepted / totalSubmissions) * 100).toFixed(1)}%`;
+};
