@@ -742,3 +742,6 @@ export const getUpcomingRevisionDates = (daysCount: number = 7) => {
 export const getTopicMasteryScore = (accuracy: number, solvedCount: number) => {
   return Math.min(100, Math.round((accuracy * 0.6) + (solvedCount * 2)));
 };
+
+// Custom Time Range Filter Pills List
+export const TIME_RANGE_PILLS = ['This Week', 'This Month', 'Last 3 Months', 'All Time'];
