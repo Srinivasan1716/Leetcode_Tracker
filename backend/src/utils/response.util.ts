@@ -9,3 +9,12 @@ export const sendSuccess = (res: Response, data: unknown, message: string = "Suc
 export const sendError = (res: Response, message: string, status: number = 500) => {
   return res.status(status).json({ success: false, message, data: null });
 };
+
+// Paginated response wrapper with metadata
+export const sendPaginated = (res: Response, data: unknown[], total: number, page: number, limit: number) => {
+  return res.status(200).json({
+    success: true,
+    data,
+    pagination: { total, page, limit, totalPages: Math.ceil(total / limit) }
+  });
+};
