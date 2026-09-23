@@ -12,3 +12,10 @@ export class AppError extends Error {
 export const notFoundHandler = (req: Request, res: Response) => {
   res.status(404).json({ message: `Route ${req.method} ${req.path} not found` });
 };
+
+// Global error handler middleware
+export const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
+  const status = err instanceof AppError ? err.statusCode : 500;
+  console.error(`[Error] ${req.method} ${req.path}:`, err.message);
+  res.status(status).json({ message: err.message || "Internal server error" });
+};
