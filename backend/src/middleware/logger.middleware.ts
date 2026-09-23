@@ -20,3 +20,13 @@ export const responseLogger = (req: Request, res: Response, next: NextFunction) 
   };
   next();
 };
+
+// Log slow requests that exceed 500ms
+export const slowRequestLogger = (req: Request, res: Response, next: NextFunction) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    const ms = Date.now() - start;
+    if (ms > 500) console.warn(`[SLOW REQUEST] ${req.method} ${req.path} took ${ms}ms`);
+  });
+  next();
+};
