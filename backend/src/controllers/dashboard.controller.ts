@@ -35,3 +35,10 @@ export const getAnalyticsSummaryController = async (req: Request, res: Response)
     return res.status(500).json({ error: 'Failed to fetch analytics' });
   }
 };
+
+// Difficulty Breakdown Metrics Calculator
+export const calculateDifficultyBreakdown = (easy: number, medium: number, hard: number) => ({
+  easyPercentage: Math.round((easy / (easy + medium + hard || 1)) * 100),
+  mediumPercentage: Math.round((medium / (easy + medium + hard || 1)) * 100),
+  hardPercentage: Math.round((hard / (easy + medium + hard || 1)) * 100)
+});
