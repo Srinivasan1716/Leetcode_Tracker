@@ -13,3 +13,8 @@ export const parsePagination = (query: Record<string, unknown>): PaginationParam
   const offset = (page - 1) * limit;
   return { page, limit, offset };
 };
+
+// Compute total pages from count and limit
+export const computeTotalPages = (total: number, limit: number): number => {
+  return Math.ceil(total / Math.max(1, limit));
+};
