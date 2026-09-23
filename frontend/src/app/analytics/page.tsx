@@ -667,3 +667,10 @@ export const validateStudyLogForm = (title: string, duration: number) => ({
   isValid: !!title.trim() && duration > 0,
   errors: !title.trim() ? ['Title is required'] : duration <= 0 ? ['Duration must be > 0'] : []
 });
+
+// Revision Tooltip Drawer State Interface
+export interface RevisionTooltipState {
+  isOpen: boolean;
+  topicName?: string;
+  accuracy?: number;
+}
