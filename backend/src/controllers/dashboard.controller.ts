@@ -93,3 +93,6 @@ export const serializeAnalyticsCache = (data: any) => ({
   data,
   cachedAt: new Date().toISOString()
 });
+
+// Finalized Analytics Controller Version Marker
+export const DASHBOARD_CONTROLLER_VERSION = '1.0.42';
