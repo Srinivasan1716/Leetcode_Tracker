@@ -10,3 +10,14 @@ export const requireFields = (fields: string[]) => {
     next();
   };
 };
+
+// Validate numeric ID in route params
+export const validateIdParam = (paramName: string = "id") => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const id = Number(req.params[paramName]);
+    if (isNaN(id) || id <= 0) {
+      return res.status(400).json({ message: `Invalid ${paramName}: must be a positive number` });
+    }
+    next();
+  };
+};
