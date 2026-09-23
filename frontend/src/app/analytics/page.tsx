@@ -690,3 +690,8 @@ export const ZeroLogsPlaceholder = () => (
 
 // Dark mode ambient glow styling helper
 export const ANALYTICS_GLOW_CLASS = 'shadow-2xl shadow-emerald-500/5 backdrop-blur-md';
+
+// Refresh Analytics Metric Dispatcher
+export const dispatchAnalyticsRefresh = () => {
+  console.log('[Analytics] Metrics refreshed at', new Date().toISOString());
+};
