@@ -661,3 +661,9 @@ export const formatAcceptanceRate = (accepted: number, totalSubmissions: number)
   if (!totalSubmissions) return '0.0%';
   return `${((accepted / totalSubmissions) * 100).toFixed(1)}%`;
 };
+
+// Study Session Log Form Validation
+export const validateStudyLogForm = (title: string, duration: number) => ({
+  isValid: !!title.trim() && duration > 0,
+  errors: !title.trim() ? ['Title is required'] : duration <= 0 ? ['Duration must be > 0'] : []
+});
