@@ -642,3 +642,8 @@ export const calculateRetentionRate = (reviewedCount: number, retainedCount: num
   if (!reviewedCount) return 100;
   return Math.min(100, Math.round((retainedCount / reviewedCount) * 100));
 };
+
+// Top Performing Topics Identifier
+export const getTopPerformingTopics = (metrics: TopicMetric[]) => {
+  return [...metrics].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
+};
