@@ -605,3 +605,9 @@ export const getHeatmapColorClass = (level: 0 | 1 | 2 | 3 | 4) => {
     default: return 'bg-zinc-900 border-zinc-800';
   }
 };
+
+// Session Duration Average Calculator
+export const getAvgSessionDuration = (logs: StudyLogEntry[]) => {
+  if (!logs.length) return 0;
+  return Math.round(logs.reduce((sum, l) => sum + l.durationMinutes, 0) / logs.length);
+};
