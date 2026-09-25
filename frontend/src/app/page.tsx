@@ -263,7 +263,7 @@ export default function Home() {
               </span>
               <div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-                  LeetCode Tracker
+                  LeetCode Tracker, trackes your code
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-400">
                   Monitor solving progress, algorithms & data structures metrics
